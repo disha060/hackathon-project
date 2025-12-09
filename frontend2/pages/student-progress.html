@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AMEP Student Progress (Dark Mode)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-feature-settings: "liga";
+            -webkit-font-feature-settings: "liga";
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+        .gradient-border {
+            position: relative;
+            background-clip: padding-box;
+            border: 2px solid transparent;
+        }
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -1;
+            margin: -2px;
+            border-radius: inherit;
+            background: linear-gradient(to right, #7B2CBF, #00A8FF);
+        }
+        .glow-button {
+             box-shadow: 0 0 10px #0db9f2, 0 0 20px #0db9f2, 0 0 30px #0db9f2;
+        }
+        .glow-bar {
+            box-shadow: 0 0 8px #0db9f2, 0 0 12px #0db9f2;
+        }
+        .glow-risk-amber {
+            box-shadow: 0 0 8px #f59e0b, 0 0 12px #f59e0b;
+        }
+        .glow-risk-red {
+            box-shadow: 0 0 8px #ef4444, 0 0 12px #ef4444;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-6 sm:px-10 lg:px-20 py-4 bg-background-dark/50 backdrop-blur-sm sticky top-0 z-50">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">AMEP</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-center gap-8">
+<div class="flex items-center gap-9">
+<a class="text-white/80 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-white text-sm font-bold leading-normal relative" href="#">Students
+                            <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-primary rounded-full"></span>
+</a>
+<a class="text-white/80 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Reports</a>
+<a class="text-white/80 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Settings</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-white/5 text-white/80 hover:text-white hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-white/5 text-white/80 hover:text-white hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-xl">settings</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/50" data-alt="User avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAGmRWkBaiLC7HOd6ojos6jHz-_qvL_vQMQbvNPugQXvJafYwCHgFIHpRYPkLN4FlsNCcx2iTy75GSxvTHAdvFPnPSCyQveub1HWF0wH_npSiwB64Zr73VhzHOALQJm0wYm5CJkT7xbB_HGPvu9i2cA64QlXyTifhQlb8VhjwnWN6JWgHhGp-usQnWf0od_VP0dvstgdxRHxxjJkOhqbURIefrEGabcst8zQGNLVQQohdLca4mQcFgw66cDlT1bO08_BUWZVig56go");'></div>
+</div>
+</header>
+<main class="px-6 sm:px-10 lg:px-20 flex flex-1 justify-center py-8">
+<div class="layout-content-container flex flex-col w-full max-w-6xl flex-1 gap-8">
+<div class="flex flex-wrap gap-2">
+<a class="text-white/60 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Students</a>
+<span class="text-white/60 text-sm font-medium leading-normal">/</span>
+<span class="text-white text-sm font-medium leading-normal">Jane Doe's Progress</span>
+</div>
+<div class="gradient-border rounded-xl">
+<div class="flex p-6 rounded-xl bg-background-dark/80 backdrop-blur-lg @container">
+<div class="flex w-full flex-col gap-6 @[520px]:flex-row @[520px]:justify-between @[520px]:items-center">
+<div class="flex gap-6 items-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-24 w-24 sm:h-32 sm:w-32 flex-shrink-0" data-alt="Student Jane Doe's avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDAWJ2oPzPRQvmkdTIFQ8CnndPpoJv6xxIciIMtk6hLii7C3EtGepgox9OgDMoIfTOXrpr_Mf5XtmzDA8ZAfn0FRUQaiX6REYkjPEV4jD21TEl_jKyN__7R-x2ueSKYleB_V_fl3QuBKECyhoj47-NZVnKC7SSLaEI5IHtK3dFiyqiyZtGWabyhWeCWTQIRStok4pKgWfMzcxq6Y6BTxBIX21cPUTQvUZlaQ7l4n2cpcBqJ8gPrDQ0yG9Tfh2qCrwxRjR-rYGQ7Mr4");'></div>
+<div class="flex flex-col justify-center">
+<p class="text-white text-2xl sm:text-3xl font-bold leading-tight tracking-tight">Jane Doe</p>
+<p class="text-white/60 text-sm sm:text-base font-normal leading-normal">Student ID: 4582-901B</p>
+</div>
+</div>
+<button class="glow-button flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-background-dark text-base font-bold leading-normal tracking-wide w-full max-w-[480px] @[480px]:w-auto transition-shadow hover:shadow-none">
+<span class="truncate">Intervene</span>
+</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="gradient-border rounded-xl">
+<div class="flex flex-1 flex-col gap-2 rounded-xl p-6 bg-background-dark/80 backdrop-blur-lg">
+<p class="text-white/80 text-base font-medium leading-normal">Current Streak</p>
+<p class="text-[#00F5D4] tracking-light text-4xl font-bold leading-tight" style="text-shadow: 0 0 8px rgba(0, 245, 212, 0.7);">15 Days</p>
+<p class="text-green-400 text-sm font-medium leading-normal flex items-center gap-1"><span class="material-symbols-outlined text-base">arrow_upward</span>+2%</p>
+</div>
+</div>
+<div class="gradient-border rounded-xl">
+<div class="flex flex-1 flex-col gap-2 rounded-xl p-6 bg-background-dark/80 backdrop-blur-lg">
+<p class="text-white/80 text-base font-medium leading-normal">Overall Mastery</p>
+<p class="text-[#00A8FF] tracking-light text-4xl font-bold leading-tight" style="text-shadow: 0 0 8px rgba(0, 168, 255, 0.7);">82%</p>
+<p class="text-red-400 text-sm font-medium leading-normal flex items-center gap-1"><span class="material-symbols-outlined text-base">arrow_downward</span>-1%</p>
+</div>
+</div>
+<div class="gradient-border rounded-xl">
+<div class="flex flex-1 flex-col gap-2 rounded-xl p-6 bg-background-dark/80 backdrop-blur-lg">
+<p class="text-white/80 text-base font-medium leading-normal">Active Risk Alerts</p>
+<p class="text-[#FF00A8] tracking-light text-4xl font-bold leading-tight" style="text-shadow: 0 0 8px rgba(255, 0, 168, 0.7);">2</p>
+<p class="text-green-400 text-sm font-medium leading-normal flex items-center gap-1"><span class="material-symbols-outlined text-base">arrow_upward</span>+1%</p>
+</div>
+</div>
+<div class="gradient-border rounded-xl">
+<div class="flex flex-1 flex-col gap-2 rounded-xl p-6 bg-background-dark/80 backdrop-blur-lg">
+<p class="text-white/80 text-base font-medium leading-normal">Time This Week</p>
+<p class="text-white tracking-light text-4xl font-bold leading-tight">6h 42m</p>
+<p class="text-green-400 text-sm font-medium leading-normal flex items-center gap-1"><span class="material-symbols-outlined text-base">arrow_upward</span>+15m</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 gradient-border rounded-xl">
+<div class="p-6 bg-background-dark/80 backdrop-blur-lg rounded-xl h-full flex flex-col gap-4">
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Progress Over Time</h2>
+<div class="flex-grow flex items-center justify-center">
+<img alt="A dark mode line chart showing student progress increasing over the last 30 days." class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEpctTD7IrveZ9KN-3GnKe_xTxyQbyfLtsSEB_mNxyOdk1qlD1dgQNgGPqdHVhCJqqW2XTI5aNn4vRwT_-BsFz7a5zq7yioiHHyujwQDb6kTP3k6gFAfDJB_X00aJf-lBo62vjYmxMps7L4JK5640IgNua9P-uc6FlmOJ1kGrZ5pSVXiY5zH86mLqMagSSN6GGkBIIOJajTiwXd4dfEXtd0CyGk3BMPhd-UKEEhppL6j6gLb5p6WKC1SDggWd1PJaTy0POx0w7W3c"/>
+</div>
+</div>
+</div>
+<div class="gradient-border rounded-xl">
+<div class="p-6 bg-background-dark/80 backdrop-blur-lg rounded-xl h-full flex flex-col gap-4">
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Subject Mastery</h2>
+<div class="flex flex-col gap-6 pt-2">
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<p class="text-white/90 text-sm font-medium">Reading Comprehension</p>
+<p class="text-white font-semibold">92%</p>
+</div>
+<div class="w-full bg-white/10 rounded-full h-2.5">
+<div class="glow-bar bg-primary rounded-full h-2.5" style="width: 92%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<p class="text-white/90 text-sm font-medium">Conversational English</p>
+<div class="w-3 h-3 rounded-full bg-amber-500 glow-risk-amber" title="Risk Alert: Needs Practice"></div>
+</div>
+<p class="text-white font-semibold">65%</p>
+</div>
+<div class="w-full bg-white/10 rounded-full h-2.5">
+<div class="glow-bar bg-primary rounded-full h-2.5" style="width: 65%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<p class="text-white/90 text-sm font-medium">Grammar &amp; Vocabulary</p>
+<p class="text-white font-semibold">88%</p>
+</div>
+<div class="w-full bg-white/10 rounded-full h-2.5">
+<div class="glow-bar bg-primary rounded-full h-2.5" style="width: 88%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<p class="text-white/90 text-sm font-medium">Writing Skills</p>
+<div class="w-3 h-3 rounded-full bg-red-500 glow-risk-red" title="Risk Alert: Falling Behind"></div>
+</div>
+<p class="text-white font-semibold">45%</p>
+</div>
+<div class="w-full bg-white/10 rounded-full h-2.5">
+<div class="glow-bar bg-primary rounded-full h-2.5" style="width: 45%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

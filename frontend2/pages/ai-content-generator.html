@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AMEP AI Content Generator (Dark Mode)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'glow-primary': '0 0 15px 2px rgba(13, 185, 242, 0.5), 0 0 5px 0px rgba(13, 185, 242, 0.7)',
+                        'glow-primary-strong': '0 0 25px 5px rgba(13, 185, 242, 0.7), 0 0 10px 2px rgba(13, 185, 242, 0.8)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .form-select, .form-input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        .select-wrapper {
+            position: relative;
+        }
+        .select-wrapper::after {
+            content: 'expand_more';
+            font-family: 'Material Symbols Outlined';
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #9cb2ba;
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#283539] px-10 py-3 sticky top-0 bg-background-dark/80 backdrop-blur-sm z-50">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">AMEP</h2>
+</div>
+<div class="flex flex-1 justify-center gap-8">
+<div class="flex items-center gap-9">
+<a class="text-white/70 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-white/70 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Courses</a>
+<a class="text-primary text-sm font-bold leading-normal relative" href="#">
+                            Content Generator
+                            <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-primary"></span>
+</a>
+<a class="text-white/70 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Analytics</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center rounded-full size-10 bg-[#1b2427] border border-[#3b4e54] text-white/70 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.015em] hover:shadow-glow-primary transition-shadow">
+<span class="truncate">Profile</span>
+</button>
+</div>
+</header>
+<main class="flex-1 px-10 py-8">
+<div class="flex flex-col gap-8">
+<div class="flex flex-col gap-3">
+<p class="text-white text-4xl font-black leading-tight tracking-[-0.033em]">AI Content Generator</p>
+<p class="text-[#9cb2ba] text-base font-normal leading-normal">Create and assign educational content powered by AI.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+<!-- Left Column: Controls Panel -->
+<div class="lg:col-span-1 flex flex-col gap-6 bg-[#1b2427]/50 border border-[#283539] rounded-xl p-6 sticky top-28">
+<label class="flex flex-col w-full">
+<p class="text-white text-base font-medium leading-normal pb-2">Content Type</p>
+<div class="select-wrapper">
+<select class="form-select flex w-full min-w-0 resize-none overflow-hidden rounded-lg text-white focus:outline-0 border border-[#3b4e54] bg-[#101e22] focus:border-primary focus:ring-2 focus:ring-primary/50 h-14 p-[15px] text-base font-normal leading-normal transition-all">
+<option>Quiz Questions</option>
+<option>Lesson Summary</option>
+<option>Interactive Dialogue</option>
+</select>
+</div>
+</label>
+<label class="flex flex-col w-full">
+<p class="text-white text-base font-medium leading-normal pb-2">Difficulty Level</p>
+<div class="select-wrapper">
+<select class="form-select flex w-full min-w-0 resize-none overflow-hidden rounded-lg text-white focus:outline-0 border border-[#3b4e54] bg-[#101e22] focus:border-primary focus:ring-2 focus:ring-primary/50 h-14 p-[15px] text-base font-normal leading-normal transition-all">
+<option>Beginner</option>
+<option>Intermediate</option>
+<option>Advanced</option>
+</select>
+</div>
+</label>
+<div class="flex flex-col w-full gap-2">
+<p class="text-white text-base font-medium leading-normal">Content Length</p>
+<div class="flex h-[38px] w-full pt-1.5">
+<div class="flex h-1.5 w-full items-center">
+<div class="h-1.5 w-full rounded-full bg-[#3b4e54] relative">
+<div class="h-1.5 w-[60%] rounded-full bg-primary" style="box-shadow: 0 0 8px rgba(13, 185, 242, 0.6);"></div>
+<div class="absolute -right-2 top-1/2 -translate-y-1/2">
+<div class="relative group">
+<div class="size-5 rounded-full bg-white cursor-pointer border-2 border-primary ring-4 ring-primary/30"></div>
+<p class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 text-white text-sm font-medium leading-normal bg-[#283539] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">200 words</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<label class="flex flex-col w-full">
+<p class="text-white text-base font-medium leading-normal pb-2">Custom Prompts</p>
+<textarea class="form-input flex w-full min-w-0 resize-y overflow-hidden rounded-lg text-white focus:outline-0 border border-[#3b4e54] bg-[#101e22] focus:border-primary focus:ring-2 focus:ring-primary/50 h-28 placeholder:text-[#9cb2ba] p-[15px] text-base font-normal leading-normal transition-all" placeholder="e.g., 'Focus on the industrial revolution...'"></textarea>
+</label>
+<div class="flex flex-col gap-4 pt-4 border-t border-[#283539]">
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-primary text-background-dark text-base font-bold leading-normal tracking-[0.015em] hover:shadow-glow-primary transition-shadow duration-300">
+<span class="truncate">Generate Content</span>
+</button>
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-transparent border-2 border-primary text-primary text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/10 transition-colors">
+<span class="truncate">Reset</span>
+</button>
+</div>
+</div>
+<!-- Right Column: Preview Panel -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<div class="flex justify-between items-center">
+<h3 class="text-2xl font-bold text-white">Live Preview</h3>
+<button class="flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-xl h-12 px-6 bg-primary text-background-dark text-base font-bold leading-normal shadow-glow-primary-strong hover:shadow-glow-primary transition-shadow duration-300">
+<span class="material-symbols-outlined text-xl">assignment_turned_in</span>
+<span class="truncate">Assign</span>
+</button>
+</div>
+<div class="flex flex-col gap-4">
+<div class="bg-[#1b2427]/50 p-6 rounded-xl border border-primary/50 shadow-lg" style="box-shadow: 0 0 20px rgba(13, 185, 242, 0.15);">
+<h4 class="font-bold text-lg text-primary mb-2">Question 1: Multiple Choice</h4>
+<p class="text-white/90 mb-4">What was the primary invention that sparked the Industrial Revolution?</p>
+<div class="flex flex-col gap-2">
+<p class="text-white/70">A) The printing press</p>
+<p class="text-white font-semibold bg-primary/10 border border-primary/30 px-3 py-2 rounded-md">B) The steam engine</p>
+<p class="text-white/70">C) The internet</p>
+<p class="text-white/70">D) The telescope</p>
+</div>
+</div>
+<div class="bg-[#1b2427]/50 p-6 rounded-xl border border-primary/50 shadow-lg" style="box-shadow: 0 0 20px rgba(13, 185, 242, 0.15);">
+<h4 class="font-bold text-lg text-primary mb-2">Question 2: True or False</h4>
+<p class="text-white/90 mb-4">The Industrial Revolution began in the United States.</p>
+<div class="flex gap-4">
+<span class="text-white/70">True</span>
+<span class="text-white font-semibold bg-primary/10 border border-primary/30 px-3 py-2 rounded-md">False</span>
+</div>
+</div>
+<div class="bg-[#1b2427]/50 p-6 rounded-xl border border-primary/50 shadow-lg" style="box-shadow: 0 0 20px rgba(13, 185, 242, 0.15);">
+<h4 class="font-bold text-lg text-primary mb-2">Question 3: Fill in the Blank</h4>
+<p class="text-white/90">The __________ system was a new method of manufacturing that became common during the Industrial Revolution.</p>
+<p class="italic text-primary/80 mt-2">Correct Answer: factory</p>
+</div>
+<div class="bg-[#1b2427]/50 p-6 rounded-xl border border-dashed border-white/20 text-center">
+<p class="text-white/60">Generated content will appear here.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

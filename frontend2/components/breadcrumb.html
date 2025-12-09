@@ -1,0 +1,57 @@
+<!-- Breadcrumb Navigation -->
+<nav id="breadcrumb-nav" class="hidden mb-6 text-sm">
+    <ol class="flex items-center space-x-2 text-gray-400">
+        <li>
+            <a href="landing.html" class="hover:text-white transition-colors">Home</a>
+        </li>
+        <li>
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+            </svg>
+        </li>
+        <li id="breadcrumb-current" class="text-white font-medium"></li>
+    </ol>
+</nav>
+
+<script>
+    // Breadcrumb navigation functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const breadcrumbNav = document.getElementById('breadcrumb-nav');
+        const breadcrumbCurrent = document.getElementById('breadcrumb-current');
+        
+        // Mapping of pages to breadcrumb names
+        const breadcrumbMap = {
+            'student-dashboard.html': 'Student Dashboard',
+            'mastery-tracker.html': 'Mastery Tracker',
+            'assignments.html': 'Assignments',
+            'assignment-details.html': 'Assignment Details',
+            'projects.html': 'Projects',
+            'project-details.html': 'Project Details',
+            'leaderboard.html': 'Leaderboard',
+            'badges.html': 'Badges',
+            'teacher-dashboard.html': 'Teacher Dashboard',
+            'ai-content-generator.html': 'AI Content Generator',
+            'classes.html': 'Class Management',
+            'student-progress.html': 'Student Progress',
+            'interventions.html': 'Interventions',
+            'analytics.html': 'Analytics',
+            'login.html': 'Login',
+            'signup.html': 'Sign Up'
+        };
+        
+        // Get current page
+        const currentPage = window.location.pathname.split('/').pop();
+        
+        // Show breadcrumb for authenticated pages only
+        if (currentPage !== 'landing.html' && currentPage !== 'login.html' && currentPage !== 'signup.html') {
+            breadcrumbNav.classList.remove('hidden');
+            
+            // Set current page name
+            if (breadcrumbMap[currentPage]) {
+                breadcrumbCurrent.textContent = breadcrumbMap[currentPage];
+            } else {
+                breadcrumbCurrent.textContent = 'Page';
+            }
+        }
+    });
+</script>

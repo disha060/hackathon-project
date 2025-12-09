@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AMEP Assignment Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df2df",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#111817",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'glow-primary': '0 0 15px 0 rgba(13, 242, 223, 0.5), 0 0 5px 0 rgba(13, 242, 223, 0.6)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#283938] px-10 py-3">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"></path>
+</svg>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">AMEP</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Courses</a>
+<a class="text-primary text-sm font-bold leading-normal" href="#">Assignments</a>
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Profile</a>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.015em] hover:bg-opacity-80 transition-opacity">
+<span class="truncate">Logout</span>
+</button>
+</div>
+</header>
+<main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<div class="flex flex-wrap gap-2 mb-8">
+<a class="text-[#9cbab7] text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Courses</a>
+<span class="text-[#9cbab7] text-sm font-medium leading-normal">/</span>
+<a class="text-[#9cbab7] text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">CS 101</a>
+<span class="text-[#9cbab7] text-sm font-medium leading-normal">/</span>
+<a class="text-[#9cbab7] text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Assignments</a>
+<span class="text-[#9cbab7] text-sm font-medium leading-normal">/</span>
+<span class="text-white text-sm font-medium leading-normal">Generative Art with p5.js</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Left Column: Information -->
+<div class="flex flex-col gap-8">
+<div>
+<h1 class="text-white text-4xl lg:text-5xl font-black tracking-tighter text-shadow-[0_0_15px_rgba(13,242,223,0.4)]">Assignment: Generative Art with p5.js</h1>
+<p class="text-[#9cbab7] text-base font-normal leading-normal mt-3">Due: Dec 15, 2024 | <span class="text-yellow-400">In Progress</span> | 100 Points</p>
+</div>
+<div class="bg-white/5 backdrop-blur-md rounded-xl border border-white/10 p-6">
+<h2 class="text-white text-xl font-bold mb-3">Description</h2>
+<p class="text-[#c1d3d1] text-base font-normal leading-relaxed">This assignment challenges you to create a dynamic, interactive piece of generative art using the p5.js library. Explore concepts of randomness, loops, and user input to build a unique visual experience. The goal is to apply fundamental programming concepts in a creative context.</p>
+</div>
+<div class="flex flex-col gap-4">
+<h2 class="text-white text-xl font-bold">Learning Objectives</h2>
+<div class="grid sm:grid-cols-2 gap-4">
+<div class="relative p-5 bg-[#1a2e2c] border border-primary/50 rounded-lg overflow-hidden transition-all hover:border-primary">
+<div class="absolute -top-1 -right-1 w-16 h-16 bg-primary/20 rounded-bl-full blur-2xl"></div>
+<div class="flex items-center gap-4">
+<div class="flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-3xl">code</span>
+</div>
+<div>
+<h3 class="font-bold text-white">p5.js Basics</h3>
+<p class="text-sm text-[#9cbab7]">Understand the setup and draw loops.</p>
+</div>
+</div>
+</div>
+<div class="relative p-5 bg-[#1a2e2c] border border-primary/50 rounded-lg overflow-hidden transition-all hover:border-primary">
+<div class="absolute -top-1 -right-1 w-16 h-16 bg-primary/20 rounded-bl-full blur-2xl"></div>
+<div class="flex items-center gap-4">
+<div class="flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-3xl">gesture</span>
+</div>
+<div>
+<h3 class="font-bold text-white">Interactivity</h3>
+<p class="text-sm text-[#9cbab7]">Use mouse and keyboard inputs.</p>
+</div>
+</div>
+</div>
+<div class="relative p-5 bg-[#1a2e2c] border border-primary/50 rounded-lg overflow-hidden transition-all hover:border-primary">
+<div class="absolute -top-1 -right-1 w-16 h-16 bg-primary/20 rounded-bl-full blur-2xl"></div>
+<div class="flex items-center gap-4">
+<div class="flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-3xl">shuffle</span>
+</div>
+<div>
+<h3 class="font-bold text-white">Randomness</h3>
+<p class="text-sm text-[#9cbab7]">Implement random functions for variety.</p>
+</div>
+</div>
+</div>
+<div class="relative p-5 bg-[#1a2e2c] border border-primary/50 rounded-lg overflow-hidden transition-all hover:border-primary">
+<div class="absolute -top-1 -right-1 w-16 h-16 bg-primary/20 rounded-bl-full blur-2xl"></div>
+<div class="flex items-center gap-4">
+<div class="flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-3xl">palette</span>
+</div>
+<div>
+<h3 class="font-bold text-white">Color Theory</h3>
+<p class="text-sm text-[#9cbab7]">Apply color to create mood and focus.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Workspace -->
+<div class="flex flex-col bg-[#162928] border border-white/10 rounded-xl overflow-hidden min-h-[700px]">
+<div class="flex-grow flex flex-col">
+<div class="p-4 border-b border-white/10">
+<h3 class="text-lg font-bold text-white">Your Workspace</h3>
+<p class="text-sm text-[#9cbab7]">Complete the task in the editor below.</p>
+</div>
+<div class="flex-grow bg-[#111817] p-2 relative">
+<img alt="A dark-themed code editor displaying JavaScript code with syntax highlighting in teal, blue, and purple colors. The code includes a setup function and a draw function, characteristic of a p5.js sketch." class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8ICxOpPLGUmMJl1Dhc7D7p8rK14lK_h3UoSLGbNuG3KsbmI25NfQGCMzXoBdKsu1zBAUzEgmrGEibLn3RURQioTk56MOL0fxt1SmGLMMVcq_s_b2if4b1i8SzyJfQ7Ui9JysYoe5XAnf1fqgrLM7XejLMb-xK9y7Va0jPCkp8ilPFdQQ5mLHlEiRlasBhJa-Jg2mWwvnKyF3u44-4a5o9UQjkoe6vMa0h3X-j40MSb_1cFXtJNorim6GAnemrodWpJSV1AAguA9I"/>
+</div>
+<div class="p-4 border-t border-white/10 flex items-center justify-end gap-3">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary/20 text-primary text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/30 transition-colors">
+<span class="truncate">Save Draft</span>
+</button>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.015em] shadow-glow-primary hover:bg-opacity-80 transition-opacity">
+<span class="truncate">Submit Assignment</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

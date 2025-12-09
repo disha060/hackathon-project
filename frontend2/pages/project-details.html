@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AMEP Project Detail (Dark Mode)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24;
+            vertical-align: middle;
+        }
+        .glowing-title {
+            text-shadow: 0 0 8px rgba(56, 250, 234, 0.5), 0 0 20px rgba(56, 250, 234, 0.3);
+        }
+        .glowing-button {
+            box-shadow: 0 0 10px 0px rgba(56, 250, 234, 0.3), inset 0 0 10px 0px rgba(56, 250, 234, 0.2);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        .glowing-button:hover {
+            box-shadow: 0 0 15px 2px rgba(56, 250, 234, 0.6), inset 0 0 12px 0px rgba(56, 250, 234, 0.4);
+        }
+        .dark-glass {
+            background-color: rgba(40, 59, 57, 0.5); /* #283B39 with 50% opacity */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(56, 250, 234, 0.1);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#38faea",
+              "background-light": "#f5f8f8",
+              "background-dark": "#0f2321",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display bg-background-dark">
+<div class="relative flex min-h-screen w-full flex-col text-white group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<div class="flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col w-full max-w-5xl px-4">
+<!-- Top Nav Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/20 px-4 md:px-10 py-3">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">AMEP</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-white/80 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-primary text-sm font-medium leading-normal" href="#">Projects</a>
+<a class="text-white/80 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Community</a>
+<a class="text-white/80 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Resources</a>
+</div>
+<div class="flex gap-2">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.015em] glowing-button border border-primary/50">
+<span class="truncate">Contribute</span>
+</button>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-primary/20 text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 hover:bg-primary/30 transition-colors">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">notifications</span>
+</button>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-primary/20 text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 hover:bg-primary/30 transition-colors">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">settings</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/50" data-alt="User avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDdsVsxcJMKgcZY32vAE6PQTHlmjuOX9ShpLQTvAujvYcYgjkJk-Fsq3mBz_jNjX1CHxLMyMyjt5kCtFinoudHWorM7C73ypMXIEJjf6Fge3IXRh43YlswzKXr6YcmuLdYfPgQ7CCr1E3iRXkTGWMCAmbEC6S5XvVnZfCfNNGt9XEjebPP4hAmb88XW7Gs7n9C1KYzwv9sMtJ4ebD6G4tBX69UZdolNi2G0kfmQSzLWAtYthZKmGNle3Wk2e-2xbvLm-aWLW27lmVQ");'></div>
+</div>
+<button class="flex md:hidden max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-primary/20 text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 hover:bg-primary/30 transition-colors">
+<span class="material-symbols-outlined text-primary" style="font-size: 24px;">menu</span>
+</button>
+</header>
+<main class="flex flex-col gap-8 mt-12">
+<!-- Page Heading -->
+<div class="flex flex-col items-center text-center gap-3 p-4">
+<p class="text-primary text-5xl md:text-6xl font-black leading-tight tracking-[-0.033em] glowing-title">AMEP Project: Futura</p>
+<p class="text-white/70 text-lg font-normal leading-normal max-w-2xl">A modern, futuristic, and highly readable interface design for the next generation of educational tools.</p>
+</div>
+<!-- Chips -->
+<div class="flex gap-3 p-3 flex-wrap items-center justify-center">
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary/20 text-primary px-4 border border-primary/30">
+<span class="material-symbols-outlined" style="font-size: 16px;">progress_activity</span>
+<p class="text-sm font-medium leading-normal">In Progress</p>
+</div>
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary/20 text-primary px-4 border border-primary/30">
+<p class="text-sm font-medium leading-normal">UI/UX</p>
+</div>
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary/20 text-primary px-4 border border-primary/30">
+<p class="text-sm font-medium leading-normal">Web App</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column -->
+<div class="lg:col-span-2 flex flex-col gap-8">
+<!-- Project Description -->
+<section class="dark-glass p-6 rounded-xl flex flex-col gap-4">
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">Project Description</h2>
+<p class="text-white/80 text-base font-normal leading-relaxed">Project Futura aims to redefine the user experience for our educational platform. By integrating cutting-edge design principles, we are creating an interface that is not only visually stunning but also intuitive and accessible. This project involves a complete overhaul of the existing UI/UX, focusing on streamlined navigation, enhanced readability, and interactive components that engage and empower the user.</p>
+</section>
+<!-- Milestones/Checklist -->
+<section class="dark-glass p-6 rounded-xl flex flex-col gap-4">
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">Milestones</h2>
+<ul class="space-y-4">
+<li class="flex items-center gap-4 text-white">
+<div class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-md bg-primary text-background-dark">
+<span class="material-symbols-outlined" style="font-size: 20px;">check</span>
+</div>
+<span class="flex-grow">Phase 1: Research &amp; Discovery</span>
+<span class="text-white/50 text-sm">Completed</span>
+</li>
+<li class="flex items-center gap-4 text-white">
+<div class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-md bg-primary text-background-dark">
+<span class="material-symbols-outlined" style="font-size: 20px;">check</span>
+</div>
+<span class="flex-grow">Phase 2: Wireframing &amp; Prototyping</span>
+<span class="text-white/50 text-sm">Completed</span>
+</li>
+<li class="flex items-center gap-4 text-white">
+<div class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-md border-2 border-primary bg-transparent text-primary">
+<div class="h-2 w-2 rounded-full bg-primary animate-pulse"></div>
+</div>
+<span class="flex-grow text-primary">Phase 3: UI Design &amp; System Build</span>
+<span class="text-primary/80 text-sm">In Progress</span>
+</li>
+<li class="flex items-center gap-4 text-white/50">
+<div class="h-6 w-6 flex-shrink-0 rounded-md border-2 border-white/30"></div>
+<span class="flex-grow">Phase 4: Development &amp; Integration</span>
+<span class="text-sm">Upcoming</span>
+</li>
+<li class="flex items-center gap-4 text-white/50">
+<div class="h-6 w-6 flex-shrink-0 rounded-md border-2 border-white/30"></div>
+<span class="flex-grow">Phase 5: Testing &amp; Deployment</span>
+<span class="text-sm">Upcoming</span>
+</li>
+</ul>
+</section>
+</div>
+<!-- Right Column -->
+<div class="lg:col-span-1 flex flex-col gap-8">
+<!-- Progress Bar -->
+<section class="dark-glass p-6 rounded-xl flex flex-col gap-4">
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] pb-1">Project Progress</h2>
+<div class="flex flex-col gap-3">
+<div class="flex gap-6 justify-between items-baseline">
+<p class="text-white text-base font-medium leading-normal">Overall Completion</p>
+<p class="text-primary text-lg font-bold leading-normal">65%</p>
+</div>
+<div class="rounded-full bg-primary/20 h-3 overflow-hidden">
+<div class="h-3 rounded-full bg-gradient-to-r from-[#00A8FF] to-primary" style="width: 65%;"></div>
+</div>
+</div>
+</section>
+<!-- Team Members -->
+<section class="dark-glass p-6 rounded-xl flex flex-col gap-4">
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">Team Members</h2>
+<div class="flex items-center space-x-2">
+<div class="flex -space-x-4">
+<img class="inline-block size-12 rounded-full ring-2 ring-background-dark" data-alt="Profile picture of a team member" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkS2FR1yFaeL60-YYzhR59DDMvo6fUz6-mUXjC9sC7Mvh26oui-T-XKCOFZYy_Aujty1YIWDV54MovFlA3Daj5UxGkU52V_NgKeESjRNcBElZ_SQxYxCYQTRhKzhDnMnVKo4ShdMadXxWYwbFYIRsxha5L7UGQccxdhU56v4nGcOXgNRzoQg7VGEmXiwjVF7MVM7ClpUONHjQxFae19yPhRkJ5-mSu_4ozJoW5MxiY3j6prHzHDdzWwXmsWIc-HOZZ8o8v59j7ots"/>
+<img class="inline-block size-12 rounded-full ring-2 ring-background-dark" data-alt="Profile picture of a team member" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4gfdm89ZzQparVCuRAuyXWabn0MrbLzB1IPoxAwx1qAiI0qM1zy0G0613Pc2auL3h_qtsdqvlmixZ6zHRXPzamkds-4YbbRI2xRedGiDuB-QW00akSPqtv-oyCvA95uqv9xZBtT0pcaX9EjHa-jJIfySKDyrja75bxgc40pmkWkH9Qs-eM6K7ZvLHgOpvs1TGkraGLdNdBhvHHKunDqrHjBZitTcQ1-oB_Ix-rSE7cOSSWVffZwlyIBNg26N44FWoGzf_e-BMYH4"/>
+<img class="inline-block size-12 rounded-full ring-2 ring-background-dark" data-alt="Profile picture of a team member" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ_MVlM_mNivY8QIkwbepfke3Esdd0Ja-geHlSD2tuyYN19dbePCR9EoRGJlBN-gwY9u6ojo3OrJg5jfGTVbOdKzIUgU6h8N_QE2a2tMLTG-vsRQslWdD4aE-P5FqbAbFovvOIGwGoXzH_Zo337oEtkL9qyQnomCpwxPPEnfEdK0MIRkTnS9cfy725e4Ht_62OErvN0mYvAkW071uwnAvoCxsM_vomgxaJpeJufQ-QczfrUUWeY0N9kq-nAO_ADENwDI6L2reXg80"/>
+<a class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/20 text-primary ring-2 ring-background-dark hover:bg-primary/30" href="#">+2</a>
+</div>
+</div>
+</section>
+<!-- Action Bar -->
+<section class="dark-glass p-6 rounded-xl flex flex-col gap-4">
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">Actions</h2>
+<div class="flex flex-col gap-3">
+<button class="flex w-full cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-12 px-4 bg-primary text-background-dark text-base font-bold tracking-wider glowing-button border border-primary/50">
+<span class="material-symbols-outlined">volunteer_activism</span>
+<span class="truncate">Contribute</span>
+</button>
+<button class="flex w-full cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-12 px-4 bg-transparent text-primary text-base font-bold border-2 border-primary/50 hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">upload_file</span>
+<span class="truncate">Upload Files</span>
+</button>
+<button class="flex w-full cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-12 px-4 bg-transparent text-primary text-base font-bold border-2 border-primary/50 hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">chat</span>
+<span class="truncate">Project Chat</span>
+</button>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+</div>
+</div>
+</div>
+</body></html>

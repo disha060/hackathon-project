@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMEP - Student Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="min-h-screen bg-[#0B1120] text-white">
+    <!-- Include Header Component -->
+    <div id="header-container">
+        <!-- Header will be loaded here -->
+    </div>
+    
+    <!-- Include Mobile Navigation -->
+    <div id="mobile-nav-container">
+        <!-- Mobile nav will be loaded here -->
+    </div>
+    
+    <!-- Main Content -->
+    <div class="min-h-screen bg-[#0B1120] text-white">
+        <!-- Include Breadcrumb -->
+        <div id="breadcrumb-container" class="container mx-auto px-6 py-4">
+            <!-- Breadcrumb will be loaded here -->
+        </div>
+        
+        <!-- Header -->
+        <header class="border-b border-indigo-500/20 backdrop-blur-sm bg-[#0F172A]/30">
+            <div class="container mx-auto px-6 py-4">
+                <div class="flex justify-between items-center">
+                    <div class="text-xl font-bold tracking-wide bg-gradient-to-r from-blue-500 via-indigo-500 to-teal-500 bg-clip-text text-transparent">
+                        AMEP
+                    </div>
+                    <nav class="hidden md:flex space-x-6">
+                        <a href="student-dashboard.html" class="text-white font-medium nav-link" data-page="dashboard">Dashboard</a>
+                        <a href="mastery-tracker.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="mastery">Mastery Tracker</a>
+                        <a href="assignments.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="assignments">Assignments</a>
+                        <a href="projects.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="projects">Projects</a>
+                        <a href="leaderboard.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="leaderboard">Leaderboard</a>
+                        <a href="badges.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="badges">Badges</a>
+                    </nav>
+                    <div class="flex items-center space-x-4">
+                        <button id="mobile-menu-toggle" class="md:hidden text-gray-400 hover:text-white focus:outline-none">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                        <span class="text-gray-300 hidden sm:inline">John Doe</span>
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 flex items-center justify-center">
+                            <span class="font-bold">JD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content -->
+        <main class="container mx-auto px-6 py-12">
+            <div class="mb-10">
+                <h1 class="text-3xl font-bold mb-2">Student Dashboard</h1>
+                <p class="text-gray-400">Welcome back, John! Here's your learning progress.</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+                <div class="bg-[#0F172A]/50 rounded-2xl border border-indigo-500/30 backdrop-blur-lg p-6 hover:border-indigo-500/50 transition-all">
+                    <div class="text-3xl font-bold text-blue-400 mb-2">8</div>
+                    <div class="text-gray-400">Active Courses</div>
+                </div>
+                <div class="bg-[#0F172A]/50 rounded-2xl border border-indigo-500/30 backdrop-blur-lg p-6 hover:border-indigo-500/50 transition-all">
+                    <div class="text-3xl font-bold text-green-400 mb-2">12</div>
+                    <div class="text-gray-400">Completed Modules</div>
+                </div>
+                <div class="bg-[#0F172A]/50 rounded-2xl border border-indigo-500/30 backdrop-blur-lg p-6 hover:border-indigo-500/50 transition-all">
+                    <div class="text-3xl font-bold text-yellow-400 mb-2">7</div>
+                    <div class="text-gray-400">Badges Earned</div>
+                </div>
+                <div class="bg-[#0F172A]/50 rounded-2xl border border-indigo-500/30 backdrop-blur-lg p-6 hover:border-indigo-500/50 transition-all">
+                    <div class="text-3xl font-bold text-purple-400 mb-2">84%</div>
+                    <div class="text-gray-400">Overall Progress</div>
+                </div>
+            </div>
+
+            <!-- Progress Overview -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+                <!-- Mastery Tracker -->
+                <div class="bg-[#0F172A]/50 rounded-2xl border border-indigo-500/30 backdrop-blur-lg p-6">
+                    <h2 class="text-xl font-bold mb-6">Subject Mastery</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">Mathematics</span>
+                                <span class="text-gray-400">75%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-gradient-to-r from-blue-500 to-indigo-500 h-2.5 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">Science</span>
+                                <span class="text-gray-400">62%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-gradient-to-r from-indigo-500 to-teal-500 h-2.5 rounded-full" style="width: 62%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">English</span>
+                                <span class="text-gray-400">88%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-gradient-to-r from-teal-500 to-blue-500 h-2.5 rounded-full" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">History</span>
+                                <span class="text-gray-400">45%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-gradient-to-r from-purple-500 to-pink-500 h-2.5 rounded-full" style="width: 45%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="bg-[#0F172A]/50 rounded-2xl border border-indigo-500/30 backdrop-blur-lg p-6">
+                    <h2 class="text-xl font-bold mb-6">Recent Activity</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-medium">Completed Mathematics Quiz</div>
+                                <div class="text-gray-400 text-sm">2 hours ago</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-medium">Earned Problem Solver Badge</div>
+                                <div class="text-gray-400 text-sm">1 day ago</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple-400" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-medium">Joined Science Discussion Forum</div>
+                                <div class="text-gray-400 text-sm">2 days ago</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-yellow-500/20 flex items-center justify-center mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-medium">Submitted History Essay</div>
+                                <div class="text-gray-400 text-sm">3 days ago</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Assignments -->
+            <div class="bg-[#0F172A]/50 rounded-2xl border border-indigo-500/30 backdrop-blur-lg p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold">Upcoming Assignments</h2>
+                    <a href="assignments.html" class="text-blue-400 hover:text-blue-300 text-sm">View All</a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="border border-gray-700/50 rounded-xl p-4 hover:border-indigo-500/50 transition-all">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-medium">Algebra Homework</h3>
+                            <span class="text-xs px-2 py-1 bg-red-500/20 text-red-400 rounded-full">Due Tomorrow</span>
+                        </div>
+                        <div class="text-gray-400 text-sm mb-3">Mathematics • Chapter 5</div>
+                        <div class="flex justify-between text-xs text-gray-500">
+                            <span>20 points</span>
+                            <span>3 problems</span>
+                        </div>
+                    </div>
+                    <div class="border border-gray-700/50 rounded-xl p-4 hover:border-indigo-500/50 transition-all">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-medium">Chemistry Lab Report</h3>
+                            <span class="text-xs px-2 py-1 bg-yellow-500/20 text-yellow-400 rounded-full">Due in 3 days</span>
+                        </div>
+                        <div class="text-gray-400 text-sm mb-3">Science • Experiment 4</div>
+                        <div class="flex justify-between text-xs text-gray-500">
+                            <span>50 points</span>
+                            <span>1200 words</span>
+                        </div>
+                    </div>
+                    <div class="border border-gray-700/50 rounded-xl p-4 hover:border-indigo-500/50 transition-all">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-medium">Literary Analysis</h3>
+                            <span class="text-xs px-2 py-1 bg-yellow-500/20 text-yellow-400 rounded-full">Due in 1 week</span>
+                        </div>
+                        <div class="text-gray-400 text-sm mb-3">English • Novel Study</div>
+                        <div class="flex justify-between text-xs text-gray-500">
+                            <span>30 points</span>
+                            <span>800 words</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- API Integration Example -->
+        <script>
+            // Example API integration functions
+            // These would connect to your backend endpoints
+            
+            async function fetchStudentStats() {
+                try {
+                    // Example API call to fetch student statistics
+                    // Replace with your actual backend endpoint
+                    /*
+                    const response = await fetch('/api/student/stats', {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        updateStatsDisplay(data);
+                    } else {
+                        console.error('Failed to fetch student stats');
+                    }
+                    */
+                    
+                    // For demo purposes, we'll use mock data
+                    const mockData = {
+                        activeCourses: 8,
+                        completedModules: 12,
+                        badgesEarned: 7,
+                        overallProgress: 84
+                    };
+                    updateStatsDisplay(mockData);
+                } catch (error) {
+                    console.error('Error fetching student stats:', error);
+                }
+            }
+            
+            function updateStatsDisplay(data) {
+                // Update the stats cards with fetched data
+                document.querySelector('.bg-[#0F172A]/50:nth-child(1) .text-3xl').textContent = data.activeCourses;
+                document.querySelector('.bg-[#0F172A]/50:nth-child(2) .text-3xl').textContent = data.completedModules;
+                document.querySelector('.bg-[#0F172A]/50:nth-child(3) .text-3xl').textContent = data.badgesEarned;
+                document.querySelector('.bg-[#0F172A]/50:nth-child(4) .text-3xl').textContent = data.overallProgress + '%';
+            }
+            
+            // Call the function when page loads
+            document.addEventListener('DOMContentLoaded', function() {
+                fetchStudentStats();
+            });
+        </script>
+        
+        <!-- Footer -->        <footer class="bg-[#0F172A] border-t border-indigo-500/20 mt-12">
+            <div class="container mx-auto px-6 py-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold bg-gradient-to-r from-blue-500 via-indigo-500 to-teal-500 bg-clip-text text-transparent mb-4">AMEP</h3>
+                        <p class="text-gray-400 text-sm">Empowering minds through futuristic education.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">For Students</h4>
+                        <ul class="space-y-2">
+                            <li><a href="student-dashboard.html" class="text-gray-400 hover:text-white text-sm transition-colors">Dashboard</a></li>
+                            <li><a href="assignments.html" class="text-gray-400 hover:text-white text-sm transition-colors">Assignments</a></li>
+                            <li><a href="projects.html" class="text-gray-400 hover:text-white text-sm transition-colors">Projects</a></li>
+                            <li><a href="badges.html" class="text-gray-400 hover:text-white text-sm transition-colors">Badges</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">For Teachers</h4>
+                        <ul class="space-y-2">
+                            <li><a href="teacher-dashboard.html" class="text-gray-400 hover:text-white text-sm transition-colors">Dashboard</a></li>
+                            <li><a href="ai-content-generator.html" class="text-gray-400 hover:text-white text-sm transition-colors">AI Content</a></li>
+                            <li><a href="classes.html" class="text-gray-400 hover:text-white text-sm transition-colors">Classes</a></li>
+                            <li><a href="analytics.html" class="text-gray-400 hover:text-white text-sm transition-colors">Analytics</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Company</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">About</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Contact</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="border-t border-gray-800 mt-8 pt-6 text-center">
+                    <p class="text-gray-500 text-sm">© 2025 AMEP. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Mobile Navigation Overlay -->
+    <div id="mobile-nav-overlay" class="fixed inset-0 bg-black/80 z-50 hidden md:hidden">
+        <div class="flex flex-col h-full">
+            <div class="flex justify-between items-center p-6 border-b border-gray-800">
+                <div class="text-xl font-bold bg-gradient-to-r from-blue-500 via-indigo-500 to-teal-500 bg-clip-text text-transparent">
+                    AMEP
+                </div>
+                <button id="close-mobile-nav" class="text-gray-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <nav class="flex-col p-6 space-y-6">
+                <a href="student-dashboard.html" class="text-white font-medium text-lg py-2 border-l-4 border-blue-500 pl-4">Dashboard</a>
+                <a href="mastery-tracker.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Mastery Tracker</a>
+                <a href="assignments.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Assignments</a>
+                <a href="projects.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Projects</a>
+                <a href="leaderboard.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Leaderboard</a>
+                <a href="badges.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Badges</a>
+                <div class="border-t border-gray-800 pt-6 mt-6">
+                    <a href="#" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Settings</a>
+                    <a href="landing.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Logout</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    
+    <script>
+        // Mobile navigation toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const closeMobileNav = document.getElementById('close-mobile-nav');
+            const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+            
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    mobileNavOverlay.classList.remove('hidden');
+                });
+            }
+            
+            if (closeMobileNav) {
+                closeMobileNav.addEventListener('click', function() {
+                    mobileNavOverlay.classList.add('hidden');
+                });
+            }
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileNavOverlay.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileNavOverlay.classList.add('hidden');
+                });
+            });
+            
+            // Highlight active nav link
+            function highlightActiveNavLink() {
+                const currentPage = window.location.pathname.split('/').pop();
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('text-white', 'font-medium');
+                    link.classList.add('text-gray-300');
+                    
+                    // Map pages to their respective nav items
+                    const pageMap = {
+                        'student-dashboard.html': 'dashboard',
+                        'mastery-tracker.html': 'mastery',
+                        'assignments.html': 'assignments',
+                        'assignment-details.html': 'assignments',
+                        'projects.html': 'projects',
+                        'project-details.html': 'projects',
+                        'leaderboard.html': 'leaderboard',
+                        'badges.html': 'badges'
+                    };
+                    
+                    const pageKey = pageMap[currentPage];
+                    if (link.getAttribute('data-page') === pageKey) {
+                        link.classList.remove('text-gray-300');
+                        link.classList.add('text-white', 'font-medium');
+                    }
+                });
+            }
+            
+            // Call on page load
+            highlightActiveNavLink();
+        });
+    </script>
+</body>
+</html>

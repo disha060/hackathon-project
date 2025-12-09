@@ -1,0 +1,139 @@
+<!-- Student Header -->
+<header id="student-header" class="hidden border-b border-indigo-500/20 backdrop-blur-sm bg-[#0F172A]/30">
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+            <div class="text-xl font-bold tracking-wide bg-gradient-to-r from-blue-500 via-indigo-500 to-teal-500 bg-clip-text text-transparent">
+                AMEP
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="student-dashboard.html" class="text-white font-medium nav-link" data-page="dashboard">Dashboard</a>
+                <a href="mastery-tracker.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="mastery">Mastery Tracker</a>
+                <a href="assignments.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="assignments">Assignments</a>
+                <a href="projects.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="projects">Projects</a>
+                <a href="leaderboard.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="leaderboard">Leaderboard</a>
+                <a href="badges.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="badges">Badges</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <span class="text-gray-300 hidden sm:inline">John Doe</span>
+                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 flex items-center justify-center">
+                    <span class="font-bold">JD</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Teacher Header -->
+<header id="teacher-header" class="hidden border-b border-indigo-500/20 backdrop-blur-sm bg-[#0F172A]/30">
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+            <div class="text-xl font-bold tracking-wide bg-gradient-to-r from-blue-500 via-indigo-500 to-teal-500 bg-clip-text text-transparent">
+                AMEP
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="teacher-dashboard.html" class="text-white font-medium nav-link" data-page="dashboard">Dashboard</a>
+                <a href="ai-content-generator.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="content">AI Content</a>
+                <a href="classes.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="classes">Classes</a>
+                <a href="student-progress.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="progress">Student Progress</a>
+                <a href="interventions.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="interventions">Interventions</a>
+                <a href="analytics.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="analytics">Analytics</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <span class="text-gray-300 hidden sm:inline">Dr. Smith</span>
+                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 flex items-center justify-center">
+                    <span class="font-bold">DS</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Landing Page Header -->
+<header id="landing-header" class="hidden">
+    <div class="mx-auto flex max-w-6xl flex-col px-4 sm:px-6 lg:px-8">
+        <header class="flex items-center justify-between whitespace-nowrap py-6">
+            <div class="flex items-center gap-4 text-white">
+                <div class="h-8 w-8 text-primary logo-glow">
+                    <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+                    </svg>
+                </div>
+                <h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">AMEP</h2>
+            </div>
+            <div class="flex items-center gap-2">
+                <button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-transparent text-gray-300 text-sm font-medium leading-normal transition-colors hover:bg-white/10 hover:text-white">
+                    <span class="truncate">Login</span>
+                </button>
+                <button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-white/10 text-white text-sm font-bold leading-normal transition-colors hover:bg-white/20">
+                    <span class="truncate">Register</span>
+                </button>
+            </div>
+        </header>
+    </div>
+</header>
+
+<script>
+    // Function to show the correct header based on current page
+    function showCorrectHeader() {
+        // Hide all headers
+        document.getElementById('student-header').classList.add('hidden');
+        document.getElementById('teacher-header').classList.add('hidden');
+        document.getElementById('landing-header').classList.add('hidden');
+        
+        // Get current page filename
+        const currentPage = window.location.pathname.split('/').pop();
+        
+        // Show appropriate header based on page
+        if (currentPage === 'landing.html') {
+            document.getElementById('landing-header').classList.remove('hidden');
+        } else if (['student-dashboard.html', 'mastery-tracker.html', 'assignments.html', 'assignment-details.html', 
+                     'projects.html', 'project-details.html', 'leaderboard.html', 'badges.html'].includes(currentPage)) {
+            document.getElementById('student-header').classList.remove('hidden');
+            // Highlight active nav link
+            highlightActiveNavLink();
+        } else if (['teacher-dashboard.html', 'ai-content-generator.html', 'classes.html', 'student-progress.html', 
+                     'interventions.html', 'analytics.html'].includes(currentPage)) {
+            document.getElementById('teacher-header').classList.remove('hidden');
+            // Highlight active nav link
+            highlightActiveNavLink();
+        }
+    }
+    
+    // Function to highlight active navigation link
+    function highlightActiveNavLink() {
+        const currentPage = window.location.pathname.split('/').pop();
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        navLinks.forEach(link => {
+            link.classList.remove('text-white', 'font-medium');
+            link.classList.add('text-gray-300');
+            
+            // Map pages to their respective nav items
+            const pageMap = {
+                'student-dashboard.html': 'dashboard',
+                'mastery-tracker.html': 'mastery',
+                'assignments.html': 'assignments',
+                'assignment-details.html': 'assignments',
+                'projects.html': 'projects',
+                'project-details.html': 'projects',
+                'leaderboard.html': 'leaderboard',
+                'badges.html': 'badges',
+                'teacher-dashboard.html': 'dashboard',
+                'ai-content-generator.html': 'content',
+                'classes.html': 'classes',
+                'student-progress.html': 'progress',
+                'interventions.html': 'interventions',
+                'analytics.html': 'analytics'
+            };
+            
+            const pageKey = pageMap[currentPage];
+            if (link.getAttribute('data-page') === pageKey) {
+                link.classList.remove('text-gray-300');
+                link.classList.add('text-white', 'font-medium');
+            }
+        });
+    }
+    
+    // Call on page load
+    document.addEventListener('DOMContentLoaded', showCorrectHeader);
+</script>

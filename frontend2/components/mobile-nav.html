@@ -1,0 +1,94 @@
+<!-- Mobile Navigation Overlay -->
+<div id="mobile-nav-overlay" class="fixed inset-0 bg-black/80 z-50 hidden md:hidden">
+    <div class="flex flex-col h-full">
+        <div class="flex justify-between items-center p-6 border-b border-gray-800">
+            <div class="text-xl font-bold bg-gradient-to-r from-blue-500 via-indigo-500 to-teal-500 bg-clip-text text-transparent">
+                AMEP
+            </div>
+            <button id="close-mobile-nav" class="text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Student Mobile Menu -->
+        <nav id="student-mobile-menu" class="hidden flex-col p-6 space-y-6">
+            <a href="student-dashboard.html" class="text-white font-medium text-lg py-2 border-l-4 border-blue-500 pl-4">Dashboard</a>
+            <a href="mastery-tracker.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Mastery Tracker</a>
+            <a href="assignments.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Assignments</a>
+            <a href="projects.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Projects</a>
+            <a href="leaderboard.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Leaderboard</a>
+            <a href="badges.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Badges</a>
+            <div class="border-t border-gray-800 pt-6 mt-6">
+                <a href="#" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Settings</a>
+                <a href="landing.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Logout</a>
+            </div>
+        </nav>
+        
+        <!-- Teacher Mobile Menu -->
+        <nav id="teacher-mobile-menu" class="hidden flex-col p-6 space-y-6">
+            <a href="teacher-dashboard.html" class="text-white font-medium text-lg py-2 border-l-4 border-blue-500 pl-4">Dashboard</a>
+            <a href="ai-content-generator.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">AI Content</a>
+            <a href="classes.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Classes</a>
+            <a href="student-progress.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Student Progress</a>
+            <a href="interventions.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Interventions</a>
+            <a href="analytics.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Analytics</a>
+            <div class="border-t border-gray-800 pt-6 mt-6">
+                <a href="#" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Settings</a>
+                <a href="landing.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Logout</a>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<!-- Mobile Menu Toggle Button (to be included in headers) -->
+<button id="mobile-menu-toggle" class="md:hidden text-gray-400 hover:text-white focus:outline-none">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+</button>
+
+<script>
+    // Mobile navigation toggle functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const closeMobileNav = document.getElementById('close-mobile-nav');
+        const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+        
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileNavOverlay.classList.remove('hidden');
+                
+                // Show appropriate menu based on current page
+                const currentPage = window.location.pathname.split('/').pop();
+                
+                if (['student-dashboard.html', 'mastery-tracker.html', 'assignments.html', 'assignment-details.html', 
+                     'projects.html', 'project-details.html', 'leaderboard.html', 'badges.html'].includes(currentPage)) {
+                    document.getElementById('student-mobile-menu').classList.remove('hidden');
+                } else if (['teacher-dashboard.html', 'ai-content-generator.html', 'classes.html', 'student-progress.html', 
+                             'interventions.html', 'analytics.html'].includes(currentPage)) {
+                    document.getElementById('teacher-mobile-menu').classList.remove('hidden');
+                }
+            });
+        }
+        
+        if (closeMobileNav) {
+            closeMobileNav.addEventListener('click', function() {
+                mobileNavOverlay.classList.add('hidden');
+                document.getElementById('student-mobile-menu').classList.add('hidden');
+                document.getElementById('teacher-mobile-menu').classList.add('hidden');
+            });
+        }
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileNavOverlay.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileNavOverlay.classList.add('hidden');
+                document.getElementById('student-mobile-menu').classList.add('hidden');
+                document.getElementById('teacher-mobile-menu').classList.add('hidden');
+            });
+        });
+    });
+</script>

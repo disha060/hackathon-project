@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AMEP Interventions Page (Dark Mode)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        .frosted-glass {
+            background-color: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-primary {
+            box-shadow: 0 0 5px theme('colors.primary'), 0 0 10px theme('colors.primary'), 0 0 15px theme('colors.primary');
+        }
+        .glow-red {
+            box-shadow: 0 0 4px #FF3B30, 0 0 8px #FF3B30, 0 0 12px #FF3B30;
+        }
+        .glow-yellow {
+             box-shadow: 0 0 4px #FFCC00, 0 0 8px #FFCC00, 0 0 12px #FFCC00;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0db9f2",
+              "background-light": "#f5f8f8",
+              "background-dark": "#101e22",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<div class="px-4 sm:px-10 md:px-20 lg:px-40 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col w-full max-w-[1200px] flex-1">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-4 py-4 mb-4">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">AMEP</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-white text-sm font-medium leading-normal" href="#">Students</a>
+<a class="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Reports</a>
+<a class="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Settings</a>
+</div>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-white/10 hover:bg-white/20 text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 transition-colors">
+<span class="material-symbols-outlined text-white text-xl">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar image with an abstract colorful gradient." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDYPvk-qBVLgWnGFwCz4IZ9XdaQremqH2lDmzke-L1187l4cn4PWZfOiYsNiLD-X29dJgc1oBp8NRQWUVjKk3n71QY7RN6ebRF6W-pFFZEZVP6wBsr5OkirMMl3Jl2WaJxWSxfSJEdte34PENVYNsgD4JuMcXN-8ZqBwPC_lbyOpMvY0KKNyzugR4pniodtZFc5C69c-r_XxQ4DHZeBZmLsQ9Hhl7M4ITK04opMfNAX1uNcMpO1jcpx3xEL-1OFqv3WU6mw1rm8LSc"); border: 2px solid #0db9f2;'></div>
+</div>
+</header>
+<main class="flex flex-col gap-6 px-4 py-6">
+<div class="flex flex-col gap-4">
+<div class="flex flex-wrap gap-2">
+<a class="text-white/60 hover:text-white transition-colors text-base font-medium leading-normal" href="#">Dashboard</a>
+<span class="text-white/60 text-base font-medium leading-normal">/</span>
+<span class="text-white text-base font-medium leading-normal">Interventions</span>
+</div>
+<div class="flex flex-wrap justify-between gap-4 items-center">
+<p class="text-white text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">Interventions</p>
+</div>
+</div>
+<div class="flex flex-col md:flex-row gap-4 items-center">
+<div class="w-full md:flex-1">
+<label class="flex flex-col min-w-40 h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-white/20 bg-transparent focus-within:border-primary focus-within:shadow-[0_0_10px_theme('colors.primary')] transition-all">
+<div class="text-white/60 flex items-center justify-center pl-4">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-white focus:outline-0 focus:ring-0 border-none bg-transparent h-full placeholder:text-white/60 px-4 text-base font-normal leading-normal" placeholder="Search by Student Name or ID..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex gap-2 p-1 overflow-x-auto w-full md:w-auto">
+<div class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary pl-4 pr-4 cursor-pointer glow-primary">
+<p class="text-background-dark text-sm font-bold leading-normal">All</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 pl-4 pr-4 cursor-pointer transition-colors">
+<p class="text-white text-sm font-medium leading-normal">High Risk</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 pl-4 pr-4 cursor-pointer transition-colors">
+<p class="text-white text-sm font-medium leading-normal">Medium Risk</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 pl-4 pr-4 cursor-pointer transition-colors">
+<p class="text-white text-sm font-medium leading-normal">Low Risk</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 pl-4 pr-4 cursor-pointer transition-colors">
+<p class="text-white text-sm font-medium leading-normal">On Track</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-6">
+<!-- Student Card 1 - High Risk -->
+<div class="flex flex-col gap-4 rounded-xl p-6 frosted-glass hover:border-white/30 transition-all duration-300">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" data-alt="Student avatar image of Olivia Chen with an abstract colorful gradient." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA5JZcBnWs3v-AJUyjkZQO85DD-VOxJcLlLchdhwhtCd9dPidhQqmLIo_AEkbtRPk7Yqr0PjWWHGmze1g3ySV3CnwLkj12Gibn73cHBMWAC9jxOd6BQJddfIUZmUXm2UGcSEagSb4ipbau7_h_T1f16R8TVZZWDaVWBhtwjpN1GD-Bv6QJcXpSbDOQ4xdRVJ23uNv9G6VqDEQ-h8rmLVVgL1SFDYWEQ5eGB3JL-HMnPvcmMXjj103gHuSefFzp1vMjqAmOPeDJqhG0");'></div>
+<div>
+<p class="text-white text-lg font-bold">Olivia Chen</p>
+<p class="text-white/60 text-sm">ID: 45219</p>
+</div>
+</div>
+<div class="flex h-7 items-center justify-center gap-x-2 rounded-full bg-[#FF3B30]/20 px-3 glow-red">
+<p class="text-[#FF3B30] text-xs font-bold uppercase">High Risk</p>
+</div>
+</div>
+<p class="text-white/80 text-sm">Failing Grade in Math. Low attendance over the past 3 weeks.</p>
+<button class="mt-2 flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 bg-primary text-background-dark gap-2 text-sm font-bold leading-normal tracking-[0.015em] transition-all hover:glow-primary">View Plan</button>
+</div>
+<!-- Student Card 2 - Medium Risk -->
+<div class="flex flex-col gap-4 rounded-xl p-6 frosted-glass hover:border-white/30 transition-all duration-300">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" data-alt="Student avatar image of Liam Rodriguez with an abstract colorful gradient." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB1PCmXc0C3gPF1iYPms9jiCfpi5-aQniai_GEWZE7jCN-GhvpNQneRJN7OEE9-QB5oRWlnJSGpsZ15jI2arHxaQaewzBoC2natbsXrIxlfCJmgnM25w47FPpwuOkmk2yU4l1-ARVqZSfxnZlE6cCatyEOzrGyl2gSBS7qtUibpY_274lZNKlAE_s_zw7JLl1l4HNN9ruUI6Oq-UVzIn1oVtAT7vO3LEijV5rHfyHiFsAclB22KaMoY3PiJeCOSqn_03TC_-Y9g4Lc");'></div>
+<div>
+<p class="text-white text-lg font-bold">Liam Rodriguez</p>
+<p class="text-white/60 text-sm">ID: 88124</p>
+</div>
+</div>
+<div class="flex h-7 items-center justify-center gap-x-2 rounded-full bg-[#FFCC00]/20 px-3 glow-yellow">
+<p class="text-[#FFCC00] text-xs font-bold uppercase">Medium Risk</p>
+</div>
+</div>
+<p class="text-white/80 text-sm">Several missing assignments in English. Showing signs of disengagement.</p>
+<button class="mt-2 flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 bg-primary text-background-dark gap-2 text-sm font-bold leading-normal tracking-[0.015em] transition-all hover:glow-primary">View Plan</button>
+</div>
+<!-- Student Card 3 - On Track -->
+<div class="flex flex-col gap-4 rounded-xl p-6 frosted-glass hover:border-white/30 transition-all duration-300">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" data-alt="Student avatar image of Ava Nguyen with an abstract colorful gradient." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCUF6iZtOtCH0AvckmNLTkv-aZD_x-n-x5k8h_Hz6T-HPtpl7XhuWUiPCNmJvsZdQ3JEVFm11dU_bYbzLIz-rfLjePJoUOllQS1EaghFOP5DP1ZqfYEHxi_kBWyeu68lo0jMrAHCwzn55-NFm-8WiWk1YpQWFbpMqN_nV__kYPLQSEfsP4NDInXZbebhm2iPwjSY5ZTsaWnabxz7KQY9j07juAytMuBwFRM2Dm9vJpQnAzw547rUgGN9n4vC1rm_4czFNYiMwcmxrI");'></div>
+<div>
+<p class="text-white text-lg font-bold">Ava Nguyen</p>
+<p class="text-white/60 text-sm">ID: 73540</p>
+</div>
+</div>
+<div class="flex h-7 items-center justify-center gap-x-2 rounded-full bg-green-500/20 px-3">
+<p class="text-green-400 text-xs font-bold uppercase">On Track</p>
+</div>
+</div>
+<p class="text-white/80 text-sm">Maintaining excellent grades and attendance. No intervention required.</p>
+<button class="mt-2 flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 bg-white/20 text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] transition-all hover:bg-white/30">Manage</button>
+</div>
+<!-- Student Card 4 - Low Risk -->
+<div class="flex flex-col gap-4 rounded-xl p-6 frosted-glass hover:border-white/30 transition-all duration-300">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" data-alt="Student avatar image of Noah Kim with an abstract colorful gradient." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC6OfqOKQlUng1i0ZqHbQTips6sMF7YTes4eJxKk3eHgkpa9ob4J6ybGsW45h8nA320TNlJWwErfDe6xE3HEHVF9uggsJq-wqZXYzY5N70SBFtZhJW5dTHD8iB1sCjkQtKEab2MWHroxzNtX4wR-vhOy3Vtjm_tGOK8xXoikUNwxqNm8vjI1izNFO7zFFz11QNwBYpGfkm4pK-nkp6RnlnI-wTiYh7t-EcaHnwn4YZs3Ub_ABRiqz7b6CABWF2n4TJ8uBvRMxoRtNQ");'></div>
+<div>
+<p class="text-white text-lg font-bold">Noah Kim</p>
+<p class="text-white/60 text-sm">ID: 64112</p>
+</div>
+</div>
+<div class="flex h-7 items-center justify-center gap-x-2 rounded-full bg-primary/20 px-3">
+<p class="text-primary text-xs font-bold uppercase">Low Risk</p>
+</div>
+</div>
+<p class="text-white/80 text-sm">Slight dip in Science quiz scores. Monitoring recommended.</p>
+<button class="mt-2 flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 bg-primary text-background-dark gap-2 text-sm font-bold leading-normal tracking-[0.015em] transition-all hover:glow-primary">View Plan</button>
+</div>
+<!-- Student Card 5 - High Risk -->
+<div class="flex flex-col gap-4 rounded-xl p-6 frosted-glass hover:border-white/30 transition-all duration-300">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" data-alt="Student avatar image of Isabella Garcia with an abstract colorful gradient." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDDr68bUdVJ80pU7fTsiXvk0K4JhuqPOGIh-_iGQ5u8_Vqsmpxt-wz0JwVUM6t9HuhmMmx-8JapVgdc_A4uyKAcxIWFeHkOxWQ11lUyZsPSHu70bS6_HYMTdJ2dUB95rOBc7IGSrg6MQXDR-m6HGfyVezuZl4BGGrGTlXftojL5Z-mAGAeZCzlyAyiK0h5yvGmTzPgucDJ606tQRApT2AHX87Q6d3fBXWgEhSRW0D4g1_uhG7EbxHoIMDUQC-pqPF5lhbG6oSLtZAM");'></div>
+<div>
+<p class="text-white text-lg font-bold">Isabella Garcia</p>
+<p class="text-white/60 text-sm">ID: 30985</p>
+</div>
+</div>
+<div class="flex h-7 items-center justify-center gap-x-2 rounded-full bg-[#FF3B30]/20 px-3 glow-red">
+<p class="text-[#FF3B30] text-xs font-bold uppercase">High Risk</p>
+</div>
+</div>
+<p class="text-white/80 text-sm">Significant behavioral issues reported by multiple teachers.</p>
+<button class="mt-2 flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 bg-primary text-background-dark gap-2 text-sm font-bold leading-normal tracking-[0.015em] transition-all hover:glow-primary">View Plan</button>
+</div>
+<!-- Student Card 6 - Medium Risk -->
+<div class="flex flex-col gap-4 rounded-xl p-6 frosted-glass hover:border-white/30 transition-all duration-300">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" data-alt="Student avatar image of Ethan Martinez with an abstract colorful gradient." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB_NwJ7dJc-NJ70g8-34KrLck8dLMTO5Dt0U66jhV271Opj-t6QFFJTC8x2XQjHHHTd2zG4VAt2Ae_yINGAQ04tgiN9mNLJEr64rc9A7piYyxpN6mWGbjin0LrmZk9N16xO7mK5501LhUVrroAsKlS8HvM5Gw1bZ7DCI3CijefuzJ2TDsfqw4rAK9yEyM0TeDiOgnPrsDOAfeVzafCVYJb9TzzD9txa1b6szZpVm8sz0zMEikoxBBaz4SxuSM3YLt4hPiPTbWgdlZI");'></div>
+<div>
+<p class="text-white text-lg font-bold">Ethan Martinez</p>
+<p class="text-white/60 text-sm">ID: 55231</p>
+</div>
+</div>
+<div class="flex h-7 items-center justify-center gap-x-2 rounded-full bg-[#FFCC00]/20 px-3 glow-yellow">
+<p class="text-[#FFCC00] text-xs font-bold uppercase">Medium Risk</p>
+</div>
+</div>
+<p class="text-white/80 text-sm">Struggling with homework completion in History class.</p>
+<button class="mt-2 flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 bg-primary text-background-dark gap-2 text-sm font-bold leading-normal tracking-[0.015em] transition-all hover:glow-primary">View Plan</button>
+</div>
+</div>
+</main>
+</div>
+</div>
+</div>
+</div>
+</body></html>

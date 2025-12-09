@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AMEP Analytics Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glowing-border {
+            position: relative;
+            background-color: rgba(40, 53, 57, 0.5); 
+            border: 1px solid #3b4e54;
+            transition: all 0.3s ease-in-out;
+        }
+        .glowing-border::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px; right: -1px; bottom: -1px;
+            border-radius: inherit;
+            border: 1px solid transparent;
+            background: conic-gradient(from 180deg at 50% 50%, rgba(13, 185, 242, 0) 0%, #0db9f2 50%, rgba(13, 185, 242, 0) 100%) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .glowing-border:hover::before {
+            opacity: 1;
+        }
+        .glowing-button {
+            box-shadow: 0 0 5px rgba(13, 185, 242, 0.5), 0 0 10px rgba(13, 185, 242, 0.4), 0 0 15px rgba(13, 185, 242, 0.3);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        .glowing-button:hover {
+            box-shadow: 0 0 10px rgba(13, 185, 242, 0.8), 0 0 20px rgba(13, 185, 242, 0.6), 0 0 30px rgba(13, 185, 242, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full flex-col dark group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-row">
+<!-- SideNavBar -->
+<nav class="flex h-screen min-h-[700px] w-64 flex-col justify-between bg-[#111618] p-4 border-r border-solid border-r-[#283539]">
+<div class="flex flex-col gap-8">
+<div class="flex items-center gap-3 px-3 py-2">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="text-white text-xl font-bold">AMEP Analytics</h1>
+</div>
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 text-primary" href="#">
+<span class="material-symbols-outlined text-2xl">dashboard</span>
+<p class="text-sm font-medium leading-normal">Overview</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/70 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined text-2xl">school</span>
+<p class="text-sm font-medium leading-normal">Courses</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/70 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined text-2xl">group</span>
+<p class="text-sm font-medium leading-normal">Students</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/70 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined text-2xl">bar_chart_4_bars</span>
+<p class="text-sm font-medium leading-normal">Reports</p>
+</a>
+</div>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary text-[#111618] text-sm font-bold leading-normal tracking-[0.015em] glowing-button">
+<span class="truncate">Generate Report</span>
+</button>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col p-8">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap mb-8">
+<h2 class="text-white text-4xl font-black leading-tight tracking-[-0.033em]">Analytics Dashboard</h2>
+<div class="flex items-center gap-6">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 bg-[#283539] text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#3b4e54]">
+<span class="material-symbols-outlined text-lg">calendar_today</span>
+<span class="truncate">Last 30 Days</span>
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCIOkJN0Ss0f_Dn5i5cdcInVn1fK8I16pne5KUdzSJMwlsnJIKapSi9dWqe5avKLwPnT771_VgDbBQ12_w7kjrNtG03BKmTLBgM37YTJZ0RAlFPje1JNLx7YOYant-5Ge277uaJRnMivwQtKlGk3stA1c94LRHAwe-hHUieNLFC5sciTdvSECdUwHMnegDx44ewzPg7Ix73sTRfbTB_82NfeV-HXBZWIcvnkIdwKtRNQRYNXXdl2sVYH7VjCWqGgZ-jW1iLouWN_Dw");'></div>
+</div>
+</header>
+<!-- Stats -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div class="flex flex-col gap-2 rounded-xl p-6 glowing-border backdrop-blur-sm">
+<p class="text-white/70 text-base font-medium leading-normal">Total Student Enrollment</p>
+<p class="text-white tracking-light text-3xl font-bold leading-tight">12,450</p>
+<p class="text-[#0bda57] text-base font-medium leading-normal">+5.2%</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 glowing-border backdrop-blur-sm">
+<p class="text-white/70 text-base font-medium leading-normal">Active Users Today</p>
+<p class="text-white tracking-light text-3xl font-bold leading-tight">852</p>
+<p class="text-[#0bda57] text-base font-medium leading-normal">+1.5%</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 glowing-border backdrop-blur-sm">
+<p class="text-white/70 text-base font-medium leading-normal">Overall Course Completion</p>
+<p class="text-white tracking-light text-3xl font-bold leading-tight">88%</p>
+<p class="text-[#fa5f38] text-base font-medium leading-normal">-0.5%</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 glowing-border backdrop-blur-sm">
+<p class="text-white/70 text-base font-medium leading-normal">Avg. Assessment Score</p>
+<p class="text-white tracking-light text-3xl font-bold leading-tight">92%</p>
+<p class="text-[#0bda57] text-base font-medium leading-normal">+2.1%</p>
+</div>
+</div>
+<!-- Charts -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+<!-- Line Chart -->
+<div class="lg:col-span-2 flex flex-col gap-2 rounded-xl p-6 glowing-border backdrop-blur-sm">
+<p class="text-white text-base font-medium leading-normal">Student Engagement Over Time</p>
+<p class="text-white tracking-light text-4xl font-bold leading-tight truncate">78,923 Active Hours</p>
+<div class="flex gap-1">
+<p class="text-white/60 text-base font-normal leading-normal">Last 30 Days</p>
+<p class="text-[#0bda57] text-base font-medium leading-normal">+12.5%</p>
+</div>
+<div class="flex min-h-[220px] flex-1 flex-col gap-8 py-4">
+<svg fill="none" height="100%" preserveaspectratio="none" style="filter: drop-shadow(0 0 10px rgba(13, 185, 242, 0.5));" viewbox="-3 0 478 150" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<lineargradient gradientunits="userSpaceOnUse" id="glow-chart-gradient" x1="236" x2="236" y1="1" y2="149">
+<stop stop-color="#0db9f2" stop-opacity="0.3"></stop>
+<stop offset="1" stop-color="#0db9f2" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V149H0V109Z" fill="url(#glow-chart-gradient)"></path>
+<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25" stroke="#0db9f2" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+</div>
+<!-- Course Performance -->
+<div class="lg:col-span-1 flex flex-col gap-2 rounded-xl p-6 glowing-border backdrop-blur-sm">
+<p class="text-white text-base font-medium leading-normal">Top Performing Courses</p>
+<p class="text-white/60 text-base font-normal leading-normal">By Completion Rate</p>
+<div class="flex flex-col gap-4 mt-4">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center">
+<p class="text-white/80 text-sm font-medium">Advanced Concepts</p>
+<p class="text-primary text-sm font-bold">98%</p>
+</div>
+<div class="w-full bg-[#283539] rounded-full h-2"><div class="bg-primary rounded-full h-2" style="width: 98%;"></div></div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center">
+<p class="text-white/80 text-sm font-medium">Practical Applications</p>
+<p class="text-primary text-sm font-bold">95%</p>
+</div>
+<div class="w-full bg-[#283539] rounded-full h-2"><div class="bg-primary rounded-full h-2" style="width: 95%;"></div></div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center">
+<p class="text-white/80 text-sm font-medium">Intro to AMEP</p>
+<p class="text-primary text-sm font-bold">91%</p>
+</div>
+<div class="w-full bg-[#283539] rounded-full h-2"><div class="bg-primary rounded-full h-2" style="width: 91%;"></div></div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center">
+<p class="text-white/80 text-sm font-medium">Final Project</p>
+<p class="text-primary text-sm font-bold">87%</p>
+</div>
+<div class="w-full bg-[#283539] rounded-full h-2"><div class="bg-primary rounded-full h-2" style="width: 87%;"></div></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Heatmap -->
+<div class="flex flex-col gap-2 rounded-xl p-6 glowing-border backdrop-blur-sm">
+<p class="text-white text-base font-medium leading-normal">Peak Activity Heatmap</p>
+<p class="text-white/60 text-base font-normal leading-normal">Most active days and times for students.</p>
+<div class="flex w-full mt-4 gap-4 overflow-x-auto">
+<div class="flex flex-col gap-2">
+<div class="h-8"></div>
+<div class="text-white/60 text-xs text-right h-5">12am</div>
+<div class="text-white/60 text-xs text-right h-5">6am</div>
+<div class="text-white/60 text-xs text-right h-5">12pm</div>
+<div class="text-white/60 text-xs text-right h-5">6pm</div>
+</div>
+<div class="grid grid-cols-7 gap-1 flex-1 min-w-[500px]">
+<div class="text-white/60 text-center text-xs h-8">Sun</div><div class="text-white/60 text-center text-xs h-8">Mon</div><div class="text-white/60 text-center text-xs h-8">Tue</div><div class="text-white/60 text-center text-xs h-8">Wed</div><div class="text-white/60 text-center text-xs h-8">Thu</div><div class="text-white/60 text-center text-xs h-8">Fri</div><div class="text-white/60 text-center text-xs h-8">Sat</div>
+<!-- Sunday -->
+<div class="flex flex-col gap-1"><div class="h-5 rounded-sm bg-primary/20"></div><div class="h-5 rounded-sm bg-primary/30"></div><div class="h-5 rounded-sm bg-primary/50"></div><div class="h-5 rounded-sm bg-primary/30"></div></div>
+<!-- Monday -->
+<div class="flex flex-col gap-1"><div class="h-5 rounded-sm bg-primary/20"></div><div class="h-5 rounded-sm bg-primary/50"></div><div class="h-5 rounded-sm bg-primary"></div><div class="h-5 rounded-sm bg-primary/80"></div></div>
+<!-- Tuesday -->
+<div class="flex flex-col gap-1"><div class="h-5 rounded-sm bg-primary/30"></div><div class="h-5 rounded-sm bg-primary/60"></div><div class="h-5 rounded-sm bg-primary"></div><div class="h-5 rounded-sm bg-primary/80"></div></div>
+<!-- Wednesday -->
+<div class="flex flex-col gap-1"><div class="h-5 rounded-sm bg-primary/20"></div><div class="h-5 rounded-sm bg-primary/50"></div><div class="h-5 rounded-sm bg-primary/90"></div><div class="h-5 rounded-sm bg-primary/70"></div></div>
+<!-- Thursday -->
+<div class="flex flex-col gap-1"><div class="h-5 rounded-sm bg-primary/30"></div><div class="h-5 rounded-sm bg-primary/60"></div><div class="h-5 rounded-sm bg-primary"></div><div class="h-5 rounded-sm bg-primary/80"></div></div>
+<!-- Friday -->
+<div class="flex flex-col gap-1"><div class="h-5 rounded-sm bg-primary/20"></div><div class="h-5 rounded-sm bg-primary/40"></div><div class="h-5 rounded-sm bg-primary/70"></div><div class="h-5 rounded-sm bg-primary/50"></div></div>
+<!-- Saturday -->
+<div class="flex flex-col gap-1"><div class="h-5 rounded-sm bg-primary/20"></div><div class="h-5 rounded-sm bg-primary/30"></div><div class="h-5 rounded-sm bg-primary/40"></div><div class="h-5 rounded-sm bg-primary/20"></div></div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

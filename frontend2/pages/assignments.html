@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AMEP Assignments List (Dark Mode)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df2df",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#102221",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glow-teal { box-shadow: 0 0 10px 1px #0df2df; }
+        .glow-blue { box-shadow: 0 0 10px 1px #58A6FF; }
+        .glow-indigo { box-shadow: 0 0 10px 1px #A371F7; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-dark font-display text-white">
+<div class="flex min-h-screen w-full">
+<!-- SideNavBar -->
+<aside class="w-64 flex-shrink-0 bg-[#0D1117] p-4 border-r border-white/10">
+<div class="flex h-full flex-col justify-between">
+<div class="flex flex-col gap-8">
+<div class="flex items-center gap-3 px-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="AMEP logo placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAOHiQANEZUxB-zcyzo0625fEG5KlMYfKhsFQ4bzceTZZ5rvXwI8HKexjbveUFHqSvIJkbQB-pROCpMhntJfwgkTtGH0KpTUC-KdrgVJ3PbE13pzNb53ztljVJmBlsvxzQSFGW3Fhk3t2kjR6sD1QfevWdrTFJvA9ps_dT1qR4-ep3TeKr8lzJxVokra-2wBJYQ9Hh-p8pETndGrTeRECXSsuEMo7wVhuWbFyJ9T3Fi9kl9L_e5fBfOdMHb0pfucv6CVazw1LlxEYc");'></div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-medium leading-normal">AMEP</h1>
+<p class="text-gray-400 text-sm font-normal leading-normal">Education Portal</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-full transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-full bg-primary/20 text-primary font-medium" href="#">
+<span class="material-symbols-outlined">assignment_turned_in</span>
+<p class="text-sm font-medium leading-normal">Assignments</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-full transition-colors" href="#">
+<span class="material-symbols-outlined">book</span>
+<p class="text-sm font-medium leading-normal">Courses</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-full transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<p class="text-sm font-medium leading-normal">Calendar</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-full transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-sm font-medium leading-normal">Settings</p>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-full transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<p class="text-sm font-medium leading-normal">Logout</p>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 bg-[#0D1117] p-8 relative">
+<div class="w-full max-w-7xl mx-auto flex flex-col gap-6">
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between items-center gap-4">
+<div class="flex flex-col gap-2">
+<h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em]">Assignments</h1>
+<p class="text-[#8B949E] text-base font-normal leading-normal">Manage and track your AMEP coursework.</p>
+</div>
+<!-- SearchBar -->
+<div class="w-full max-w-sm">
+<label class="flex flex-col min-w-40 h-12">
+<div class="flex w-full flex-1 items-stretch rounded-full h-full bg-[rgba(22,27,34,0.7)] border border-white/10 backdrop-blur-sm">
+<div class="text-[#8B949E] flex items-center justify-center pl-4">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-full text-white focus:outline-0 focus:ring-0 border-none bg-transparent h-full placeholder:text-[#8B949E] px-4 pl-2 text-base font-normal leading-normal" placeholder="Search assignments..." value=""/>
+</div>
+</label>
+</div>
+</div>
+<!-- Chips -->
+<div class="flex gap-3 pt-4 border-t border-white/10">
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full px-4 bg-primary text-[#0D1117] glow-teal">
+<p class="text-sm font-medium leading-normal">All</p>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full px-4 bg-[rgba(22,27,34,0.7)] hover:bg-white/20 transition-colors">
+<p class="text-white text-sm font-medium leading-normal">In Progress</p>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full px-4 bg-[rgba(22,27,34,0.7)] hover:bg-white/20 transition-colors">
+<p class="text-white text-sm font-medium leading-normal">Submitted</p>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full px-4 bg-[rgba(22,27,34,0.7)] hover:bg-white/20 transition-colors">
+<p class="text-white text-sm font-medium leading-normal">Overdue</p>
+</button>
+</div>
+<!-- Table -->
+<div class="overflow-hidden rounded-lg border border-white/10 bg-[rgba(22,27,34,0.7)] backdrop-blur-sm">
+<table class="w-full">
+<thead>
+<tr class="bg-black/20">
+<th class="px-6 py-4 text-left text-xs font-medium text-[#8B949E] uppercase tracking-wider">Assignment Title</th>
+<th class="px-6 py-4 text-left text-xs font-medium text-[#8B949E] uppercase tracking-wider">Course</th>
+<th class="px-6 py-4 text-left text-xs font-medium text-[#8B949E] uppercase tracking-wider">Due Date</th>
+<th class="px-6 py-4 text-left text-xs font-medium text-[#8B949E] uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-left text-xs font-medium text-[#8B949E] uppercase tracking-wider">Difficulty</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/10">
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white"><a href="assignment-details.html" class="hover:text-primary transition-colors">Chapter 3: Kinematics Problem Set</a></td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#8B949E]">Advanced Mechanics</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#8B949E]">Oct 26, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#8B949E]">In Progress</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#58A6FF]/20 text-[#58A6FF] glow-blue">Medium</span>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white"><a href="assignment-details.html" class="hover:text-primary transition-colors">Lab Report: The Pendulum</a></td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#8B949E]">Physics 101</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#8B949E]">Oct 22, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#8B949E]">Submitted</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/20 text-primary glow-teal">Easy</span>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white"><a href="assignment-details.html" class="hover:text-primary transition-colors">Final Thesis Draft</a></td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#8B949E]">Research Methods</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#8B949E]">Nov 15, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#ff7b72]">Overdue</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#A371F7]/20 text-[#A371F7] glow-indigo">Hard</span>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white"><a href="assignment-details.html" class="hover:text-primary transition-colors">Essay: Quantum Entanglement</a></td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#8B949E]">Quantum Physics</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#8B949E]">Nov 30, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#8B949E]">Not Started</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#A371F7]/20 text-[#A371F7] glow-indigo">Hard</span>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white"><a href="assignment-details.html" class="hover:text-primary transition-colors">Calculus II Problem Set 5</a></td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#8B949E]">Mathematics II</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#8B949E]">Nov 05, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#8B949E]">In Progress</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/20 text-primary glow-teal">Easy</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Floating Action Button -->
+<button class="absolute bottom-8 right-8 w-16 h-16 bg-primary rounded-full flex items-center justify-center text-[#0D1117] glow-teal hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'wght' 500;">add</span>
+</button>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AMEP Projects Page (Dark Mode)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glassmorphism {
+            background: rgba(25, 28, 41, 0.6);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 245, 212, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 245, 212, 0.1);
+        }
+        .glassmorphism:hover {
+            border-color: rgba(0, 245, 212, 0.5);
+            box-shadow: 0 12px 40px 0 rgba(0, 245, 212, 0.2);
+            transform: translateY(-4px);
+            transition: all 0.3s ease;
+        }
+        .glow-tag-inprogress {
+            box-shadow: 0 0 12px 2px rgba(0, 245, 212, 0.5);
+        }
+        .glow-tag-completed {
+            box-shadow: 0 0 12px 2px rgba(52, 211, 153, 0.5);
+        }
+        .glow-tag-onhold {
+            box-shadow: 0 0 12px 2px rgba(251, 191, 36, 0.5);
+        }
+        .avatar-ring {
+            box-shadow: 0 0 0 2px rgba(0, 245, 212, 0.8);
+        }
+    </style>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0df2df",
+              "background-light": "#f5f8f8",
+              "background-dark": "#102221",
+            },
+            fontFamily: {
+              "display": ["Lexend", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-[#0A0E1A] dark group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<div class="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-40 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col max-w-[1280px] flex-1">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-white/10 px-4 sm:px-6 lg:px-10 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">AMEP</h2>
+</div>
+<div class="hidden md:flex items-center gap-9">
+<a class="text-white/80 hover:text-white text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-primary text-sm font-medium leading-normal" href="#">Projects</a>
+<a class="text-white/80 hover:text-white text-sm font-medium leading-normal" href="#">Teams</a>
+<a class="text-white/80 hover:text-white text-sm font-medium leading-normal" href="#">Settings</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-4 sm:gap-8">
+<label class="hidden sm:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#9cbab7] flex border-none bg-white/5 items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-white/5 focus:border-none h-full placeholder:text-[#9cbab7] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search" value=""/>
+</div>
+</label>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-[#111817] text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">New Project</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBatVCIy-PoRUqO_w4yPf28ftPZaHS8wNny7j_GrtWkjfHEwUVsSzyPQNMGdsUjq1O6wrrIvHKf_D1Y36do70SQVymNUSS-mrsT4-Mnrqfneif9WoYUFLwcKnJc4Gvxl3Lq_GVWGSncilGWkWTxMeoxwdps4uU3K0wG0YwOl2HIE8MiXNxqZSN1SXRs7CxB0xXawLbKVQjrwE-wOjnOk08m1LekQhkr3SGrVwzv4xNMgsCCLel1nTSaMhp53dbD-L4gnqFcsn7rPHM");'></div>
+</div>
+</header>
+<main class="flex-grow p-4 sm:p-6 lg:p-10">
+<div class="flex flex-wrap justify-between gap-4 mb-8">
+<div class="flex min-w-72 flex-col gap-3">
+<p class="text-white text-4xl font-black leading-tight tracking-[-0.033em]">Projects Dashboard</p>
+<p class="text-[#888888] text-base font-normal leading-normal">Manage and track all ongoing and completed projects.</p>
+</div>
+</div>
+<div class="flex gap-3 mb-8 overflow-x-auto pb-2">
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 text-primary pl-4 pr-2">
+<p class="text-sm font-medium leading-normal">All</p>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/80 pl-4 pr-2">
+<p class="text-sm font-medium leading-normal">In Progress</p>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/80 pl-4 pr-2">
+<p class="text-sm font-medium leading-normal">Completed</p>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/80 pl-4 pr-2">
+<p class="text-sm font-medium leading-normal">On Hold</p>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+<div class="glassmorphism rounded-xl flex flex-col p-6 transition-all duration-300 ease-in-out">
+<a href="project-details.html" class="block">
+<div class="flex justify-between items-start mb-4">
+<h3 class="text-xl font-bold text-[#EAEAEA]">Quantum Computing Simulator</h3>
+<div class="px-3 py-1 text-xs font-semibold rounded-full bg-primary/20 text-primary glow-tag-inprogress">In Progress</div>
+</div>
+<p class="text-[#888888] text-sm mb-6 flex-grow">A one or two-sentence summary of the project's goal and current progress status.</p>
+<div class="flex justify-between items-center mb-4">
+<div class="flex -space-x-3">
+<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCeM8lspTiHX8ZUFi3KqivzhC5GYEyy45AaSUdVjxzKc1KvBRu05EM4xedkHbPCUlslVNLN1RZJXiNevLg7oUqciMzmnp27i615BWb3po-_-LjuNMbznEc_U3yRIeqCQXpJmB9mt1ZrK4DcBm93p_oxewnYmMwCeDRkulThGy8K6DNL-3yhkSfw05pOy0gtppSOpeSkKqdySswbQ32Ke660PZYXN2vAerok4XdjY5A_Jg2mJ_zyCYQZ2Zu3AaD-_Ea5A3Ncqsm5rlM");'></div>
+<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAGdSUvN6O8TrstWXR4Xy1u3ezD48X4E7wVoamS9oIpqc1FCJF0ANyjWyttSMVzeNg2sZWCUPvymMhNthlIkoPq91tN_NW6te3aKDuACkXg2eWNtJVdQ0OAN2bjQddjqXUc1s6fUlJOmnnV94oEry0JV6NU5JZzLHa6Jm2yzqxcdkoPkcSWpVe2KvYCF1jaqf-GW8e3ZLLyhc_ck_sTTI1l7yUrlUazWefUb-opxYCUKL0Oo-zG7BPCPdhcywfQbNvFto05scRQ4LE");'></div>
+<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAI8EeAWue3ng9df7qPnEzfgyQ6Z493spsvNs0YOFj_WZah3QpaJMEtAsAw98KGndkemL_Y5LKjxh7E-6k8U1jBfcUKQN1n2Cko3l9B3MxmIlwFx2Y3aIK_z39IohhCULmFgQVe8i-sfta6oFRdR7SG01LWOwCq6AJhYJ7P7Huds_93NQXtEirnY6MWRBqFq4jm8HsnVMgDhDv0X3vUpW3nt_1ZuIz1jBaQVXKB3yH3paJhIyBDUrtnYsVzyZuJWq3eM2XlqleLL20");'></div>
+</div>
+<span class="text-sm text-[#EAEAEA]">Tasks: 12/18</span>
+</div>
+<div class="w-full bg-white/10 rounded-full h-1.5">
+<div class="bg-gradient-to-r from-primary/50 to-primary h-1.5 rounded-full" style="width: 66%"></div>
+</div>
+</a>
+</div>
+<div class="glassmorphism rounded-xl flex flex-col p-6 transition-all duration-300 ease-in-out">
+<a href="project-details.html" class="block">
+<div class="flex justify-between items-start mb-4">
+<h3 class="text-xl font-bold text-[#EAEAEA]">AI-Powered Tutoring System</h3>
+<div class="px-3 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400 glow-tag-completed">Completed</div>
+</div>
+<p class="text-[#888888] text-sm mb-6 flex-grow">Developing a smart tutoring system that adapts to student learning styles and provides personalized feedback.</p>
+<div class="flex justify-between items-center mb-4">
+<div class="flex -space-x-3">
+<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAXGx8gulaVZeOllmOUQA69R0OyP9nLCBedTxLTYCvaPvyDofah93TMmknVzzgyGmRFjztWJbk7RQD5Q0prMbED3UadlIh0vUFautjMU2K_Pn4WHqVSwGTzqm97mFWTlQCBCfWWZEyB8n-C6dfSmVSKJHYWq4MGBQW_TXGW7fYX8N3G2jZNNOeoDegdBs6wF2DuhLebVTYWn5WRpRCwjpA9P-igOs4WchLLEKhEkMAcJBmAMRC16btpQ7E3IqQ_TVFYFFUyCGL7oKk");'></div>
+<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCFc8To_1wKHb-MvUi8zeEzHAPnbwOS8MrnGfk7NDKkCFGjh9Ep02dLnyQZjzkR_ruqhEfhsaKbqeOdf4UHNXLobZ3NYgqUDnmbpRwfh2nGvGT_lVrHVf1RmoYkUS5znWL6uD1xLuMkhYDvlZaYWT1kWeU6bIT2XwQRvcDdN1bETIkQJl4bUKPAcfuIgzyLygsLEGQqbYCM-DGMcsq-4RllgMSXJHrYoxpO5z3H_wF-5QrM6GuYFXwBcPeAL1FMk-Z0usKUZmdsKw4");'></div>
+</div>
+<span class="text-sm text-[#EAEAEA]">Tasks: 25/25</span>
+</div>
+<div class="w-full bg-white/10 rounded-full h-1.5">
+<div class="bg-gradient-to-r from-green-500/50 to-green-400 h-1.5 rounded-full" style="width: 100%"></div>
+</div>
+</a>
+</div>
+<div class="glassmorphism rounded-xl flex flex-col p-6 transition-all duration-300 ease-in-out">
+<a href="project-details.html" class="block">
+<div class="flex justify-between items-start mb-4">
+<h3 class="text-xl font-bold text-[#EAEAEA]">VR Chemistry Lab</h3>
+<div class="px-3 py-1 text-xs font-semibold rounded-full bg-yellow-500/20 text-yellow-400 glow-tag-onhold">On Hold</div>
+</div>
+<p class="text-[#888888] text-sm mb-6 flex-grow">Creating an immersive virtual reality lab for safe and interactive chemistry experiments.</p>
+<div class="flex justify-between items-center mb-4">
+<div class="flex -space-x-3">
+<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDUSvMUZn49lUuhNmDDhf-zY2_i6ezHGYA5npp_4iIUwQNnS_0X9c2pI6K9HX0T6V62nNe4aOTc9PqjQ61xkYBx5-STrte_y0dUjjQGaZVukqmGM2hGM6KozaMjFsxIDTaSruAXWSddBGQB5NKbnD4ff0Z_UL9nkMeBXjlz5OLjT6FBeci_IJxlH3NgggFn4ENiMgq-AL5S5wnzp3uQ_qVXGffnZoyAffqNbYXy-R2T9zqdHRo_fvzvrgEA7WWW9-VY5NdGltxOMUg");'></div>
+<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAO5Fk4TwucHPRIQyGUyTi5xlwG1ZCgzNROLzqHRwgBpZcjoU_zZ9QRr6_ND9_hLYawAgXXhpGvB9BhlyXF4VEqvry3-HriVHzc5Vg5wsJj_DMwyx--CP6qvRKjsPmHk55Pe9dCLmzKfpTJ48uVUcxkZiGBjhTzYUnstcgP64Zl0d8W49TcNlrG_Q29QrKvWdjwtkZJmihS1rPig_JyHCBLYxHns8eUR4NcIoyXRgoIHVS5PZEjqDuKW-c9oW3qOBRAxzZ9en0S-Co");'></div>
+<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBYc4JChIBZBa9yp-_51tYCPsmNs53Nrkpp4xSz47VkKazlWDYYMSVVDwGn513H3zRP9T-fmaZjliLVYUACy7gUHCvnT8tBOKCu5SxJPqffrQMLwnwZU49pddMOmkVKnoPyeedg_Uhlcdxeq5Zx2h2vVa1LAjAmKCdSq-Nbgb0tQDTG9y449XrvXunR9dKb931CCdRXcHOiroHheiWGcLYh0WcUidaghm47_niA1XfpCZfAjaIh8wF1392bqdsNajofyod09TNC7y4");'></div>
+</div>
+<span class="text-sm text-[#EAEAEA]">Tasks: 5/20</span>
+</div>
+<div class="w-full bg-white/10 rounded-full h-1.5">
+<div class="bg-gradient-to-r from-yellow-500/50 to-yellow-400 h-1.5 rounded-full" style="width: 25%"></div>
+</div>
+</a>
+</div>
+<div class="glassmorphism rounded-xl flex flex-col p-6 transition-all duration-300 ease-in-out">
+<a href="project-details.html" class="block">
+<div class="flex justify-between items-start mb-4">
+<h3 class="text-xl font-bold text-[#EAEAEA]">Blockchain for Credentials</h3>
+<div class="px-3 py-1 text-xs font-semibold rounded-full bg-primary/20 text-primary glow-tag-inprogress">In Progress</div>
+</div>
+<p class="text-[#888888] text-sm mb-6 flex-grow">A secure, decentralized system for verifying and managing academic credentials on the blockchain.</p>
+<div class="flex justify-between items-center mb-4">
+<div class="flex -space-x-3">
+<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDqKRQTWxEJIe1nccpMfbl42Vs3s4ev4o7y5JYGCxKXqMzMV-RMx53IQYu9irVzJyf6pODzCwzTpDwz0wC-nU9NNjC8KzZ5coy300kxzsjuIFsH69PMBfYFRAbdt7-7IFp5jTNklVIgoEAOnlGMfQZDI2USKiy0YElzyA8hh93WnZ-qHDbuZP9dkCH8f27rB4HcM89mlLCChBFkgr_c4fgjdE8l7hqX_7aiI0aYyCWcQT6c-9CZ-1CjLlid3T9bUecKXFZJndrA2vw");'></div>
+</div>
+<span class="text-sm text-[#EAEAEA]">Tasks: 35/40</span>
+</div>
+<div class="w-full bg-white/10 rounded-full h-1.5">
+<div class="bg-gradient-to-r from-primary/50 to-primary h-1.5 rounded-full" style="width: 87.5%"></div>
+</div>
+</a>
+</div>
+<div class="glassmorphism rounded-xl flex flex-col p-6 transition-all duration-300 ease-in-out">
+<a href="project-details.html" class="block">
+<div class="flex justify-between items-start mb-4">
+<h3 class="text-xl font-bold text-[#EAEAEA]">Gamified Learning Module</h3>
+<div class="px-3 py-1 text-xs font-semibold rounded-full bg-primary/20 text-primary glow-tag-inprogress">In Progress</div>
+</div>
+<p class="text-[#888888] text-sm mb-6 flex-grow">Integrating game mechanics into core curriculum subjects to boost student engagement and retention.</p>
+<div class="flex justify-between items-center mb-4">
+<div class="flex -space-x-3">
+<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD-omTzplh-rEd233UVKexbRUxZtEXk5r9w_E5w9kUT8A1I0wmkLX58gpAP6cuTxAeR6Ae2HBIAUrgk-H46IdOqkN4IkdTLpNZKNoxO10c8L4H-8n_wV3gD208gKaSpwTLSfPlahkF51m3DkPqDb7pZYWLsTthvAYy86B_Go71v9q4oJ6sCduaQjcp5eqvECGPp3Io_J84DDgZAxqOKnBD7pvo91FB9-_bIyZRW-RKcHbdDaUAyR3DQudVreklRbIIVgTd4-2Qv0gg");'></div>
+<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAGHGIAVfJqiFnXNXu4OwUAUM9KERiMG1F9xQ-0r7lmKIgi7sPMxe4NwHbGQdnHwMj7cU3O9H9Rfn0R8TmVMDBRp3DY9MetBlxgelt2E67DBNG6Lgm2J-cYqFox16w1ezEeTHRjxj2EcSHdtWBdU6Lu39SnvvKUPt4S3RpQpLf8_nAVhE2RboVuTGZC1d4tnT2lbHfUCrVgw1UlI4wn5bj3cUdlCN_IenHZcPrIW6TcS734k8L2dzf9wM4bSrX2iGMm93yWhUVAPFo");'></div>
+<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDMFZ0FSYX3ek-POggL01QDJmAZ8Gu3tZdaW1xtvrAuo7N7DhD58xd8D1aXOXkZOVmLI3hAG8QX24mkErBrFkYMq9OiIrNjEfurbPpICkQ6x13AEAujwo5q6BYb4gHz9BQkg3BHYotL6sbGee754UGVwB9fpB_OmGCfD7KwfdSHVI_tbdldcR-Q14Qu8N-48CVdy7bOItRlkLYdkb6QFjlbv6TPRAK77s8wmPi423-aeC2J_2LIikGiztFZHHEV0pxvvWJYAmfcF1I");'></div>
+<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCwknaVjG2KK6_8Sr15OL-DrkjaO4jaLSeME2IM7dZLDYOBQMkAhpp8-VE-gJk-O-FeuxC07-Cfkjm_BgbqawEPYHDJXpwWkxgZ2TgUpxT4nbOdgI75gi3szrT_o4ruBHScLrtxfJUPbHFZyBHbJLswG3-53m_aPHYD6_j_lJsqxL_VXsR7SO0IlCHCFYuvnULlSIbic_HqwQ9WVxcxdBPjI2oFpfKOl21ruzgsD5DnK5PRk7uYmRBguICsGtB9O-oXF6hp7plUNWk");'></div>
+</div>
+<span class="text-sm text-[#EAEAEA]">Tasks: 8/30</span>
+</div>
+<div class="w-full bg-white/10 rounded-full h-1.5">
+<div class="bg-gradient-to-r from-primary/50 to-primary h-1.5 rounded-full" style="width: 26.7%"></div>
+</div>
+</a>
+</div>
+<div class="glassmorphism rounded-xl flex flex-col p-6 transition-all duration-300 ease-in-out">
+<a href="project-details.html" class="block">
+<div class="flex justify-between items-start mb-4">
+<h3 class="text-xl font-bold text-[#EAEAEA]">Data Analytics Dashboard</h3>
+<div class="px-3 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400 glow-tag-completed">Completed</div>
+</div>
+<p class="text-[#888888] text-sm mb-6 flex-grow">A comprehensive dashboard for visualizing student performance data and institutional metrics.</p>
+<div class="flex justify-between items-center mb-4">
+<div class="flex -space-x-3">
+<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBWtrDy2_NEEDk3atAoRnkD29LvANbgh6h5UfA20yEoz4zLh_k8NXcJ7fLi7MHGbckOVa-T3J5WQiJPy1lmMq95BkZE6up3jf5Dig-UR3NxS98_k8dgunwp-uqi-iRaKMV3Gv6NUhPGksLsOLHkdQLbgalOWZoYxwqx1KLIHCJiVZFYnQrSOUfg93NDXC-2EMgmYtt2uGzEQey-LUeK4o5qWtd8v2wqPfwFj8lIq_JfXlvo2tbKr4STjSbPReWmhXt58E8Qh30BYOA");'></div>
+<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAr_MKb6xE0zb4HBsFRk3A3Sr0pWhu8H8vrSM9SIFDQF2TQ1n6_VxW0YoPjDu9PbxkFBZYTnmokz8lgKRazoJfmQkFO3Z6AXvOKxc8EmLkqBBvOKM9SDWR462n1LThavpfIEAtH_WEAtyUDrz1vlHebUlcp9bEjgZ4p7b29w8mKaTYOcbffzmGu9QG5MZtCgHcjtdFP8Atlh8qY-QyMUADc-Ued_QUj9VpnOl-yoB1VJUZsLWV6ckQ3mYq0YjpAS__3ZMvBOoMs5k8");'></div>
+</div>
+<span class="text-sm text-[#EAEAEA]">Tasks: 50/50</span>
+</div>
+<div class="w-full bg-white/10 rounded-full h-1.5">
+<div class="bg-gradient-to-r from-green-500/50 to-green-400 h-1.5 rounded-full" style="width: 100%"></div>
+</div>
+</a>
+</div>
+</div>
+</main>
+<footer class="flex flex-col gap-6 px-5 py-10 text-center mt-12 border-t border-white/10">
+<div class="flex flex-wrap items-center justify-center gap-6">
+<a class="text-[#888888] hover:text-white text-base font-normal leading-normal min-w-40" href="#">About Us</a>
+<a class="text-[#888888] hover:text-white text-base font-normal leading-normal min-w-40" href="#">Contact</a>
+<a class="text-[#888888] hover:text-white text-base font-normal leading-normal min-w-40" href="#">Privacy Policy</a>
+<a class="text-[#888888] hover:text-white text-base font-normal leading-normal min-w-40" href="#">Terms of Service</a>
+</div>
+<p class="text-[#888888] text-base font-normal leading-normal">© 2024 AMEP. All rights reserved.</p>
+</footer>
+</div>
+</div>
+</div>
+</div>
+</body></html>

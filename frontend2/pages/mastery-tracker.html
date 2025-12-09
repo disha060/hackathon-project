@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AMEP Mastery Tracker</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24;
+            font-size: 20px;
+        }
+        .progress-bar-glow-teal {
+            box-shadow: 0 0 8px 0px #0df2df, 0 0 12px 0px #0df2df33;
+        }
+        .progress-bar-glow-blue {
+            box-shadow: 0 0 8px 0px #00A9FF, 0 0 12px 0px #00A9FF33;
+        }
+        .progress-bar-glow-indigo {
+            box-shadow: 0 0 8px 0px #4338CA, 0 0 12px 0px #4338CA33;
+        }
+        .frosted-glass {
+            background-color: rgba(255, 255, 255, 0.05);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df2df",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101014",
+                        "blue-medium": "#00A9FF",
+                        "indigo-low": "#4338CA",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-dark font-display text-white">
+<div class="relative flex min-h-screen w-full flex-col">
+<div class="layout-container flex h-full grow flex-col items-center px-4 sm:px-8 md:px-20 lg:px-40 py-5">
+<div class="layout-content-container flex w-full max-w-[960px] flex-1 flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-4 sm:px-10 py-3">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"></path>
+</svg>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">AMEP</h2>
+</div>
+<div class="flex flex-1 items-center justify-end gap-4">
+<button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-white/10 text-white">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture with abstract shapes" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD2123uJ57r548spnX-3-k0jfXk4VL5EIOa-QBZu205SoCJtRJ8Fq-kHQTCkzQor3U0yASf_Fh00wcOglSvG-JRqrHhcVk46yqLt5zEtkdjGv3pLtBTrUxhI4HLrk59tcpHO5NPrns9xqpSNm_0lPBycJALPYlsgySSdZE5jSEee3ypGkkugOGlrTz5m7t__9FH1OdilyRda0fjl5cSmZAYA1Vr_TEz8HKqU2UPr9ZGMP75rdfwhX4UOakDJFc-TpNHJ6N3FoeXCQQ");'></div>
+</div>
+</header>
+<main class="flex flex-col gap-8 py-8 px-4 sm:px-0">
+<div class="flex flex-wrap items-end justify-between gap-4">
+<h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">Mastery Tracker</h1>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="flex flex-col gap-2 rounded-xl p-6 frosted-glass">
+<p class="text-white/80 text-base font-medium leading-normal">Overall Mastery</p>
+<p class="text-white tracking-light text-3xl font-bold leading-tight">72%</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 frosted-glass">
+<p class="text-white/80 text-base font-medium leading-normal">Skills Mastered</p>
+<p class="text-white tracking-light text-3xl font-bold leading-tight">18/25</p>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<div class="flex gap-3 flex-wrap">
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white/10 px-4 hover:bg-white/20 transition-colors">
+<p class="text-white text-sm font-medium leading-normal">Sort by: Mastery</p>
+<span class="material-symbols-outlined text-white">expand_more</span>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white/10 px-4 hover:bg-white/20 transition-colors">
+<p class="text-white text-sm font-medium leading-normal">Filter by: Topic</p>
+<span class="material-symbols-outlined text-white">expand_more</span>
+</button>
+</div>
+<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-3 rounded-xl p-6 frosted-glass">
+<div class="flex gap-6 justify-between items-center">
+<p class="text-white text-base font-medium leading-normal">Advanced Grammar</p>
+<p class="text-white text-sm font-bold leading-normal">95%</p>
+</div>
+<div class="w-full rounded bg-white/10">
+<div class="h-2 rounded bg-primary progress-bar-glow-teal" style="width: 95%;"></div>
+</div>
+<p class="text-primary text-sm font-medium leading-normal">High Proficiency</p>
+</div>
+<div class="flex flex-col gap-3 rounded-xl p-6 frosted-glass">
+<div class="flex gap-6 justify-between items-center">
+<p class="text-white text-base font-medium leading-normal">Fluid Dynamics Basics</p>
+<p class="text-white text-sm font-bold leading-normal">65%</p>
+</div>
+<div class="w-full rounded bg-white/10">
+<div class="h-2 rounded bg-blue-medium progress-bar-glow-blue" style="width: 65%;"></div>
+</div>
+<p class="text-blue-medium text-sm font-medium leading-normal">Medium Proficiency</p>
+</div>
+<div class="flex flex-col gap-3 rounded-xl p-6 frosted-glass">
+<div class="flex gap-6 justify-between items-center">
+<p class="text-white text-base font-medium leading-normal">Chemical Bonding</p>
+<p class="text-white text-sm font-bold leading-normal">30%</p>
+</div>
+<div class="w-full rounded bg-white/10">
+<div class="h-2 rounded bg-indigo-low progress-bar-glow-indigo" style="width: 30%;"></div>
+</div>
+<p class="text-indigo-low text-sm font-medium leading-normal">Low Proficiency</p>
+</div>
+<div class="flex flex-col gap-3 rounded-xl p-6 frosted-glass">
+<div class="flex gap-6 justify-between items-center">
+<p class="text-white text-base font-medium leading-normal">Literary Analysis</p>
+<p class="text-white text-sm font-bold leading-normal">88%</p>
+</div>
+<div class="w-full rounded bg-white/10">
+<div class="h-2 rounded bg-primary progress-bar-glow-teal" style="width: 88%;"></div>
+</div>
+<p class="text-primary text-sm font-medium leading-normal">High Proficiency</p>
+</div>
+<div class="flex flex-col gap-3 rounded-xl p-6 frosted-glass">
+<div class="flex gap-6 justify-between items-center">
+<p class="text-white text-base font-medium leading-normal">Quantum Mechanics</p>
+<p class="text-white text-sm font-bold leading-normal">42%</p>
+</div>
+<div class="w-full rounded bg-white/10">
+<div class="h-2 rounded bg-indigo-low progress-bar-glow-indigo" style="width: 42%;"></div>
+</div>
+<p class="text-indigo-low text-sm font-medium leading-normal">Low Proficiency</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+<div class="fixed bottom-8 right-8">
+<button class="flex items-center gap-3 rounded-lg bg-background-dark py-3 px-6 border-2 border-primary text-primary font-bold shadow-[0_0_15px_rgba(13,242,223,0.5)] hover:bg-primary/10 transition-all">
+<span class="material-symbols-outlined">model_training</span>
+                Practice Weak Areas
+            </button>
+</div>
+</div>
+</body></html>

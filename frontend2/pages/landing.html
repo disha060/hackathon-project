@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AMEP - Unlock Your Future</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#3B82F6",
+              "background-light": "#f5f7f8",
+              "background-dark": "#101722",
+              "indigo-accent": "#6366F1",
+              "teal-accent": "#14B8A6",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+            boxShadow: {
+              'glow-primary': '0 0 15px 5px rgba(59, 130, 246, 0.3)',
+              'glow-indigo': '0 0 15px 5px rgba(99, 102, 241, 0.3)',
+              'glow-teal': '0 0 15px 5px rgba(20, 184, 166, 0.3)',
+              'text-layered': '0px 2px 4px rgba(0, 0, 0, 0.2), 0px 5px 15px rgba(0, 0, 0, 0.1)',
+            },
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        .hero-gradient {
+            background-image: radial-gradient(at 27% 37%, hsla(217, 91%, 60%, 0.25) 0px, transparent 50%), radial-gradient(at 97% 21%, hsla(239, 84%, 69%, 0.25) 0px, transparent 50%), radial-gradient(at 75% 88%, hsla(168, 80%, 40%, 0.25) 0px, transparent 50%);
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.05);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .logo-glow {
+            filter: drop-shadow(0 0 0.75rem rgba(59, 130, 246, 0.5));
+        }
+        .cta-gradient {
+            background-image: linear-gradient(to right, #3B82F6, #6366F1);
+        }
+    </style>
+</head>
+<body class="bg-background-dark font-display text-white antialiased">
+<div class="relative w-full overflow-x-hidden">
+<div class="mx-auto flex max-w-6xl flex-col px-4 sm:px-6 lg:px-8">
+<header class="flex items-center justify-between whitespace-nowrap py-6">
+<div class="flex items-center gap-4 text-white">
+<div class="h-8 w-8 text-primary logo-glow">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">AMEP</h2>
+</div>
+<div class="flex items-center gap-2">
+<a href="login.html" class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-transparent text-gray-300 text-sm font-medium leading-normal transition-colors hover:bg-white/10 hover:text-white">
+<span class="truncate">Login</span>
+</a>
+<a href="signup.html" class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-white/10 text-white text-sm font-bold leading-normal transition-colors hover:bg-white/20">
+<span class="truncate">Register</span>
+</a>
+</div>
+</header>
+<main class="flex-grow">
+<section class="relative py-20 text-center sm:py-28 md:py-32 lg:py-40">
+<div class="absolute inset-0 hero-gradient"></div>
+<div class="relative z-10 mx-auto max-w-3xl">
+<div class="flex flex-col items-center gap-6">
+<h1 class="text-4xl font-black leading-tight tracking-tighter text-white shadow-text-layered sm:text-5xl md:text-6xl">
+                                Unlock Your Future with AMEP
+                            </h1>
+<p class="text-base font-normal leading-normal text-gray-300 md:text-lg">
+                                Empowering minds through futuristic education, AMEP provides the tools and community for lifelong learning and success.
+                            </p>
+<button class="cta-gradient flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-8 text-white text-base font-bold leading-normal tracking-wide shadow-glow-primary transition-transform hover:scale-105">
+<span class="truncate">Get Started</span>
+</button>
+</div>
+</div>
+</section>
+<section class="py-16 sm:py-24">
+<div class="flex flex-col gap-12">
+<div class="flex flex-col gap-3 text-center">
+<h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                                Why Choose AMEP?
+                            </h2>
+<p class="text-base text-gray-400 sm:text-lg">We provide a cutting-edge platform designed for modern learners.</p>
+</div>
+<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+<div class="flex flex-col gap-4 rounded-xl p-6 text-center shadow-lg transition-all hover:shadow-glow-indigo glassmorphism">
+<div class="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-indigo-accent/20 text-indigo-accent">
+<span class="material-symbols-outlined text-4xl">auto_stories</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-lg font-bold text-white">Interactive Courses</h3>
+<p class="text-sm text-gray-300">Engage with dynamic content and hands-on projects that bring learning to life.</p>
+</div>
+</div>
+<div class="flex flex-col gap-4 rounded-xl p-6 text-center shadow-lg transition-all hover:shadow-glow-teal glassmorphism">
+<div class="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-teal-accent/20 text-teal-accent">
+<span class="material-symbols-outlined text-4xl">school</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-lg font-bold text-white">Expert Tutors</h3>
+<p class="text-sm text-gray-300">Learn from the best in the industry with personalized guidance and support.</p>
+</div>
+</div>
+<div class="flex flex-col gap-4 rounded-xl p-6 text-center shadow-lg transition-all hover:shadow-glow-primary glassmorphism">
+<div class="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-4xl">schedule</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-lg font-bold text-white">Flexible Learning</h3>
+<p class="text-sm text-gray-300">Study at your own pace, anytime, anywhere, with our fully responsive platform.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="relative overflow-hidden py-16 sm:py-24">
+<div class="flex flex-col gap-12">
+<div class="flex flex-col gap-3 text-center">
+<h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">What Our Students Say</h2>
+<p class="text-base text-gray-400 sm:text-lg">Real stories from learners who transformed their careers with us.</p>
+</div>
+<div class="relative flex items-center justify-center">
+<button class="absolute left-0 z-10 rounded-full bg-white/10 p-2 text-white transition hover:bg-white/20 disabled:opacity-50 xl:-left-12">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="w-full max-w-4xl">
+<div class="flex w-full items-center justify-center p-6 text-center glassmorphism rounded-xl">
+<div class="flex flex-col items-center gap-4">
+<img alt="Portrait of Jane Doe" class="h-16 w-16 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAACo9-Lgy7I568YqQqQtfBae1rzhGl_G1RmQOHhXqclgGZQujJbeIHsV4Q_j70Lva9G4900X2Vo9vxwsOkykroFpYN5F3_sc9v1fAA-AwXzayw6cvWVFiMZOcGnA2S35qIsNiLsPdN1W4qREf4ty-KwNQFdUrmzIWbWje9VGN_vcw1rC7dVYH__hljVAv0yAfjpGFq462By8yDNlqfaoqnxajmETeczJQ2zxXfTU2CStG1TJkdo0kuzgzAO4J9w3CSBg9PFHMU5_Q"/>
+<div>
+<p class="font-semibold text-white">Jane Doe</p>
+<p class="text-sm text-gray-400">Software Engineer</p>
+</div>
+<p class="max-w-xl text-gray-300">"AMEP transformed my learning experience. The courses are incredibly engaging and the tutors are top-notch! The futuristic UI makes learning feel exciting and modern."</p>
+</div>
+</div>
+</div>
+<button class="absolute right-0 z-10 rounded-full bg-white/10 p-2 text-white transition hover:bg-white/20 disabled:opacity-50 xl:-right-12">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<div class="mt-4 flex justify-center gap-2">
+<button class="h-2 w-2 rounded-full bg-primary"></button>
+<button class="h-2 w-2 rounded-full bg-white/20 transition hover:bg-white/40"></button>
+<button class="h-2 w-2 rounded-full bg-white/20 transition hover:bg-white/40"></button>
+</div>
+</div>
+</section>
+<section class="py-16 sm:py-24">
+<div class="mx-auto max-w-3xl">
+<div class="flex flex-col gap-12">
+<div class="flex flex-col gap-3 text-center">
+<h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Frequently Asked Questions</h2>
+<p class="text-base text-gray-400 sm:text-lg">Find answers to common questions about our platform and courses.</p>
+</div>
+<div class="flex flex-col gap-4">
+<details class="group rounded-xl bg-white/5 transition-all duration-300 open:bg-white/10" open="">
+<summary class="flex cursor-pointer list-none items-center justify-between p-4 font-medium text-white">
+                                        What is the cost of a course?
+                                        <span class="transition-transform duration-300 group-open:rotate-45">
+<span class="material-symbols-outlined">add</span>
+</span>
+</summary>
+<div class="overflow-hidden transition-all duration-300 max-h-0 group-open:max-h-40">
+<p class="px-4 pb-4 text-gray-300">Course prices vary depending on the subject and duration. We offer both individual course purchases and subscription plans for full access. Please visit our 'Courses' page for detailed pricing information.</p>
+</div>
+</details>
+<details class="group rounded-xl bg-white/5 transition-all duration-300 open:bg-white/10">
+<summary class="flex cursor-pointer list-none items-center justify-between p-4 font-medium text-white">
+                                        Are the courses self-paced?
+                                        <span class="transition-transform duration-300 group-open:rotate-45">
+<span class="material-symbols-outlined">add</span>
+</span>
+</summary>
+<div class="overflow-hidden transition-all duration-300 max-h-0 group-open:max-h-40">
+<p class="px-4 pb-4 text-gray-300">Yes, all our courses are designed to be self-paced so you can learn at your own convenience. You will have lifetime access to the course materials after purchase.</p>
+</div>
+</details>
+<details class="group rounded-xl bg-white/5 transition-all duration-300 open:bg-white/10">
+<summary class="flex cursor-pointer list-none items-center justify-between p-4 font-medium text-white">
+                                        Do I get a certificate upon completion?
+                                        <span class="transition-transform duration-300 group-open:rotate-45">
+<span class="material-symbols-outlined">add</span>
+</span>
+</summary>
+<div class="overflow-hidden transition-all duration-300 max-h-0 group-open:max-h-40">
+<p class="px-4 pb-4 text-gray-300">Absolutely! Upon successful completion of any course, you will receive a verifiable certificate from AMEP that you can share on your professional networks and resume.</p>
+</div>
+</details>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="relative mt-16 overflow-hidden rounded-t-xl border-t border-white/10 py-12">
+<div class="absolute inset-0 hero-gradient opacity-50"></div>
+<div class="relative z-10">
+<div class="grid grid-cols-2 gap-8 md:grid-cols-5">
+<div class="col-span-2 md:col-span-2">
+<div class="flex items-center gap-2">
+<div class="h-6 w-6 text-primary logo-glow">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold">AMEP</h2>
+</div>
+<p class="mt-4 text-sm text-gray-400">Empowering the next generation of learners.</p>
+<div class="mt-6 flex gap-4">
+<a class="text-gray-400 hover:text-white" href="#"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.67.88-.53 1.56-1.37 1.88-2.38-.83.49-1.74.85-2.7 1.03A4.37 4.37 0 0 0 16.5 4a4.38 4.38 0 0 0-4.37 4.37c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.52.78 2.85 1.95 3.63-.72-.02-1.4-.22-2-.55v.05c0 2.11 1.5 3.88 3.5 4.28a4.4 4.4 0 0 1-1.98.08c.55 1.73 2.16 3 4.08 3.03A8.79 8.79 0 0 1 1.5 16.3c-1.87 1.2-4.28 1.9-6.9 1.9v-.02C-3.46 19.52.32 20 4.5 20c9.4 0 14.53-7.8 14.53-14.53v-.65c.98-.7 1.82-1.58 2.49-2.54z"></path></svg></a>
+<a class="text-gray-400 hover:text-white" href="#"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.32 12.03c-.2.13-.58.34-1.2.34-.9 0-1.54-.53-1.54-1.82v-2.33h2.7l-.35 2.5h-2.35v6.2c-1.35.34-2.85.34-4.2 0v-6.2H6v-2.5h2.15V9.1c0-1.8 1.02-3.1 3.28-3.1.9 0 1.6.07 1.83.1v2.23h-1.3c-1.02 0-1.1.48-1.1 1.2V9.8h2.6l-.4 2.23z"></path></svg></a>
+<a class="text-gray-400 hover:text-white" href="#"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 10.1c0 2.7-2.2 4.9-4.9 4.9h-5.2V7h5.2c2.7 0 4.9 2.2 4.9 4.9v.2z"></path></svg></a>
+</div>
+</div>
+<div>
+<h3 class="font-semibold text-white">Product</h3>
+<ul class="mt-4 space-y-3">
+<li><a class="text-sm text-gray-400 hover:text-white" href="#">Courses</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white" href="#">Pricing</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white" href="#">Features</a></li>
+</ul>
+</div>
+<div>
+<h3 class="font-semibold text-white">Company</h3>
+<ul class="mt-4 space-y-3">
+<li><a class="text-sm text-gray-400 hover:text-white" href="#">About Us</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white" href="#">Careers</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white" href="#">Contact</a></li>
+</ul>
+</div>
+<div>
+<h3 class="font-semibold text-white">Legal</h3>
+<ul class="mt-4 space-y-3">
+<li><a class="text-sm text-gray-400 hover:text-white" href="#">Privacy Policy</a></li>
+<li><a class="text-sm text-gray-400 hover:text-white" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+<div class="mt-12 border-t border-white/10 pt-8 text-center text-sm text-gray-500">
+<p>© 2024 AMEP. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</div>
+</div>
+
+</body></html>
