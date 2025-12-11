@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import models
 import database
-from routers import student, teacher
+from routers import student, teacher, classes
 
 # Create database tables
 models.Base.metadata.create_all(bind=database.engine)
@@ -27,6 +27,7 @@ app.add_middleware(
 # Include routers
 app.include_router(student.router)
 app.include_router(teacher.router)
+app.include_router(classes.router)
 
 @app.get("/")
 async def root():

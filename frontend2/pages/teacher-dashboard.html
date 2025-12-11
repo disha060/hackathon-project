@@ -69,8 +69,10 @@
 </a>
 </div>
 <div class="flex items-center gap-3 px-3 py-2 text-slate-300 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors">
+<a href="ai-content-generator.html" class="flex items-center gap-3 w-full h-full">
 <span class="material-symbols-outlined">assignment</span>
 <p class="text-sm font-medium leading-normal">Assignments</p>
+</a>
 </div>
 <div class="flex items-center gap-3 px-3 py-2 text-slate-300 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors">
 <span class="material-symbols-outlined">calendar_today</span>
@@ -89,16 +91,16 @@
 <span class="material-symbols-outlined">settings</span>
 <p class="text-sm font-medium leading-normal">Settings</p>
 </div>
-<div class="flex items-center gap-3 px-3 py-2 text-slate-300 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors">
+<div class="flex items-center gap-3 px-3 py-2 text-slate-300 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors cursor-pointer" id="logout-btn">
 <span class="material-symbols-outlined">logout</span>
 <p class="text-sm font-medium leading-normal">Logout</p>
 </div>
 <div class="border-t border-slate-800 my-2"></div>
 <div class="flex gap-3 p-2">
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Profile picture of Dr. Anya Sharma" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBHxyIUfnbRbr9Y3Ar3v6g4DycqHkxAJSb8iQF3pAra0jXRnvJlqhLD4oYIZPVgW1zn_WEVVwOqvj0mK75k99OX7BogsxC8dbiydCzbfLUeHMngFWPwsH7Sa8e3_lqyzZJ1OLvqD4VfjpDS-t0P9llyyLB0iiQY9uynsmba7JXWQ3eIrYElv4aHk7nxPXic0Om2qMmNo3asBS65TbG_GOBDsmWqXAMaXAd_5UJmy_Lnu9HS6jen7_tqlNIrAQDChJqsGV8rfpEdUPg");'></div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Profile picture of Teacher" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBHxyIUfnbRbr9Y3Ar3v6g4DycqHkxAJSb8iQF3pAra0jXRnvJlqhLD4oYIZPVgW1zn_WEVVwOqvj0mK75k99OX7BogsxC8dbiydCzbfLUeHMngFWPwsH7Sa8e3_lqyzZJ1OLvqD4VfjpDS-t0P9llyyLB0iiQY9uynsmba7JXWQ3eIrYElv4aHk7nxPXic0Om2qMmNo3asBS65TbG_GOBDsmWqXAMaXAd_5UJmy_Lnu9HS6jen7_tqlNIrAQDChJqsGV8rfpEdUPg");'></div>
 <div class="flex flex-col">
-<h1 class="text-white text-base font-medium leading-normal">Dr. Anya Sharma</h1>
-<p class="text-slate-400 text-sm font-normal leading-normal">anya.s@school.edu</p>
+<h1 class="text-white text-base font-medium leading-normal" id="teacher-name">Dr. Anya Sharma</h1>
+<p class="text-slate-400 text-sm font-normal leading-normal" id="teacher-email">teacher@school.edu</p>
 </div>
 </div>
 </div>
@@ -117,7 +119,7 @@
 </label>
 <div class="flex items-center justify-end gap-4">
 <a href="ai-content-generator.html" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
-<span class="truncate">New Quiz</span>
+<span class="truncate">AI Content Generator</span>
 </a>
 <button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[#111618] text-slate-300 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 hover:text-primary transition-colors">
 <span class="material-symbols-outlined">notifications</span>
@@ -129,7 +131,7 @@
 <!-- PageHeading -->
 <div class="flex flex-wrap justify-between gap-3 mb-6">
 <div class="flex min-w-72 flex-col gap-2">
-<p class="text-white text-4xl font-black leading-tight tracking-[-0.033em]">Welcome Back, Dr. Sharma!</p>
+<p class="text-white text-4xl font-black leading-tight tracking-[-0.033em]">Welcome Back, <span id="welcome-teacher-name">Dr. Sharma</span>!</p>
 <p class="text-slate-400 text-base font-normal leading-normal">Here's a snapshot of your classes today.</p>
 </div>
 </div>
@@ -137,18 +139,18 @@
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
 <div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 bg-[#111618] border border-slate-800">
 <p class="text-slate-300 text-base font-medium leading-normal">Active Students</p>
-<p class="text-white tracking-light text-3xl font-bold leading-tight">124</p>
-<p class="text-green-400 text-sm font-medium leading-normal">+2 this month</p>
+<p class="text-white tracking-light text-3xl font-bold leading-tight" id="active-students">Loading...</p>
+<p class="text-green-400 text-sm font-medium leading-normal" id="students-change">Loading...</p>
 </div>
 <div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 bg-[#111618] border border-slate-800">
 <p class="text-slate-300 text-base font-medium leading-normal">Average Grade</p>
-<p class="text-white tracking-light text-3xl font-bold leading-tight">88%</p>
-<p class="text-green-400 text-sm font-medium leading-normal">+1.5% from last week</p>
+<p class="text-white tracking-light text-3xl font-bold leading-tight" id="average-grade">Loading...</p>
+<p class="text-green-400 text-sm font-medium leading-normal" id="grade-change">Loading...</p>
 </div>
 <div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 bg-[#111618] border border-slate-800">
 <p class="text-slate-300 text-base font-medium leading-normal">Attendance Rate</p>
-<p class="text-white tracking-light text-3xl font-bold leading-tight">92%</p>
-<p class="text-red-400 text-sm font-medium leading-normal">-0.5% from last week</p>
+<p class="text-white tracking-light text-3xl font-bold leading-tight" id="attendance-rate">Loading...</p>
+<p class="text-red-400 text-sm font-medium leading-normal" id="attendance-change">Loading...</p>
 </div>
 </div>
 <div class="grid grid-cols-3 gap-6">
@@ -157,105 +159,183 @@
 <!-- SectionHeader -->
 <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">At-Risk Students</h2>
 <!-- At-Risk Student Cards -->
-<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-<div class="flex flex-col gap-4 rounded-xl p-4 bg-[#111618] border border-yellow-500/30 shadow-[0_0_15px_rgba(234,179,8,0.15)]">
-<div class="flex items-center gap-3">
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Profile picture of Liam Johnson" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA5L0f9khx52MLW2sDyISg9nPjJ0Ru9IpSZCVSvr-XkCWRhauuWHNANAEIBoz04eXLMEBjkeY5rVkNvvew9MGgEu-E6Sb9XpPm8ln45U6r3kLI0V469Ku0LUveLdOPti6lNuvVLSR33mOBuOSfOSRKiF2h_8BBq_ryk9x04l-QwvFR5Iz72qcVo6vbO9xAeJHLEtHRvo4CC8KGek-etfPNEg1Owzjw9LWvFtsRi_q7Pe6pQ4kiCwEpVBtApY7-rqeTVkA3M5AfNhOg");'></div>
-<div class="flex flex-col">
-<p class="text-white font-semibold">Liam Johnson</p>
-<p class="text-slate-400 text-sm">Grade 10</p>
-</div>
-</div>
-<div class="flex items-center gap-2 rounded-md bg-yellow-500/10 px-2 py-1 text-xs font-medium text-yellow-400">
-<span class="material-symbols-outlined text-base">trending_down</span>
-<span>Low Attendance</span>
-</div>
-</div>
-<div class="flex flex-col gap-4 rounded-xl p-4 bg-[#111618] border border-red-500/30 shadow-[0_0_15px_rgba(239,68,68,0.15)]">
-<div class="flex items-center gap-3">
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Profile picture of Olivia Chen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDeJ1dQ42i_MXmmpyg_8fkErMzMeoie4ZTD7PH1gT41DjpqKJ-7tRAyxDjtQt4XhFupVqZUAPPXlGSyRXOctSAdRO8ASfJrygPN38rW3Fgisiignsl8ExYADykMjM-h3bH5_YNohxLFHySWYWnFWmhNszBOc06eGnNPZxe7FGVRGIlBgvI9WuPyhRxTEhK9845C-KHl0NtAU4SwK-vqsK5l_1-eUfmgNj3qHDGNUVTKdhv2JruNdDNhFIf1r2LNDiqcntDFpjqKr8U");'></div>
-<div class="flex flex-col">
-<p class="text-white font-semibold">Olivia Chen</p>
-<p class="text-slate-400 text-sm">Grade 11</p>
-</div>
-</div>
-<div class="flex items-center gap-2 rounded-md bg-red-500/10 px-2 py-1 text-xs font-medium text-red-400">
-<span class="material-symbols-outlined text-base">assignment_late</span>
-<span>Overdue Assignments</span>
-</div>
-</div>
-<div class="flex flex-col gap-4 rounded-xl p-4 bg-[#111618] border border-yellow-500/30 shadow-[0_0_15px_rgba(234,179,8,0.15)]">
-<div class="flex items-center gap-3">
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Profile picture of Ben Carter" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBmbOryTr0tEUsipNZOdrc_5kMQFK1_T77wuAbwNGrz0h2fVPhanHXKOvEvUM666JeSBcGbwDoXJCJGbqKRXMAAs864sXt3NqMv-ov5PQX_Y6zDk0uVH5d0yET8cAAOgVRQF62nt7zOv66OrrVgLjgocEI61eOTDpdptXME9iu6MkCoOO6h1q0Wthx1svcj8CotJXqGhrkWDR2kaWW7v6-3bTppSC9KlICtk81vB_x5DT65EaM7IZEtClFKJ0T1eYDOcsVYj7DZDi8");'></div>
-<div class="flex flex-col">
-<p class="text-white font-semibold">Ben Carter</p>
-<p class="text-slate-400 text-sm">Grade 9</p>
-</div>
-</div>
-<div class="flex items-center gap-2 rounded-md bg-yellow-500/10 px-2 py-1 text-xs font-medium text-yellow-400">
-<span class="material-symbols-outlined text-base">low_priority</span>
-<span>Failing Grades</span>
-</div>
-</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6" id="at-risk-students-container">
+<div class="text-center py-4 text-slate-400">Loading at-risk students data...</div>
 </div>
 <!-- Class Performance Chart -->
 <div class="flex flex-col gap-4 rounded-xl p-6 bg-[#111618] border border-slate-800 mt-4">
 <h3 class="text-white text-lg font-bold">Class Performance Overview</h3>
 <p class="text-slate-400 text-sm">Average grade trend for the last 6 months.</p>
-<div class="w-full h-64 flex items-center justify-center">
+<div class="w-full h-64 flex items-center justify-center" id="performance-chart-container">
 <!-- Placeholder for chart -->
-<img alt="A dark theme line chart showing data trends with glowing blue and teal lines" class="w-full h-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFdfdXIFrcdIVv3mO-ScPoKT1El7ON-Qzc4mIvm7DD2xVKuyKTw_K-0xmOtT6mAXYxDt6XlNebIFqwceFN7JO6u24HYopsFn7BFRFS2e-4tZgLaaiA83D5Z8uDjknEbg1-uDPE0Tbp-w04W83yo8QPSh1RrABym8s5VHhdnbtg35eCIvMMHNbRRjNFWMj7i2tCos8fdanvTbkf74FYsiHurQO1_N79PrpEKKwe5T-Xgh7QXO4dQX-X9DrL_cyy_3pT0O2T07aMk1g"/>
+<div class="text-center py-4 text-slate-400">Performance data will be displayed here.</div>
 </div>
 </div>
 </div>
 <!-- Sidebar column -->
 <div class="col-span-3 lg:col-span-1 flex flex-col gap-6">
 <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">Upcoming Deadlines</h2>
-<div class="flex flex-col gap-4 rounded-xl p-4 bg-[#111618] border border-slate-800">
-<div class="flex items-start gap-4">
-<div class="flex flex-col items-center justify-center bg-primary/10 rounded-lg p-3 text-primary">
-<p class="text-sm font-bold">OCT</p>
-<p class="text-xl font-black">28</p>
-</div>
-<div>
-<p class="font-semibold text-white">History Mid-term Paper</p>
-<p class="text-sm text-slate-400">Due at 11:59 PM</p>
-</div>
-</div>
-<div class="flex items-start gap-4">
-<div class="flex flex-col items-center justify-center bg-slate-700/50 rounded-lg p-3 text-slate-300">
-<p class="text-sm font-bold">NOV</p>
-<p class="text-xl font-black">02</p>
-</div>
-<div>
-<p class="font-semibold text-white">Algebra II: Chapter 5 Quiz</p>
-<p class="text-sm text-slate-400">In-class</p>
-</div>
-</div>
-<div class="flex items-start gap-4">
-<div class="flex flex-col items-center justify-center bg-slate-700/50 rounded-lg p-3 text-slate-300">
-<p class="text-sm font-bold">NOV</p>
-<p class="text-xl font-black">05</p>
-</div>
-<div>
-<p class="font-semibold text-white">Parent-Teacher Conferences</p>
-<p class="text-sm text-slate-400">4:00 PM - 7:00 PM</p>
-</div>
-</div>
-<div class="flex items-start gap-4">
-<div class="flex flex-col items-center justify-center bg-slate-700/50 rounded-lg p-3 text-slate-300">
-<p class="text-sm font-bold">NOV</p>
-<p class="text-xl font-black">10</p>
-</div>
-<div>
-<p class="font-semibold text-white">Science Fair Proposals</p>
-<p class="text-sm text-slate-400">Due at 5:00 PM</p>
-</div>
-</div>
+<div class="flex flex-col gap-4 rounded-xl p-4 bg-[#111618] border border-slate-800" id="upcoming-deadlines-container">
+<div class="text-center py-4 text-slate-400">Loading upcoming deadlines...</div>
 </div>
 </div>
 </div>
 </main>
 </div>
 </div>
+
+<script type="module">
+    // Import auth service
+    import { logout } from '../src/services/auth.js';
+    import { teacherAPI } from '../src/services/api.js';
+    
+    // Add logout functionality
+    document.getElementById('logout-btn').addEventListener('click', function() {
+        if (confirm('Are you sure you want to logout?')) {
+            logout();
+        }
+    });
+    
+    // Fetch and display teacher dashboard data
+    async function fetchTeacherDashboard() {
+        try {
+            // Show loading states
+            showLoadingStates();
+            
+            // Get teacher ID from localStorage (assuming it's stored during login)
+            const teacherId = parseInt(localStorage.getItem('teacherId')) || 1;
+            
+            // Fetch real data from backend
+            const dashboardData = await teacherAPI.getDashboard(teacherId);
+            
+            // Update the UI with real data
+            updateDashboardDisplay(dashboardData);
+        } catch (error) {
+            console.error('Error fetching teacher dashboard data:', error);
+            // Fallback to showing no data
+            updateDashboardDisplay({
+                class_mastery_summary: {},
+                engagement_metrics: {
+                    active_students: 0,
+                    avg_daily_engagement: 0.0,
+                    high_confusion_cases: 0
+                },
+                soft_skill_summary: {},
+                leaderboard: [],
+                struggling_students: []
+            });
+        }
+    }
+    
+    function showLoadingStates() {
+        // Stats
+        document.getElementById('active-students').textContent = 'Loading...';
+        document.getElementById('students-change').textContent = 'Loading...';
+        document.getElementById('average-grade').textContent = 'Loading...';
+        document.getElementById('grade-change').textContent = 'Loading...';
+        document.getElementById('attendance-rate').textContent = 'Loading...';
+        document.getElementById('attendance-change').textContent = 'Loading...';
+        
+        // Containers
+        document.getElementById('at-risk-students-container').innerHTML = '<div class="text-center py-4 text-slate-400">Loading at-risk students data...</div>';
+        document.getElementById('performance-chart-container').innerHTML = '<div class="text-center py-4 text-slate-400">Loading performance data...</div>';
+        document.getElementById('upcoming-deadlines-container').innerHTML = '<div class="text-center py-4 text-slate-400">Loading upcoming deadlines...</div>';
+    }
+    
+    function updateDashboardDisplay(dashboardData) {
+        // Update stats
+        document.getElementById('active-students').textContent = dashboardData.engagement_metrics.active_students;
+        document.getElementById('students-change').textContent = '+0 this month';
+        document.getElementById('average-grade').textContent = dashboardData.class_mastery_summary ? 
+            (Object.keys(dashboardData.class_mastery_summary).length > 0 ? 
+                Math.round(Object.values(dashboardData.class_mastery_summary)[0].average) + '%' : '0%') : '0%';
+        document.getElementById('grade-change').textContent = '+0% from last week';
+        document.getElementById('attendance-rate').textContent = '0%';
+        document.getElementById('attendance-change').textContent = '+0% from last week';
+        
+        // Update at-risk students
+        updateAtRiskStudents(dashboardData.struggling_students);
+        
+        // Update performance chart (placeholder)
+        updatePerformanceChart(dashboardData.class_mastery_summary);
+        
+        // Update upcoming deadlines (placeholder)
+        updateUpcomingDeadlines();
+    }
+    
+    function updateAtRiskStudents(strugglingStudents) {
+        const container = document.getElementById('at-risk-students-container');
+        
+        // Clear existing content
+        container.innerHTML = '';
+        
+        // If no data, show appropriate message
+        if (!strugglingStudents || strugglingStudents.length === 0) {
+            container.innerHTML = '<div class="text-center py-4 text-slate-400 col-span-3">No at-risk students identified. Continue monitoring your class performance.</div>';
+            return;
+        }
+        
+        // For now, show a message that this feature will be implemented
+        container.innerHTML = '<div class="text-center py-4 text-slate-400 col-span-3">At-risk student identification will be implemented soon.</div>';
+    }
+    
+    function updatePerformanceChart(classMasterySummary) {
+        const container = document.getElementById('performance-chart-container');
+        
+        // Clear existing content
+        container.innerHTML = '';
+        
+        // If no data, show appropriate message
+        if (!classMasterySummary || Object.keys(classMasterySummary).length === 0) {
+            container.innerHTML = '<div class="text-center py-4 text-slate-400">No performance data available yet. Student activity will appear here.</div>';
+            return;
+        }
+        
+        // For now, show a message that this feature will be implemented
+        container.innerHTML = '<div class="text-center py-4 text-slate-400">Class performance visualization will be implemented soon.</div>';
+    }
+    
+    function updateUpcomingDeadlines() {
+        const container = document.getElementById('upcoming-deadlines-container');
+        
+        // Clear existing content
+        container.innerHTML = '';
+        
+        // Show appropriate message
+        container.innerHTML = '<div class="text-center py-4 text-slate-400">Upcoming deadlines will be implemented soon.</div>';
+    }
+</script>
+
+<script>
+    // Update teacher name display
+    document.addEventListener('DOMContentLoaded', function() {
+        updateTeacherNameDisplay();
+        fetchTeacherDashboard();
+    });
+    
+    function updateTeacherNameDisplay() {
+        // Get user name from localStorage
+        const userName = localStorage.getItem('userName') || 'Teacher';
+        
+        // Update teacher name in profile section
+        const teacherNameElement = document.getElementById('teacher-name');
+        if (teacherNameElement) {
+            teacherNameElement.textContent = userName;
+        }
+        
+        // Update welcome message
+        const welcomeTeacherNameElement = document.getElementById('welcome-teacher-name');
+        if (welcomeTeacherNameElement) {
+            welcomeTeacherNameElement.textContent = userName.split(' ')[0] || userName;
+        }
+        
+        // Update email (using a simple approach for demo)
+        const teacherEmailElement = document.getElementById('teacher-email');
+        if (teacherEmailElement) {
+            // Extract name part and create a simple email
+            const namePart = userName.toLowerCase().replace(/\s+/g, '.');
+            teacherEmailElement.textContent = namePart + '@school.edu';
+        }
+    }
+</script>
 </body></html>

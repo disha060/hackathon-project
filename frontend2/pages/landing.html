@@ -267,4 +267,20 @@
 </div>
 </div>
 
+    <script type="module">
+        // Import auth service
+        import { isAuthenticated, getUserRole } from '../src/services/auth.js';
+        
+        // Check if user is already logged in and redirect to appropriate dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            if (isAuthenticated()) {
+                const userRole = getUserRole();
+                if (userRole === 'student') {
+                    window.location.href = 'student-dashboard.html';
+                } else if (userRole === 'teacher') {
+                    window.location.href = 'teacher-dashboard.html';
+                }
+            }
+        });
+    </script>
 </body></html>

@@ -103,48 +103,43 @@
 <label class="flex flex-col w-full">
 <p class="text-white text-base font-medium leading-normal pb-2">Content Type</p>
 <div class="select-wrapper">
-<select class="form-select flex w-full min-w-0 resize-none overflow-hidden rounded-lg text-white focus:outline-0 border border-[#3b4e54] bg-[#101e22] focus:border-primary focus:ring-2 focus:ring-primary/50 h-14 p-[15px] text-base font-normal leading-normal transition-all">
-<option>Quiz Questions</option>
-<option>Lesson Summary</option>
-<option>Interactive Dialogue</option>
+<select id="content-type" class="form-select flex w-full min-w-0 resize-none overflow-hidden rounded-lg text-white focus:outline-0 border border-[#3b4e54] bg-[#101e22] focus:border-primary focus:ring-2 focus:ring-primary/50 h-14 p-[15px] text-base font-normal leading-normal transition-all">
+<option value="quiz">Quiz Questions</option>
+<option value="lesson">Lesson Summary</option>
+<option value="dialogue">Interactive Dialogue</option>
+<option value="assignment">Assignment</option>
+<option value="project">Project</option>
 </select>
 </div>
+</label>
+<label class="flex flex-col w-full">
+<p class="text-white text-base font-medium leading-normal pb-2">Topic</p>
+<input type="text" id="topic" class="form-input flex w-full min-w-0 resize-none overflow-hidden rounded-lg text-white focus:outline-0 border border-[#3b4e54] bg-[#101e22] focus:border-primary focus:ring-2 focus:ring-primary/50 h-14 p-[15px] text-base font-normal leading-normal transition-all" placeholder="Enter topic (e.g., 'Photosynthesis', 'World War II')">
 </label>
 <label class="flex flex-col w-full">
 <p class="text-white text-base font-medium leading-normal pb-2">Difficulty Level</p>
 <div class="select-wrapper">
-<select class="form-select flex w-full min-w-0 resize-none overflow-hidden rounded-lg text-white focus:outline-0 border border-[#3b4e54] bg-[#101e22] focus:border-primary focus:ring-2 focus:ring-primary/50 h-14 p-[15px] text-base font-normal leading-normal transition-all">
-<option>Beginner</option>
-<option>Intermediate</option>
-<option>Advanced</option>
+<select id="difficulty-level" class="form-select flex w-full min-w-0 resize-none overflow-hidden rounded-lg text-white focus:outline-0 border border-[#3b4e54] bg-[#101e22] focus:border-primary focus:ring-2 focus:ring-primary/50 h-14 p-[15px] text-base font-normal leading-normal transition-all">
+<option value="1">Beginner</option>
+<option value="2">Intermediate</option>
+<option value="3">Advanced</option>
+<option value="4">Expert</option>
 </select>
 </div>
 </label>
 <div class="flex flex-col w-full gap-2">
-<p class="text-white text-base font-medium leading-normal">Content Length</p>
-<div class="flex h-[38px] w-full pt-1.5">
-<div class="flex h-1.5 w-full items-center">
-<div class="h-1.5 w-full rounded-full bg-[#3b4e54] relative">
-<div class="h-1.5 w-[60%] rounded-full bg-primary" style="box-shadow: 0 0 8px rgba(13, 185, 242, 0.6);"></div>
-<div class="absolute -right-2 top-1/2 -translate-y-1/2">
-<div class="relative group">
-<div class="size-5 rounded-full bg-white cursor-pointer border-2 border-primary ring-4 ring-primary/30"></div>
-<p class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 text-white text-sm font-medium leading-normal bg-[#283539] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">200 words</p>
-</div>
-</div>
-</div>
-</div>
-</div>
+<p class="text-white text-base font-medium leading-normal">Number of Questions</p>
+<input type="number" id="question-count" class="form-input flex w-full min-w-0 resize-none overflow-hidden rounded-lg text-white focus:outline-0 border border-[#3b4e54] bg-[#101e22] focus:border-primary focus:ring-2 focus:ring-primary/50 h-14 p-[15px] text-base font-normal leading-normal transition-all" value="5" min="1" max="20">
 </div>
 <label class="flex flex-col w-full">
-<p class="text-white text-base font-medium leading-normal pb-2">Custom Prompts</p>
-<textarea class="form-input flex w-full min-w-0 resize-y overflow-hidden rounded-lg text-white focus:outline-0 border border-[#3b4e54] bg-[#101e22] focus:border-primary focus:ring-2 focus:ring-primary/50 h-28 placeholder:text-[#9cb2ba] p-[15px] text-base font-normal leading-normal transition-all" placeholder="e.g., 'Focus on the industrial revolution...'"></textarea>
+<p class="text-white text-base font-medium leading-normal pb-2">Custom Instructions</p>
+<textarea id="custom-prompts" class="form-input flex w-full min-w-0 resize-y overflow-hidden rounded-lg text-white focus:outline-0 border border-[#3b4e54] bg-[#101e22] focus:border-primary focus:ring-2 focus:ring-primary/50 h-28 placeholder:text-[#9cb2ba] p-[15px] text-base font-normal leading-normal transition-all" placeholder="e.g., 'Focus on multiple choice questions', 'Include diagrams'"></textarea>
 </label>
 <div class="flex flex-col gap-4 pt-4 border-t border-[#283539]">
-<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-primary text-background-dark text-base font-bold leading-normal tracking-[0.015em] hover:shadow-glow-primary transition-shadow duration-300">
+<button id="generate-btn" class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-primary text-background-dark text-base font-bold leading-normal tracking-[0.015em] hover:shadow-glow-primary transition-shadow duration-300">
 <span class="truncate">Generate Content</span>
 </button>
-<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-transparent border-2 border-primary text-primary text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/10 transition-colors">
+<button id="reset-btn" class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-transparent border-2 border-primary text-primary text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/10 transition-colors">
 <span class="truncate">Reset</span>
 </button>
 </div>
@@ -153,35 +148,24 @@
 <div class="lg:col-span-2 flex flex-col gap-6">
 <div class="flex justify-between items-center">
 <h3 class="text-2xl font-bold text-white">Live Preview</h3>
-<button class="flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-xl h-12 px-6 bg-primary text-background-dark text-base font-bold leading-normal shadow-glow-primary-strong hover:shadow-glow-primary transition-shadow duration-300">
+<div class="relative">
+<button id="assign-btn" class="flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-xl h-12 px-6 bg-primary text-background-dark text-base font-bold leading-normal shadow-glow-primary-strong hover:shadow-glow-primary transition-shadow duration-300">
 <span class="material-symbols-outlined text-xl">assignment_turned_in</span>
 <span class="truncate">Assign</span>
+<span class="material-symbols-outlined text-xl">arrow_drop_down</span>
 </button>
+<!-- Class Selection Dropdown -->
+<div id="class-dropdown" class="absolute right-0 mt-2 w-64 bg-[#283539] border border-[#3b4e54] rounded-lg shadow-lg z-10 hidden">
+<div class="p-3 border-b border-[#3b4e54]">
+<h4 class="text-white font-medium">Assign to Class</h4>
 </div>
-<div class="flex flex-col gap-4">
-<div class="bg-[#1b2427]/50 p-6 rounded-xl border border-primary/50 shadow-lg" style="box-shadow: 0 0 20px rgba(13, 185, 242, 0.15);">
-<h4 class="font-bold text-lg text-primary mb-2">Question 1: Multiple Choice</h4>
-<p class="text-white/90 mb-4">What was the primary invention that sparked the Industrial Revolution?</p>
-<div class="flex flex-col gap-2">
-<p class="text-white/70">A) The printing press</p>
-<p class="text-white font-semibold bg-primary/10 border border-primary/30 px-3 py-2 rounded-md">B) The steam engine</p>
-<p class="text-white/70">C) The internet</p>
-<p class="text-white/70">D) The telescope</p>
+<div class="max-h-60 overflow-y-auto">
+<div class="p-3 text-[#9cb2ba] text-center">Loading classes...</div>
 </div>
 </div>
-<div class="bg-[#1b2427]/50 p-6 rounded-xl border border-primary/50 shadow-lg" style="box-shadow: 0 0 20px rgba(13, 185, 242, 0.15);">
-<h4 class="font-bold text-lg text-primary mb-2">Question 2: True or False</h4>
-<p class="text-white/90 mb-4">The Industrial Revolution began in the United States.</p>
-<div class="flex gap-4">
-<span class="text-white/70">True</span>
-<span class="text-white font-semibold bg-primary/10 border border-primary/30 px-3 py-2 rounded-md">False</span>
 </div>
 </div>
-<div class="bg-[#1b2427]/50 p-6 rounded-xl border border-primary/50 shadow-lg" style="box-shadow: 0 0 20px rgba(13, 185, 242, 0.15);">
-<h4 class="font-bold text-lg text-primary mb-2">Question 3: Fill in the Blank</h4>
-<p class="text-white/90">The __________ system was a new method of manufacturing that became common during the Industrial Revolution.</p>
-<p class="italic text-primary/80 mt-2">Correct Answer: factory</p>
-</div>
+<div class="flex flex-col gap-4" id="preview-container">
 <div class="bg-[#1b2427]/50 p-6 rounded-xl border border-dashed border-white/20 text-center">
 <p class="text-white/60">Generated content will appear here.</p>
 </div>
@@ -192,4 +176,491 @@
 </main>
 </div>
 </div>
+
+<script type="module">
+    // Import API service
+    import { teacherAPI } from '../src/services/api.js';
+    
+    // Define API base URL
+    const API_BASE_URL = 'http://localhost:8000';
+    
+    // DOM Elements
+    const contentTypeSelect = document.getElementById('content-type');
+    const difficultyLevelSelect = document.getElementById('difficulty-level');
+    const customPromptsTextarea = document.getElementById('custom-prompts');
+    const generateBtn = document.getElementById('generate-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    const assignBtn = document.getElementById('assign-btn');
+    const classDropdown = document.getElementById('class-dropdown');
+    
+    // Generate content function
+    generateBtn.addEventListener('click', async function() {
+        const contentType = contentTypeSelect.value;
+        const topic = document.getElementById('topic').value;
+        const difficultyLevel = difficultyLevelSelect.value;
+        const questionCount = document.getElementById('question-count').value;
+        const customPrompts = customPromptsTextarea.value;
+        
+        // Validate inputs
+        if (!topic) {
+            alert('Please enter a topic');
+            return;
+        }
+        
+        // Show loading state
+        const originalText = generateBtn.innerHTML;
+        generateBtn.innerHTML = '<span class="truncate">Generating...</span>';
+        generateBtn.disabled = true;
+        
+        try {
+            if (contentType === 'quiz' || contentType === 'assignment') {
+                // Generate quiz questions or assignment based on topic
+                const data = await generateQuizFromTopic(topic, difficultyLevel, questionCount, customPrompts);
+                displayGeneratedContent(data, contentType);
+            } else if (contentType === 'project') {
+                // Generate project based on topic
+                const data = await generateProjectFromTopic(topic, difficultyLevel, customPrompts);
+                displayGeneratedContent(data, contentType);
+            } else {
+                // For other content types, show mock content
+                displayMockContent(contentType, topic);
+            }
+        } catch (error) {
+            console.error('Generation error:', error);
+            alert('Failed to generate content: ' + error.message);
+        } finally {
+            // Reset button
+            generateBtn.innerHTML = originalText;
+            generateBtn.disabled = false;
+        }
+    });
+    
+    // Reset form function
+    resetBtn.addEventListener('click', function() {
+        contentTypeSelect.value = 'quiz';
+        difficultyLevelSelect.value = 'beginner';
+        customPromptsTextarea.value = '';
+        clearPreview();
+    });
+    
+    // Toggle class dropdown
+    assignBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        classDropdown.classList.toggle('hidden');
+        loadClassesForAssignment();
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!assignBtn.contains(e.target) && !classDropdown.contains(e.target)) {
+            classDropdown.classList.add('hidden');
+        }
+    });
+    
+    // Load classes for assignment dropdown
+    async function loadClassesForAssignment() {
+        const classListContainer = classDropdown.querySelector('.max-h-60');
+        classListContainer.innerHTML = '<div class="p-3 text-[#9cb2ba] text-center">Loading classes...</div>';
+        
+        try {
+            const teacherId = parseInt(localStorage.getItem('teacherId')) || 1;
+            const classes = await teacherAPI.getClasses(teacherId);
+            
+            if (!classes || classes.length === 0) {
+                classListContainer.innerHTML = '<div class="p-3 text-[#9cb2ba] text-center">No classes found. Create a class first.</div>';
+                return;
+            }
+            
+            classListContainer.innerHTML = '';
+            
+            classes.forEach(cls => {
+                const classItem = document.createElement('div');
+                classItem.className = 'p-3 hover:bg-[#3b4e54] cursor-pointer flex items-center';
+                classItem.innerHTML = `
+                    <span class="material-symbols-outlined text-[#9cb2ba] mr-2">school</span>
+                    <span class="text-white">${cls.name}</span>
+                `;
+                classItem.addEventListener('click', () => assignContentToClass(cls.id, cls.name));
+                classListContainer.appendChild(classItem);
+            });
+        } catch (error) {
+            console.error('Error loading classes:', error);
+            classListContainer.innerHTML = '<div class="p-3 text-red-400 text-center">Failed to load classes</div>';
+        }
+    }
+    
+    // Assign content to selected class
+    async function assignContentToClass(classId, className) {
+        const contentType = contentTypeSelect.value;
+        const topic = document.getElementById('topic').value;
+        
+        // Validate inputs
+        if (!topic) {
+            alert('Please generate content first');
+            return;
+        }
+        
+        try {
+            let createdItemId;
+            
+            if (contentType === 'assignment' || contentType === 'quiz') {
+                // Create assignment
+                const assignments = [{
+                    concept_id: 1, // Placeholder - in real app this would be dynamic
+                    title: `Quiz on ${topic}`,
+                    description: `AI Generated Quiz on ${topic}`,
+                    difficulty_level: parseInt(difficultyLevelSelect.value),
+                    content_url: '#'
+                }];
+                
+                const result = await teacherAPI.createAssignments(assignments);
+                
+                // Store the created assignment ID for assignment to class
+                if (result.assignments && result.assignments.length > 0) {
+                    createdItemId = result.assignments[0].id;
+                    
+                    // Assign to class
+                    await teacherAPI.assignAssignmentToClass(classId, { assignment_id: createdItemId });
+                    alert(`Assignment created and assigned to ${className} successfully!`);
+                }
+            } else if (contentType === 'project') {
+                // Create project
+                const projects = [{
+                    title: `Project on ${topic}`,
+                    description: `AI Generated Project on ${topic}`,
+                    teacher_id: parseInt(localStorage.getItem('teacherId')) || 1,
+                    start_date: new Date().toISOString(),
+                    end_date: new Date(Date.now() + 30*24*60*60*1000).toISOString() // 30 days from now
+                }];
+                
+                const result = await teacherAPI.createProjects(projects);
+                
+                // Store the created project ID for assignment to class
+                if (result.projects && result.projects.length > 0) {
+                    createdItemId = result.projects[0].id;
+                    
+                    // Assign to class
+                    await teacherAPI.assignProjectToClass(classId, { project_id: createdItemId });
+                    alert(`Project created and assigned to ${className} successfully!`);
+                }
+            } else {
+                alert('Content saved!');
+            }
+            
+            // Close dropdown
+            classDropdown.classList.add('hidden');
+        } catch (error) {
+            console.error('Assignment error:', error);
+            alert('Failed to assign content: ' + error.message);
+        }
+    }
+    
+    // Clear preview
+    function clearPreview() {
+        // Use getElementById to target the correct preview container
+        const previewContainer = document.getElementById('preview-container');
+        previewContainer.innerHTML = `
+            <div class="bg-[#1b2427]/50 p-6 rounded-xl border border-dashed border-white/20 text-center">
+                <p class="text-white/60">Generated content will appear here.</p>
+            </div>
+        `;
+    }
+    
+    // Function to generate quiz from topic
+    async function generateQuizFromTopic(topic, difficulty, questionCount, customPrompts) {
+        // Call the backend API to generate real quiz questions
+        try {
+            console.log('Making API request to:', `${API_BASE_URL}/teacher/ai/generate-quiz?topic=${encodeURIComponent(topic)}&difficulty=${difficulty}&question_count=${questionCount}`);
+            const response = await fetch(`${API_BASE_URL}/teacher/ai/generate-quiz?topic=${encodeURIComponent(topic)}&difficulty=${difficulty}&question_count=${questionCount}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({})
+            });
+            
+            console.log('Response status:', response.status);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            console.log('Received data:', data);
+            
+            // Transform the response to match our expected format
+            const questions = data.questions.map(q => ({
+                id: q.id,
+                type: q.type,
+                question: q.question,
+                options: q.options,
+                correctAnswer: q.correct_answer
+            }));
+            
+            console.log('Transformed questions:', questions);
+            
+            return {
+                topic: data.topic,
+                difficulty: data.difficulty,
+                questions: questions
+            };
+        } catch (error) {
+            console.error('Error generating quiz:', error);
+            // Fallback to template-based generation if API fails
+            
+            // Generate topic-specific quiz questions
+            const questions = [];
+            
+            // Define question templates based on topic
+            const questionTemplates = {
+                'Multiple Choice': [
+                    `Which of the following is a key characteristic of ${topic}?`,
+                    `What is the primary function of ${topic} in its context?`,
+                    `Who is most associated with the development of ${topic}?`,
+                    `In what time period did ${topic} become prominent?`,
+                    `What is a significant impact of ${topic}?`
+                ],
+                'True or False': [
+                    `${topic} has influenced modern practices.`,
+                    `The principles of ${topic} are universally applicable.`,
+                    `${topic} was first developed in the 20th century.`,
+                    `Understanding ${topic} requires knowledge of related concepts.`,
+                    `${topic} has both benefits and drawbacks.`
+                ],
+                'Fill in the Blank': [
+                    `The key principle of ${topic} is _______.`,
+                    `One major figure in ${topic} development was _______.`,
+                    `A significant application of ${topic} is in _______.`,
+                    `The theory of ${topic} suggests that _______.`,
+                    `Modern approaches to ${topic} often involve _______.`
+                ],
+                'Short Answer': [
+                    `Explain the significance of ${topic}.`,
+                    `Describe how ${topic} has evolved over time.`,
+                    `What are the core principles of ${topic}?`,
+                    `Compare ${topic} with related concepts.`,
+                    `Discuss the practical applications of ${topic}.`
+                ]
+            };
+            
+            const questionTypes = ['Multiple Choice', 'True or False', 'Short Answer', 'Fill in the Blank'];
+            
+            // Generate answers based on question type
+            const answers = {
+                'Multiple Choice': [
+                    [`Fundamental principle`, `Secondary effect`, `Minor detail`, `Irrelevant factor`],
+                    [`Enhancement`, `Replacement`, `Obstacle`, `Distraction`],
+                    [`Leading expert`, `Minor contributor`, `Opposing figure`, `Neutral observer`],
+                    [`Early period`, `Modern era`, `Future projection`, `Ancient times`],
+                    [`Positive change`, `Negative consequence`, `Neutral outcome`, `Unrelated effect`]
+                ],
+                'True or False': ['True', 'False'],
+                'Fill in the Blank': [
+                    'core principle',
+                    'prominent figure',
+                    'practical application',
+                    'central theory',
+                    'modern approach'
+                ],
+                'Short Answer': [
+                    `The significance of ${topic} lies in its impact on understanding and practice.`,
+                    `${topic} has evolved through various theoretical developments and practical applications.`,
+                    `Core principles include foundational concepts that guide understanding and implementation.`,
+                    `${topic} differs from related concepts in its specific focus and methodology.`,
+                    `Applications of ${topic} can be found in various fields and contexts.`
+                ]
+            };
+            
+            for (let i = 1; i <= questionCount; i++) {
+                const questionType = questionTypes[(i - 1) % questionTypes.length];
+                
+                // Get a question template for this type
+                const templates = questionTemplates[questionType];
+                const questionIndex = (i - 1) % templates.length;
+                const questionText = templates[questionIndex];
+                
+                // Get answer for this type
+                let options = null;
+                let correctAnswer = '';
+                
+                if (questionType === 'Multiple Choice') {
+                    const answerOptions = answers[questionType][questionIndex % answers[questionType].length];
+                    options = answerOptions;
+                    correctAnswer = answerOptions[0];
+                } else if (questionType === 'True or False') {
+                    correctAnswer = answers[questionType][i % 2];
+                } else {
+                    correctAnswer = answers[questionType][questionIndex % answers[questionType].length];
+                }
+                
+                questions.push({
+                    id: i,
+                    type: questionType,
+                    question: questionText,
+                    options: options,
+                    correctAnswer: correctAnswer
+                });
+            }
+            
+            return {
+                topic: topic,
+                difficulty: difficulty,
+                questions: questions
+            };
+        }
+    }
+    
+    // Function to generate project from topic
+    async function generateProjectFromTopic(topic, difficulty, customPrompts) {
+        // In a real implementation, this would call an API to generate a project
+        // For now, we'll simulate the response
+        
+        // Simulate API delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        return {
+            title: `Project on ${topic}`,
+            description: `A comprehensive project exploring ${topic} at ${getDifficultyLabel(difficulty)} level. ${customPrompts || ''}`,
+            duration_hours: difficulty * 10,
+            team_size: difficulty > 2 ? 3 : 2,
+            learning_outcomes: [
+                `Understand fundamental concepts of ${topic}`,
+                `Apply knowledge through practical exercises`,
+                `Develop critical thinking skills`
+            ]
+        };
+    }
+    
+    // Helper function to get difficulty label
+    function getDifficultyLabel(difficulty) {
+        const labels = {
+            '1': 'Beginner',
+            '2': 'Intermediate',
+            '3': 'Advanced',
+            '4': 'Expert'
+        };
+        return labels[difficulty] || 'Intermediate';
+    }
+    
+    // Display generated content
+    function displayGeneratedContent(data, type) {
+        // Use getElementById to target the correct preview container
+        const previewContainer = document.getElementById('preview-container');
+        
+        if (type === 'quiz' || type === 'assignment') {
+            let html = '';
+            
+            data.questions.forEach((q, index) => {
+                html += `
+                <div class="bg-[#1b2427]/50 p-6 rounded-xl border border-primary/50 shadow-lg" style="box-shadow: 0 0 20px rgba(13, 185, 242, 0.15);">
+                    <h4 class="font-bold text-lg text-primary mb-2">Question ${index + 1}: ${q.type}</h4>
+                    <p class="text-white/90 mb-4">${q.question}</p>`;
+                
+                if (q.options) {
+                    html += '<div class="flex flex-col gap-2">';
+                    q.options.forEach((option, i) => {
+                        const isSelected = option === q.correctAnswer;
+                        html += `
+                        <p class="${isSelected ? 'text-white font-semibold bg-primary/10 border border-primary/30 px-3 py-2 rounded-md' : 'text-white/70'}">
+                            ${String.fromCharCode(65 + i)}) ${option}
+                        </p>`;
+                    });
+                    html += '</div>';
+                } else if (q.type === 'Short Answer' || q.type === 'Fill in the Blank') {
+                    html += `
+                    <textarea class="form-input mt-4 w-full h-24 px-3 py-2 bg-[#101e22] border border-[#3b4e54] rounded-lg text-white" placeholder="Type your answer here..."></textarea>
+                    <p class="italic text-primary/80 mt-2">Correct Answer: ${q.correctAnswer}</p>`;
+                } else if (q.type === 'True or False') {
+                    html += `
+                    <div class="flex gap-4 mt-2">
+                        <span class="${q.correctAnswer === 'True' ? 'text-white font-semibold bg-primary/10 border border-primary/30 px-3 py-2 rounded-md' : 'text-white/70'}">True</span>
+                        <span class="${q.correctAnswer === 'False' ? 'text-white font-semibold bg-primary/10 border border-primary/30 px-3 py-2 rounded-md' : 'text-white/70'}">False</span>
+                    </div>`;
+                }
+                
+                html += '</div>';
+            });
+            
+            previewContainer.innerHTML = html;
+        } else if (type === 'project') {
+            previewContainer.innerHTML = `
+                <div class="bg-[#1b2427]/50 p-6 rounded-xl border border-primary/50 shadow-lg" style="box-shadow: 0 0 20px rgba(13, 185, 242, 0.15);">
+                    <h4 class="font-bold text-lg text-primary mb-2">${data.title}</h4>
+                    <p class="text-white/90 mb-4">${data.description}</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div class="bg-[#101e22] p-4 rounded-lg">
+                            <h5 class="font-semibold text-white mb-2">Objectives</h5>
+                            <ul class="text-white/80 text-sm list-disc pl-5 space-y-1">
+                                ${data.learning_outcomes.map(outcome => `<li>${outcome}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="bg-[#101e22] p-4 rounded-lg">
+                            <h5 class="font-semibold text-white mb-2">Details</h5>
+                            <ul class="text-white/80 text-sm space-y-1">
+                                <li><span class="text-[#9cb2ba]">Duration:</span> ${data.duration_hours} hours</li>
+                                <li><span class="text-[#9cb2ba]">Team Size:</span> ${data.team_size} members</li>
+                                <li><span class="text-[#9cb2ba]">Difficulty:</span> ${getDifficultyLabel(data.difficulty)}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-[#1b2427]/50 p-6 rounded-xl border border-primary/50 shadow-lg" style="box-shadow: 0 0 20px rgba(13, 185, 242, 0.15);">
+                    <h4 class="font-bold text-lg text-primary mb-2">Timeline</h4>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center p-3 bg-[#101e22] rounded-lg">
+                            <span class="text-white">Research Phase</span>
+                            <span class="text-gray-400">${Math.ceil(data.duration_hours * 0.3)} hours</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-[#101e22] rounded-lg">
+                            <span class="text-white">Development Phase</span>
+                            <span class="text-gray-400">${Math.ceil(data.duration_hours * 0.5)} hours</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-[#101e22] rounded-lg">
+                            <span class="text-white">Presentation</span>
+                            <span class="text-gray-400">${Math.ceil(data.duration_hours * 0.2)} hours</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else {
+            previewContainer.innerHTML = `
+                <div class="bg-[#1b2427]/50 p-6 rounded-xl border border-primary/50 shadow-lg" style="box-shadow: 0 0 20px rgba(13, 185, 242, 0.15);">
+                    <h4 class="font-bold text-lg text-primary mb-2">Generated Content</h4>
+                    <p class="text-white/90">This is sample content generated by the AI system based on your selections. In a full implementation, this would contain the actual generated content from the AI.</p>
+                </div>
+                <div class="bg-[#1b2427]/50 p-6 rounded-xl border border-primary/50 shadow-lg" style="box-shadow: 0 0 20px rgba(13, 185, 242, 0.15);">
+                    <h4 class="font-bold text-lg text-primary mb-2">Key Points</h4>
+                    <ul class="text-white/80 list-disc pl-5 space-y-2">
+                        <li>Important concept 1</li>
+                        <li>Important concept 2</li>
+                        <li>Important concept 3</li>
+                        <li>Important concept 4</li>
+                    </ul>
+                </div>
+            `;
+        }
+    }
+    
+    // Display mock content for non-assignment/project types
+    function displayMockContent(type, topic) {
+        // Use getElementById to target the correct preview container
+        const previewContainer = document.getElementById('preview-container');
+        
+        previewContainer.innerHTML = `
+            <div class="bg-[#1b2427]/50 p-6 rounded-xl border border-primary/50 shadow-lg" style="box-shadow: 0 0 20px rgba(13, 185, 242, 0.15);">
+                <h4 class="font-bold text-lg text-primary mb-2">${type.charAt(0).toUpperCase() + type.slice(1)} on ${topic}</h4>
+                <p class="text-white/90">This is a sample ${type} generated by the AI system based on the topic "${topic}". In a full implementation, this would contain the actual generated content from the AI.</p>
+            </div>
+            <div class="bg-[#1b2427]/50 p-6 rounded-xl border border-primary/50 shadow-lg" style="box-shadow: 0 0 20px rgba(13, 185, 242, 0.15);">
+                <h4 class="font-bold text-lg text-primary mb-2">Key Points</h4>
+                <ul class="text-white/80 list-disc pl-5 space-y-2">
+                    <li>Important concept about ${topic}</li>
+                    <li>Another key point</li>
+                    <li>Additional information</li>
+                    <li>Summary takeaway</li>
+                </ul>
+            </div>
+        `;
+    }
+</script>
 </body></html>

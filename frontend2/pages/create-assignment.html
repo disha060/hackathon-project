@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Create Assignment - AMEP</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .form-input, .form-select, .form-textarea {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-dark text-white min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold">Create New Assignment</h1>
+            <a href="teacher-dashboard.html" class="flex items-center text-primary hover:text-primary/80">
+                <span class="material-symbols-outlined mr-1">arrow_back</span>
+                Back to Dashboard
+            </a>
+        </div>
+        
+        <div class="bg-[#1b2427]/50 border border-[#283539] rounded-xl p-6 max-w-4xl mx-auto">
+            <form id="assignment-form">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-white text-sm font-medium mb-2" for="title">
+                            Assignment Title
+                        </label>
+                        <input 
+                            id="title" 
+                            type="text" 
+                            class="form-input w-full px-4 py-3 bg-[#101e22] border border-[#3b4e54] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                            placeholder="Enter assignment title"
+                            required
+                        />
+                    </div>
+                    
+                    <div>
+                        <label class="block text-white text-sm font-medium mb-2" for="subject">
+                            Subject
+                        </label>
+                        <select 
+                            id="subject" 
+                            class="form-select w-full px-4 py-3 bg-[#101e22] border border-[#3b4e54] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                            required
+                        >
+                            <option value="">Select subject</option>
+                            <option value="mathematics">Mathematics</option>
+                            <option value="science">Science</option>
+                            <option value="english">English</option>
+                            <option value="history">History</option>
+                            <option value="computer_science">Computer Science</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-white text-sm font-medium mb-2" for="description">
+                        Description
+                    </label>
+                    <textarea 
+                        id="description" 
+                        rows="4" 
+                        class="form-textarea w-full px-4 py-3 bg-[#101e22] border border-[#3b4e54] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        placeholder="Describe the assignment in detail..."
+                        required
+                    ></textarea>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div>
+                        <label class="block text-white text-sm font-medium mb-2" for="due-date">
+                            Due Date
+                        </label>
+                        <input 
+                            id="due-date" 
+                            type="date" 
+                            class="form-input w-full px-4 py-3 bg-[#101e22] border border-[#3b4e54] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                            required
+                        />
+                    </div>
+                    
+                    <div>
+                        <label class="block text-white text-sm font-medium mb-2" for="points">
+                            Points
+                        </label>
+                        <input 
+                            id="points" 
+                            type="number" 
+                            min="1"
+                            max="100"
+                            class="form-input w-full px-4 py-3 bg-[#101e22] border border-[#3b4e54] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                            placeholder="Total points"
+                            required
+                        />
+                    </div>
+                    
+                    <div>
+                        <label class="block text-white text-sm font-medium mb-2" for="difficulty">
+                            Difficulty Level
+                        </label>
+                        <select 
+                            id="difficulty" 
+                            class="form-select w-full px-4 py-3 bg-[#101e22] border border-[#3b4e54] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                            required
+                        >
+                            <option value="">Select difficulty</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-white text-sm font-medium mb-2">
+                        Assignment Type
+                    </label>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <label class="flex items-center p-4 bg-[#101e22] border border-[#3b4e54] rounded-lg cursor-pointer hover:border-primary transition-colors">
+                            <input type="radio" name="assignment-type" value="essay" class="mr-3" checked>
+                            <span>Essay</span>
+                        </label>
+                        <label class="flex items-center p-4 bg-[#101e22] border border-[#3b4e54] rounded-lg cursor-pointer hover:border-primary transition-colors">
+                            <input type="radio" name="assignment-type" value="multiple_choice" class="mr-3">
+                            <span>Multiple Choice</span>
+                        </label>
+                        <label class="flex items-center p-4 bg-[#101e22] border border-[#3b4e54] rounded-lg cursor-pointer hover:border-primary transition-colors">
+                            <input type="radio" name="assignment-type" value="coding" class="mr-3">
+                            <span>Coding</span>
+                        </label>
+                        <label class="flex items-center p-4 bg-[#101e22] border border-[#3b4e54] rounded-lg cursor-pointer hover:border-primary transition-colors">
+                            <input type="radio" name="assignment-type" value="project" class="mr-3">
+                            <span>Project</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-white text-sm font-medium mb-2" for="instructions">
+                        Instructions
+                    </label>
+                    <textarea 
+                        id="instructions" 
+                        rows="6" 
+                        class="form-textarea w-full px-4 py-3 bg-[#101e22] border border-[#3b4e54] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        placeholder="Provide detailed instructions for completing this assignment..."
+                        required
+                    ></textarea>
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-white text-sm font-medium mb-2" for="resources">
+                        Resources (Optional)
+                    </label>
+                    <input 
+                        id="resources" 
+                        type="text" 
+                        class="form-input w-full px-4 py-3 bg-[#101e22] border border-[#3b4e54] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        placeholder="Links to helpful resources (comma separated)"
+                    />
+                </div>
+                
+                <div class="flex justify-end">
+                    <button 
+                        id="create-btn" 
+                        type="submit" 
+                        class="px-6 py-3 bg-primary text-background-dark font-bold rounded-lg hover:bg-primary/90 transition-colors flex items-center"
+                    >
+                        <span class="material-symbols-outlined mr-2">add</span>
+                        Create Assignment
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import API service
+        import { teacherAPI } from '../src/services/api.js';
+        
+        // Set default due date to tomorrow
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        document.getElementById('due-date').valueAsDate = tomorrow;
+        
+        // Handle form submission
+        document.getElementById('assignment-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const title = document.getElementById('title').value;
+            const subject = document.getElementById('subject').value;
+            const description = document.getElementById('description').value;
+            const dueDate = document.getElementById('due-date').value;
+            const points = document.getElementById('points').value;
+            const difficulty = document.getElementById('difficulty').value;
+            const assignmentType = document.querySelector('input[name="assignment-type"]:checked').value;
+            const instructions = document.getElementById('instructions').value;
+            const resources = document.getElementById('resources').value;
+            
+            // Validate required fields
+            if (!title || !subject || !description || !dueDate || !points || !difficulty || !instructions) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Show loading state
+            const createBtn = document.getElementById('create-btn');
+            const originalText = createBtn.innerHTML;
+            createBtn.innerHTML = '<span class="material-symbols-outlined animate-spin mr-2">autorenew</span>Creating...';
+            createBtn.disabled = true;
+            
+            try {
+                // Prepare assignment data
+                const assignmentData = [{
+                    title: title,
+                    subject: subject,
+                    description: description,
+                    due_date: dueDate,
+                    points: parseInt(points),
+                    difficulty_level: difficulty,
+                    assignment_type: assignmentType,
+                    instructions: instructions
+                }];
+                
+                // Add resources if provided
+                if (resources) {
+                    assignmentData[0].resources = resources.split(',').map(r => r.trim());
+                }
+                
+                // Create assignment via API
+                const result = await teacherAPI.createAssignments(assignmentData);
+                
+                // Show success message
+                alert('Assignment created successfully!');
+                
+                // Reset form
+                document.getElementById('assignment-form').reset();
+                document.getElementById('due-date').valueAsDate = tomorrow;
+                
+                // Redirect to assignments page after a short delay
+                setTimeout(() => {
+                    window.location.href = 'teacher-dashboard.html';
+                }, 1000);
+            } catch (error) {
+                console.error('Creation error:', error);
+                alert('Failed to create assignment: ' + error.message);
+            } finally {
+                // Reset button
+                createBtn.innerHTML = originalText;
+                createBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

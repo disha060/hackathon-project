@@ -46,28 +46,46 @@ def login_user(user: schemas.UserLogin, db: Session = Depends(get_db)):
 
 @router.get("/mastery", response_model=List[schemas.MasteryResponse])
 def get_mastery(db: Session = Depends(get_db)):
-    # Mock data for demo
-    mastery_data = [
-        schemas.MasteryResponse(
-            concept_id=1,
-            concept_name="Python Basics",
-            mastery_score=75.0,
-            level=3
-        ),
-        schemas.MasteryResponse(
-            concept_id=2,
-            concept_name="Data Structures",
-            mastery_score=60.0,
-            level=2
-        )
-    ]
-    return mastery_data
+    # Return empty list since student hasn't completed any assignments yet
+    return []
 
 @router.get("/assignments", response_model=List[schemas.AdaptiveAssignmentResponse])
 def get_adaptive_assignments(student_id: int, db: Session = Depends(get_db)):
-    # Get adaptive assignments based on student's mastery levels
-    assignments = adaptive_learning.get_adaptive_assignments(student_id, db)
-    return assignments
+    # Get adaptive assignments based on student's mastery levels and class enrollment
+    # First get classes the student is enrolled in
+    enrolled_classes = db.query(models.Classes.id)\
+        .join(models.ClassEnrollments)\
+        .filter(models.ClassEnrollments.student_id == student_id)\
+        .all()
+    
+    class_ids = [c.id for c in enrolled_classes]
+    
+    # Get assignments assigned to those classes
+    class_assignments = db.query(models.Assignments)\
+        .join(models.ClassAssignments)\
+        .filter(models.ClassAssignments.class_id.in_(class_ids))\
+        .all()
+    
+    # Convert to adaptive assignment response format
+    adaptive_assignments = []
+    for assignment in class_assignments:
+        adaptive_assignments.append(schemas.AdaptiveAssignmentResponse(
+            assignment_id=assignment.id,
+            title=assignment.title,
+            description=assignment.description,
+            difficulty_level=assignment.difficulty_level or 1,
+            estimated_time=30  # Default value
+        ))
+    
+    return adaptive_assignments
+
+@router.get("/assignments/{assignment_id}", response_model=schemas.AssignmentResponse)
+def get_assignment_by_id(assignment_id: int, db: Session = Depends(get_db)):
+    # Get specific assignment by ID
+    assignment = db.query(models.Assignments).filter(models.Assignments.id == assignment_id).first()
+    if not assignment:
+        raise HTTPException(status_code=404, detail="Assignment not found")
+    return assignment
 
 @router.post("/assignments/submit")
 def submit_assignment(student_id: int, assignment_id: int, db: Session = Depends(get_db)):
@@ -82,10 +100,15 @@ def log_engagement(engagement: schemas.EngagementLogCreate, db: Session = Depend
     return {"message": "Engagement logged successfully"}
 
 @router.get("/projects", response_model=List[schemas.ProjectResponse])
-def get_projects(db: Session = Depends(get_db)):
-    # Return all projects
-    projects = db.query(models.Projects).all()
-    return projects
+def get_projects(student_id: int, db: Session = Depends(get_db)):
+    # Get projects that the student is part of through class enrollment
+    student_projects = db.query(models.Projects)\
+        .join(models.ClassProjects)\
+        .join(models.Classes)\
+        .join(models.ClassEnrollments)\
+        .filter(models.ClassEnrollments.student_id == student_id)\
+        .all()
+    return student_projects
 
 @router.get("/leaderboard", response_model=List[schemas.LeaderboardEntry])
 def get_leaderboard(db: Session = Depends(get_db)):

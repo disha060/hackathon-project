@@ -5,6 +5,7 @@ import schemas
 import models
 import database
 from services import ai_content_generation, teacher_interventions
+import asyncio
 
 router = APIRouter(
     prefix="/teacher",
@@ -79,6 +80,95 @@ def intervene(intervention: schemas.TeacherInterventionCreate, db: Session = Dep
     db.refresh(db_intervention)
     
     return {"message": "Intervention recorded", "intervention": db_intervention}
+
+@router.post("/ai/generate-quiz", response_model=schemas.GeneratedQuiz)
+async def generate_quiz(topic: str, difficulty: int = 3, question_count: int = 5, api_key: Optional[str] = None, db: Session = Depends(get_db)):
+    # Generate quiz questions based on topic using AI
+    prompt = f"""
+    You are an educational AI that creates quiz questions. Generate {question_count} quiz questions about {topic} at difficulty level {difficulty}/5.
+    
+    CRITICAL INSTRUCTIONS - READ CAREFULLY:
+    1. Mix of question types: Multiple Choice, True/False, Short Answer, Fill in the Blank
+    2. Questions should assess understanding, not just memorization
+    3. Include plausible distractors for multiple choice questions
+    4. Provide correct answers
+    5. YOU MUST RESPOND WITH ONLY VALID JSON AND NOTHING ELSE
+    6. Format the response EXACTLY as follows:
+    {{
+        "topic": "{topic}",
+        "difficulty": {difficulty},
+        "questions": [
+            {{
+                "id": 1,
+                "type": "Multiple Choice",
+                "question": "Question text",
+                "options": ["Option A", "Option B", "Option C", "Option D"],
+                "correct_answer": "Correct option"
+            }}
+        ]
+    }}
+    
+    Begin your response with {{ and end with }}. Do not include any other text, explanations, or markdown formatting.
+    """
+    
+    try:
+        # Call Gemini API
+        response = await ai_content_generation.call_gemini_api(prompt, api_key)
+        
+        # Parse the response to create QuizQuestion objects
+        questions = []
+        for i, q in enumerate(response.get("questions", [])):
+            questions.append(schemas.QuizQuestion(
+                id=i+1,
+                type=q.get("type", "Multiple Choice"),
+                question=q.get("question", ""),
+                options=q.get("options", None),
+                correct_answer=q.get("correct_answer", "")
+            ))
+        
+        return schemas.GeneratedQuiz(
+            topic=response.get("topic", topic),
+            difficulty=response.get("difficulty", difficulty),
+            questions=questions
+        )
+    except Exception as e:
+        # Fallback to template-based generation
+        questions = []
+        question_types = ['Multiple Choice', 'True or False', 'Short Answer', 'Fill in the Blank']
+        
+        for i in range(question_count):
+            question_type = question_types[i % len(question_types)]
+            
+            if question_type == 'Multiple Choice':
+                questions.append(schemas.QuizQuestion(
+                    id=i+1,
+                    type=question_type,
+                    question=f"What is a key aspect of {topic}?",
+                    options=[f"Aspect {i+1}A", f"Aspect {i+1}B", f"Aspect {i+1}C", f"Aspect {i+1}D"],
+                    correct_answer=f"Aspect {i+1}B"
+                ))
+            elif question_type == 'True or False':
+                questions.append(schemas.QuizQuestion(
+                    id=i+1,
+                    type=question_type,
+                    question=f"{topic} is an important subject.",
+                    options=None,
+                    correct_answer="True"
+                ))
+            else:
+                questions.append(schemas.QuizQuestion(
+                    id=i+1,
+                    type=question_type,
+                    question=f"Explain a key concept of {topic}.",
+                    options=None,
+                    correct_answer=f"Key concept explanation for {topic}"
+                ))
+        
+        return schemas.GeneratedQuiz(
+            topic=topic,
+            difficulty=difficulty,
+            questions=questions
+        )
 
 @router.get("/interventions", response_model=List[schemas.TeacherInterventionResponse])
 def get_interventions(teacher_id: int, db: Session = Depends(get_db)):

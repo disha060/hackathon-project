@@ -290,3 +290,58 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     email: str
     role: UserRole
+
+# Class Management Schemas
+class ClassBase(BaseModel):
+    name: str
+    description: Optional[str]
+    teacher_id: int
+
+class ClassCreate(ClassBase):
+    pass
+
+class ClassResponse(ClassBase):
+    id: int
+    created_at: datetime
+    
+    class Config:
+        orm_mode = True
+
+class ClassEnrollmentBase(BaseModel):
+    class_id: int
+    student_id: int
+
+class ClassEnrollmentCreate(BaseModel):
+    student_id: int
+
+class ClassEnrollmentResponse(ClassEnrollmentBase):
+    id: int
+    enrolled_at: datetime
+    
+    class Config:
+        orm_mode = True
+
+class ClassProjectAssignment(BaseModel):
+    project_id: int
+
+class ClassAssignmentAssignment(BaseModel):
+    assignment_id: int
+
+# AI Quiz Generation Schemas
+class QuizQuestion(BaseModel):
+    id: int
+    type: str
+    question: str
+    options: Optional[List[str]]
+    correct_answer: str
+    
+    class Config:
+        orm_mode = True
+
+class GeneratedQuiz(BaseModel):
+    topic: str
+    difficulty: int
+    questions: List[QuizQuestion]
+    
+    class Config:
+        orm_mode = True

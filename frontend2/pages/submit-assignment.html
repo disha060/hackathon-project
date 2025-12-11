@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Submit Assignment - AMEP</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .form-input, .form-select, .form-textarea {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-dark text-white min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold">Submit Assignment</h1>
+            <a href="assignments.html" class="flex items-center text-primary hover:text-primary/80">
+                <span class="material-symbols-outlined mr-1">arrow_back</span>
+                Back to Assignments
+            </a>
+        </div>
+        
+        <div class="bg-[#1b2427]/50 border border-[#283539] rounded-xl p-6 max-w-2xl mx-auto">
+            <form id="assignment-form">
+                <div class="mb-6">
+                    <label class="block text-white text-sm font-medium mb-2" for="assignment-id">
+                        Assignment ID
+                    </label>
+                    <input 
+                        id="assignment-id" 
+                        type="text" 
+                        class="form-input w-full px-4 py-3 bg-[#101e22] border border-[#3b4e54] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        placeholder="Enter assignment ID"
+                        required
+                    />
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-white text-sm font-medium mb-2" for="student-id">
+                        Student ID
+                    </label>
+                    <input 
+                        id="student-id" 
+                        type="text" 
+                        class="form-input w-full px-4 py-3 bg-[#101e22] border border-[#3b4e54] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        placeholder="Enter your student ID"
+                        required
+                    />
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-white text-sm font-medium mb-2">
+                        Submission Type
+                    </label>
+                    <div class="grid grid-cols-2 gap-4">
+                        <label class="flex items-center p-4 bg-[#101e22] border border-[#3b4e54] rounded-lg cursor-pointer hover:border-primary transition-colors">
+                            <input type="radio" name="submission-type" value="file" class="mr-3" checked>
+                            <span>Upload File</span>
+                        </label>
+                        <label class="flex items-center p-4 bg-[#101e22] border border-[#3b4e54] rounded-lg cursor-pointer hover:border-primary transition-colors">
+                            <input type="radio" name="submission-type" value="text" class="mr-3">
+                            <span>Text Response</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div id="file-upload-section" class="mb-6">
+                    <label class="block text-white text-sm font-medium mb-2" for="file-upload">
+                        Upload File
+                    </label>
+                    <div class="flex items-center justify-center w-full">
+                        <label for="file-upload" class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-[#3b4e54] rounded-lg cursor-pointer bg-[#101e22] hover:border-primary transition-colors">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                <span class="material-symbols-outlined text-3xl text-gray-400 mb-2">upload</span>
+                                <p class="text-sm text-gray-400">
+                                    <span class="font-semibold text-primary">Click to upload</span> or drag and drop
+                                </p>
+                                <p class="text-xs text-gray-500">PDF, DOC, DOCX, TXT (MAX. 10MB)</p>
+                            </div>
+                            <input id="file-upload" type="file" class="hidden" />
+                        </label>
+                    </div>
+                </div>
+                
+                <div id="text-response-section" class="mb-6 hidden">
+                    <label class="block text-white text-sm font-medium mb-2" for="text-response">
+                        Your Response
+                    </label>
+                    <textarea 
+                        id="text-response" 
+                        rows="6" 
+                        class="form-textarea w-full px-4 py-3 bg-[#101e22] border border-[#3b4e54] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        placeholder="Type your response here..."
+                    ></textarea>
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-white text-sm font-medium mb-2" for="comments">
+                        Additional Comments (Optional)
+                    </label>
+                    <textarea 
+                        id="comments" 
+                        rows="3" 
+                        class="form-textarea w-full px-4 py-3 bg-[#101e22] border border-[#3b4e54] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        placeholder="Any additional comments for your instructor..."
+                    ></textarea>
+                </div>
+                
+                <div class="flex justify-end">
+                    <button 
+                        id="submit-btn" 
+                        type="submit" 
+                        class="px-6 py-3 bg-primary text-background-dark font-bold rounded-lg hover:bg-primary/90 transition-colors flex items-center"
+                    >
+                        <span class="material-symbols-outlined mr-2">send</span>
+                        Submit Assignment
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import API service
+        import { studentAPI } from '../src/services/api.js';
+        
+        // Toggle between file upload and text response
+        const radioButtons = document.querySelectorAll('input[name="submission-type"]');
+        const fileUploadSection = document.getElementById('file-upload-section');
+        const textResponseSection = document.getElementById('text-response-section');
+        
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'file') {
+                    fileUploadSection.classList.remove('hidden');
+                    textResponseSection.classList.add('hidden');
+                } else {
+                    fileUploadSection.classList.add('hidden');
+                    textResponseSection.classList.remove('hidden');
+                }
+            });
+        });
+        
+        // Handle form submission
+        document.getElementById('assignment-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const assignmentId = document.getElementById('assignment-id').value;
+            const studentId = document.getElementById('student-id').value;
+            
+            // Validate required fields
+            if (!assignmentId || !studentId) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = document.getElementById('submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin mr-2">autorenew</span>Submitting...';
+            submitBtn.disabled = true;
+            
+            try {
+                // Submit assignment via API
+                const result = await studentAPI.submitAssignment(studentId, assignmentId);
+                
+                // Show success message
+                alert('Assignment submitted successfully!');
+                
+                // Reset form
+                document.getElementById('assignment-form').reset();
+                
+                // Redirect to assignments page after a short delay
+                setTimeout(() => {
+                    window.location.href = 'assignments.html';
+                }, 1000);
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert('Failed to submit assignment: ' + error.message);
+            } finally {
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

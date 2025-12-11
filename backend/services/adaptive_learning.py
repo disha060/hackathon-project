@@ -46,53 +46,46 @@ bkt_model = BayesianKnowledgeTracer()
 def get_adaptive_assignments(student_id: int, db: Session) -> List[schemas.AdaptiveAssignmentResponse]:
     """
     Get adaptive assignments based on student's mastery levels using BKT model.
+    Returns empty list for students who haven't completed any assignments yet.
     """
     # Get student's current mastery levels
     mastery_records = db.query(models.StudentMastery).filter(
         models.StudentMastery.student_id == student_id
     ).all()
     
-    # For demo, we'll return assignments based on lowest mastery concepts
+    # For students who haven't completed any assignments, return empty list
+    if not mastery_records:
+        return []
+    
+    # For students with existing mastery records, return assignments based on lowest mastery concepts
     assignments = []
     
-    if not mastery_records:
-        # New student - return beginner assignments
+    # Sort by mastery score to find weakest concepts
+    sorted_mastery = sorted(mastery_records, key=lambda x: x.mastery_score)
+    weakest_concept = sorted_mastery[0] if sorted_mastery else None
+    
+    if weakest_concept and weakest_concept.mastery_score < 70:
+        # Focus on weak areas
         assignments = [
             schemas.AdaptiveAssignmentResponse(
-                assignment_id=1,
-                title="Python Basics Starter",
-                description="Introduction to variables and data types",
-                difficulty_level=1,
-                estimated_time=20
+                assignment_id=weakest_concept.concept_id * 10 + 1,
+                title=f"Reinforcement: {weakest_concept.concept.name}",
+                description=f"Additional practice for {weakest_concept.concept.name}",
+                difficulty_level=max(1, int(weakest_concept.mastery_score / 20)),
+                estimated_time=30
             )
         ]
     else:
-        # Sort by mastery score to find weakest concepts
-        sorted_mastery = sorted(mastery_records, key=lambda x: x.mastery_score)
-        weakest_concept = sorted_mastery[0] if sorted_mastery else None
-        
-        if weakest_concept and weakest_concept.mastery_score < 70:
-            # Focus on weak areas
-            assignments = [
-                schemas.AdaptiveAssignmentResponse(
-                    assignment_id=weakest_concept.concept_id * 10 + 1,
-                    title=f"Reinforcement: {weakest_concept.concept.name}",
-                    description=f"Additional practice for {weakest_concept.concept.name}",
-                    difficulty_level=max(1, int(weakest_concept.mastery_score / 20)),
-                    estimated_time=30
-                )
-            ]
-        else:
-            # Advance to next level
-            assignments = [
-                schemas.AdaptiveAssignmentResponse(
-                    assignment_id=2,
-                    title="Intermediate Challenge",
-                    description="Apply your knowledge in new contexts",
-                    difficulty_level=3,
-                    estimated_time=45
-                )
-            ]
+        # Advance to next level
+        assignments = [
+            schemas.AdaptiveAssignmentResponse(
+                assignment_id=2,
+                title="Intermediate Challenge",
+                description="Apply your knowledge in new contexts",
+                difficulty_level=3,
+                estimated_time=45
+            )
+        ]
     
     return assignments
 

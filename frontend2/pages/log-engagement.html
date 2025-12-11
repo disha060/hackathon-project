@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Log Engagement - AMEP</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .form-input, .form-select, .form-textarea {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-dark text-white min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold">Log Engagement</h1>
+            <a href="student-dashboard.html" class="flex items-center text-primary hover:text-primary/80">
+                <span class="material-symbols-outlined mr-1">arrow_back</span>
+                Back to Dashboard
+            </a>
+        </div>
+        
+        <div class="bg-[#1b2427]/50 border border-[#283539] rounded-xl p-6 max-w-2xl mx-auto">
+            <form id="engagement-form">
+                <div class="mb-6">
+                    <label class="block text-white text-sm font-medium mb-2" for="student-id">
+                        Student ID
+                    </label>
+                    <input 
+                        id="student-id" 
+                        type="text" 
+                        class="form-input w-full px-4 py-3 bg-[#101e22] border border-[#3b4e54] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        placeholder="Enter your student ID"
+                        required
+                    />
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-white text-sm font-medium mb-2" for="activity-type">
+                        Activity Type
+                    </label>
+                    <select 
+                        id="activity-type" 
+                        class="form-select w-full px-4 py-3 bg-[#101e22] border border-[#3b4e54] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        required
+                    >
+                        <option value="">Select activity type</option>
+                        <option value="video_watched">Video Watched</option>
+                        <option value="quiz_completed">Quiz Completed</option>
+                        <option value="discussion_post">Discussion Post</option>
+                        <option value="resource_viewed">Resource Viewed</option>
+                        <option value="assignment_submitted">Assignment Submitted</option>
+                        <option value="forum_participation">Forum Participation</option>
+                    </select>
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-white text-sm font-medium mb-2" for="duration">
+                        Duration (minutes)
+                    </label>
+                    <input 
+                        id="duration" 
+                        type="number" 
+                        min="1"
+                        max="1440"
+                        class="form-input w-full px-4 py-3 bg-[#101e22] border border-[#3b4e54] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        placeholder="Enter duration in minutes"
+                        required
+                    />
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-white text-sm font-medium mb-2" for="content-id">
+                        Content ID (Optional)
+                    </label>
+                    <input 
+                        id="content-id" 
+                        type="text" 
+                        class="form-input w-full px-4 py-3 bg-[#101e22] border border-[#3b4e54] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        placeholder="Enter content/video/quiz ID"
+                    />
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-white text-sm font-medium mb-2" for="comments">
+                        Comments (Optional)
+                    </label>
+                    <textarea 
+                        id="comments" 
+                        rows="3" 
+                        class="form-textarea w-full px-4 py-3 bg-[#101e22] border border-[#3b4e54] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        placeholder="Any additional comments about your engagement..."
+                    ></textarea>
+                </div>
+                
+                <div class="flex justify-end">
+                    <button 
+                        id="log-btn" 
+                        type="submit" 
+                        class="px-6 py-3 bg-primary text-background-dark font-bold rounded-lg hover:bg-primary/90 transition-colors flex items-center"
+                    >
+                        <span class="material-symbols-outlined mr-2">check_circle</span>
+                        Log Engagement
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="mt-8 bg-[#1b2427]/50 border border-[#283539] rounded-xl p-6 max-w-2xl mx-auto">
+            <h2 class="text-xl font-bold mb-4">Recent Engagements</h2>
+            <div id="engagement-history" class="space-y-4">
+                <div class="text-center py-8 text-gray-500">
+                    <span class="material-symbols-outlined text-3xl mb-2">history</span>
+                    <p>No engagement history yet. Log your first activity!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import API service
+        import { studentAPI } from '../src/services/api.js';
+        
+        // Handle form submission
+        document.getElementById('engagement-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const studentId = document.getElementById('student-id').value;
+            const activityType = document.getElementById('activity-type').value;
+            const duration = document.getElementById('duration').value;
+            const contentId = document.getElementById('content-id').value;
+            const comments = document.getElementById('comments').value;
+            
+            // Validate required fields
+            if (!studentId || !activityType || !duration) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Show loading state
+            const logBtn = document.getElementById('log-btn');
+            const originalText = logBtn.innerHTML;
+            logBtn.innerHTML = '<span class="material-symbols-outlined animate-spin mr-2">autorenew</span>Logging...';
+            logBtn.disabled = true;
+            
+            try {
+                // Prepare engagement data
+                const engagementData = {
+                    student_id: parseInt(studentId),
+                    activity_type: activityType,
+                    duration_minutes: parseInt(duration)
+                };
+                
+                // Add optional fields if provided
+                if (contentId) {
+                    engagementData.content_id = contentId;
+                }
+                
+                if (comments) {
+                    engagementData.comments = comments;
+                }
+                
+                // Log engagement via API
+                const result = await studentAPI.logEngagement(engagementData);
+                
+                // Show success message
+                alert('Engagement logged successfully!');
+                
+                // Reset form
+                document.getElementById('engagement-form').reset();
+                
+                // Refresh engagement history
+                loadEngagementHistory(studentId);
+            } catch (error) {
+                console.error('Logging error:', error);
+                alert('Failed to log engagement: ' + error.message);
+            } finally {
+                // Reset button
+                logBtn.innerHTML = originalText;
+                logBtn.disabled = false;
+            }
+        });
+        
+        // Load engagement history
+        async function loadEngagementHistory(studentId) {
+            if (!studentId) return;
+            
+            try {
+                // For demo purposes, we'll show a mock history
+                // In a real implementation, you would fetch this from the API
+                const historyContainer = document.getElementById('engagement-history');
+                historyContainer.innerHTML = `
+                    <div class="p-4 bg-[#101e22] rounded-lg border border-[#3b4e54]">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-medium">Video Watched</h3>
+                                <p class="text-sm text-gray-400">Introduction to Algebra</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium">45 minutes</p>
+                                <p class="text-sm text-gray-400">Today, 2:30 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-[#101e22] rounded-lg border border-[#3b4e54]">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-medium">Quiz Completed</h3>
+                                <p class="text-sm text-gray-400">Basic Mathematics Quiz</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium">20 minutes</p>
+                                <p class="text-sm text-gray-400">Yesterday, 4:15 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                console.error('Failed to load engagement history:', error);
+            }
+        }
+        
+        // Load history when student ID changes
+        document.getElementById('student-id').addEventListener('change', function() {
+            if (this.value) {
+                loadEngagementHistory(this.value);
+            }
+        });
+    </script>
+</body>
+</html>

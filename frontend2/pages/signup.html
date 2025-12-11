@@ -51,9 +51,9 @@
 </div>
 <div class="flex items-center gap-4">
 <span class="hidden text-sm text-slate-600 sm:inline">Already have an account?</span>
-<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-white/80 text-sm font-bold leading-normal tracking-[0.015em] text-[#2962FF] shadow-sm transition-all hover:bg-white">
+<a href="login.html" class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-white/80 text-sm font-bold leading-normal tracking-[0.015em] text-[#2962FF] shadow-sm transition-all hover:bg-white">
 <span class="truncate">Log In</span>
-</button>
+</a>
 </div>
 </header>
 </div>
@@ -77,19 +77,19 @@
 <form class="flex flex-col gap-4">
 <label class="flex flex-col">
 <p class="pb-2 text-sm font-medium text-slate-700">Full Name</p>
-<input class="form-input flex h-12 w-full resize-none rounded-lg border border-slate-300/70 bg-white/80 p-3 text-base text-slate-800 placeholder:text-slate-400 focus:border-[#009688] focus:outline-0 focus:ring-2 focus:ring-[#009688]/30" placeholder="Enter your full name" type="text" value=""/>
+<input id="name-input" class="form-input flex h-12 w-full resize-none rounded-lg border border-slate-300/70 bg-white/80 p-3 text-base text-slate-800 placeholder:text-slate-400 focus:border-[#009688] focus:outline-0 focus:ring-2 focus:ring-[#009688]/30" placeholder="Enter your full name" type="text" value=""/>
 </label>
 <label class="flex flex-col">
 <p class="pb-2 text-sm font-medium text-slate-700">Email Address</p>
-<input class="form-input flex h-12 w-full resize-none rounded-lg border border-slate-300/70 bg-white/80 p-3 text-base text-slate-800 placeholder:text-slate-400 focus:border-[#009688] focus:outline-0 focus:ring-2 focus:ring-[#009688]/30" placeholder="Enter your email address" type="email" value=""/>
+<input id="email-input" class="form-input flex h-12 w-full resize-none rounded-lg border border-slate-300/70 bg-white/80 p-3 text-base text-slate-800 placeholder:text-slate-400 focus:border-[#009688] focus:outline-0 focus:ring-2 focus:ring-[#009688]/30" placeholder="Enter your email address" type="email" value=""/>
 </label>
 <label class="flex flex-col">
 <p class="pb-2 text-sm font-medium text-slate-700">Password</p>
-<input class="form-input flex h-12 w-full resize-none rounded-lg border border-slate-300/70 bg-white/80 p-3 text-base text-slate-800 placeholder:text-slate-400 focus:border-[#009688] focus:outline-0 focus:ring-2 focus:ring-[#009688]/30" placeholder="Enter your password" type="password" value=""/>
+<input id="password-input" class="form-input flex h-12 w-full resize-none rounded-lg border border-slate-300/70 bg-white/80 p-3 text-base text-slate-800 placeholder:text-slate-400 focus:border-[#009688] focus:outline-0 focus:ring-2 focus:ring-[#009688]/30" placeholder="Enter your password" type="password" value=""/>
 </label>
 <div class="relative flex flex-col">
 <p class="pb-2 text-sm font-medium text-slate-700">I am a...</p>
-<select class="form-select flex h-12 w-full appearance-none resize-none rounded-lg border border-slate-300/70 bg-white/80 p-3 text-base text-slate-800 focus:border-[#009688] focus:outline-0 focus:ring-2 focus:ring-[#009688]/30">
+<select id="role-select" class="form-select flex h-12 w-full appearance-none resize-none rounded-lg border border-slate-300/70 bg-white/80 p-3 text-base text-slate-800 focus:border-[#009688] focus:outline-0 focus:ring-2 focus:ring-[#009688]/30">
 <option>Student</option>
 <option>Teacher</option>
 </select>
@@ -106,16 +106,19 @@
 </div>
 </main>
 </div>
-<script>
+<script type="module">
+    // Import API service
+    import { authAPI } from '../src/services/api.js';
+    
     // Signup button functionality
     document.getElementById('signup-btn').addEventListener('click', function(e) {
         e.preventDefault();
         
         // Get form values
-        const name = document.querySelector('input[type="text"]').value;
-        const email = document.querySelector('input[type="email"]').value;
-        const password = document.querySelector('input[type="password"]').value;
-        const role = document.querySelector('select').value.toLowerCase();
+        const name = document.getElementById('name-input').value;
+        const email = document.getElementById('email-input').value;
+        const password = document.getElementById('password-input').value;
+        const role = document.getElementById('role-select').value.toLowerCase();
         
         // Simple validation
         if (!name || !email || !password) {
@@ -123,18 +126,46 @@
             return;
         }
         
-        // In a real implementation, you would make an API call here
-        // For now, we'll simulate a successful signup and redirect
+        // Show loading state
+        const signupBtn = document.getElementById('signup-btn');
+        const originalText = signupBtn.innerHTML;
+        signupBtn.innerHTML = '<span class="truncate">Creating Account...</span>';
+        signupBtn.disabled = true;
         
-        // Simulate API call delay
-        setTimeout(function() {
-            // Redirect based on selected role
-            if (role === 'student') {
-                window.location.href = 'student-dashboard.html';
-            } else {
-                window.location.href = 'teacher-dashboard.html';
-            }
-        }, 500);
+        // Prepare user data
+        const userData = {
+            name: name,
+            email: email,
+            password: password,
+            role: role
+        };
+        
+        // Make API call
+        authAPI.signup(userData)
+            .then(data => {
+                // After successful signup, login the user
+                return authAPI.login({ email, password });
+            })
+            .then(loginData => {
+                // Store token, role, and user name in localStorage
+                localStorage.setItem('authToken', loginData.access_token);
+                localStorage.setItem('userRole', role);
+                localStorage.setItem('userName', name);
+                
+                // Redirect based on selected role
+                if (role === 'student') {
+                    window.location.href = 'student-dashboard.html';
+                } else {
+                    window.location.href = 'teacher-dashboard.html';
+                }
+            })
+            .catch(error => {
+                console.error('Signup error:', error);
+                alert('Signup failed: ' + error.message);
+                // Reset button
+                signupBtn.innerHTML = originalText;
+                signupBtn.disabled = false;
+            });
     });
 </script>
 </body>

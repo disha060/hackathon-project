@@ -14,64 +14,14 @@
                 AMEP Frontend
             </h1>
             <p class="text-gray-400 text-lg mb-10">
-                Welcome to the AMEP educational platform frontend implementation. 
-                This is a standalone HTML version of the React application.
+                Welcome to the AMEP educational platform. Redirecting to the landing page...
             </p>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                <a href="pages/landing.html" class="bg-[#0F172A]/50 rounded-2xl border border-indigo-500/30 backdrop-blur-lg p-6 hover:border-indigo-500/50 transition-all block">
-                    <div class="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto mb-4">
-                        <i class="fas fa-home text-white text-2xl"></i>
-                    </div>
-                    <h2 class="text-xl font-bold mb-2">Landing Page</h2>
-                    <p class="text-gray-400">Main entry point with login/signup options</p>
-                </a>
-                
-                <a href="pages/student-dashboard.html" class="bg-[#0F172A]/50 rounded-2xl border border-indigo-500/30 backdrop-blur-lg p-6 hover:border-indigo-500/50 transition-all block">
-                    <div class="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-green-500 to-teal-500 mx-auto mb-4">
-                        <i class="fas fa-user-graduate text-white text-2xl"></i>
-                    </div>
-                    <h2 class="text-xl font-bold mb-2">Student Dashboard</h2>
-                    <p class="text-gray-400">Access all student features and progress tracking</p>
-                </a>
-                
-                <a href="pages/teacher-dashboard.html" class="bg-[#0F172A]/50 rounded-2xl border border-indigo-500/30 backdrop-blur-lg p-6 hover:border-indigo-500/50 transition-all block">
-                    <div class="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-4">
-                        <i class="fas fa-chalkboard-teacher text-white text-2xl"></i>
-                    </div>
-                    <h2 class="text-xl font-bold mb-2">Teacher Dashboard</h2>
-                    <p class="text-gray-400">Access teaching tools and student management</p>
-                </a>
-                
-                <a href="README.md" class="bg-[#0F172A]/50 rounded-2xl border border-indigo-500/30 backdrop-blur-lg p-6 hover:border-indigo-500/50 transition-all block">
-                    <div class="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-yellow-500 to-orange-500 mx-auto mb-4">
-                        <i class="fas fa-book text-white text-2xl"></i>
-                    </div>
-                    <h2 class="text-xl font-bold mb-2">Documentation</h2>
-                    <p class="text-gray-400">View setup instructions and navigation guide</p>
-                </a>
-            </div>
-            
             <div class="bg-[#0F172A]/50 rounded-2xl border border-indigo-500/30 backdrop-blur-lg p-6 mb-8">
-                <h2 class="text-2xl font-bold mb-4">Implementation Summary</h2>
-                <ul class="text-left space-y-2 text-gray-300">
-                    <li class="flex items-start">
-                        <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                        <span>17 complete HTML pages with responsive design</span>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                        <span>Unified navigation system for students and teachers</span>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                        <span>Mobile-friendly interface with hamburger menu</span>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                        <span>Backend integration ready with sample API calls</span>
-                    </li>
-                </ul>
+                <p class="text-gray-300 mb-4">If you are not redirected automatically, please click the button below:</p>
+                <a href="pages/landing.html" class="inline-block bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold py-3 px-6 rounded-lg hover:opacity-90 transition-opacity">
+                    Go to Landing Page
+                </a>
             </div>
         </div>
     </div>
@@ -81,5 +31,12 @@
             <p>© 2025 AMEP Educational Platform. All rights reserved.</p>
         </div>
     </footer>
+    
+    <script>
+        // Automatically redirect to landing page
+        setTimeout(function() {
+            window.location.href = 'pages/landing.html';
+        }, 2000);
+    </script>
 </body>
 </html>

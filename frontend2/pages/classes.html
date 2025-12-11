@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
+<html class="dark" lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>AMEP Class Management (Dark Mode)</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
       tailwind.config = {
@@ -52,10 +51,10 @@
 <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">AMEP</h2>
 </div>
 <div class="hidden md:flex items-center gap-9">
-<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Dashboard</a>
-<a class="text-primary text-sm font-bold leading-normal" href="#">Classes</a>
-<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Students</a>
-<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Reports</a>
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="teacher-dashboard.html">Dashboard</a>
+<a class="text-primary text-sm font-bold leading-normal" href="classes.html">Classes</a>
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="student-progress.html">Students</a>
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="interventions.html">Reports</a>
 </div>
 </div>
 <div class="flex flex-1 justify-end gap-4 sm:gap-8">
@@ -67,8 +66,8 @@
 <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border-none bg-[#283539] focus:border-none h-full placeholder:text-[#9cb2ba] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search" value=""/>
 </div>
 </label>
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity shadow-[0_0_15px_rgba(13,185,242,0.5)]">
-<span class="truncate">Add Student</span>
+<button id="create-class-btn" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity shadow-[0_0_15px_rgba(13,185,242,0.5)]">
+<span class="truncate">Create Class</span>
 </button>
 <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD8PZmOT22a0w5Q4nzo7eXpKfIrj2fpNLgAJzB8NL4aw8mCQcjZlhocwvUTbNacm0yrTxVNHRI0NKEAZUtJN90uv3VZNC-a35Zycyu2Y-7PeK-2iq-7Kpu7yb9k56siCp_Ia1bnHM_2tnfV1URzoMGAQNNAXA5FqBcAA_ZH4a13RnfZnlQuFs2S4tpLpVRXgZFsKFkqoqMFbRVP8k40qaoBzwMOjrCigdbR25FU8TFRjDe-k3j6MWQPiOCYPIJQlnLvZyy6ZZMKvfE");'></div>
 </div>
@@ -77,159 +76,219 @@
 <div class="flex flex-wrap justify-between gap-3 p-4">
 <div class="flex min-w-72 flex-col gap-3">
 <p class="text-white text-4xl font-black leading-tight tracking-[-0.033em]">Class Management</p>
-<p class="text-[#9cb2ba] text-base font-normal leading-normal">AMEP English Level 3 - EL3-A</p>
+<p class="text-[#9cb2ba] text-base font-normal leading-normal">Manage your classes and enroll students</p>
 </div>
 </div>
-<div class="flex gap-3 p-3 flex-wrap pr-4 mt-4">
-<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-primary/20 text-primary pl-4 pr-2 border border-primary">
-<p class="text-sm font-medium leading-normal">All Students</p>
-<span class="material-symbols-outlined text-xl">arrow_drop_down</span>
+
+<!-- Create Class Form (Hidden by default) -->
+<div id="create-class-form" class="hidden flex-col gap-6 p-6 rounded-xl bg-[#283539] mt-6">
+<div class="flex flex-col gap-2">
+<label class="text-white text-sm font-medium leading-normal">Class Name</label>
+<input type="text" id="class-name" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#9cb2ba]/30 bg-[#101e22] h-12 px-4 text-base font-normal leading-normal" placeholder="Enter class name">
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-white text-sm font-medium leading-normal">Description</label>
+<textarea id="class-description" class="form-textarea flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#9cb2ba]/30 bg-[#101e22] h-24 px-4 py-3 text-base font-normal leading-normal" placeholder="Enter class description"></textarea>
+</div>
+<button id="save-class-btn" class="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity">
+<span class="truncate">Save Class</span>
 </button>
-<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-[#283539] pl-4 pr-2 hover:bg-primary/20 hover:text-primary transition-colors">
-<p class="text-white text-sm font-medium leading-normal">Active</p>
-<span class="material-symbols-outlined text-xl text-white">arrow_drop_down</span>
+</div>
+
+<!-- Classes List -->
+<div class="flex flex-col gap-6 mt-6">
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">Your Classes</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="classes-container">
+<div class="text-center py-8 text-[#9cb2ba]">Loading classes...</div>
+</div>
+</div>
+
+<!-- Enroll Students Section -->
+<div class="flex flex-col gap-6 mt-8">
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">Enroll Students</h2>
+<div class="flex flex-col gap-4 rounded-xl p-6 bg-[#283539]">
+<div class="flex flex-col gap-2">
+<label class="text-white text-sm font-medium leading-normal">Class</label>
+<select id="class-select" class="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#9cb2ba]/30 bg-[#101e22] h-12 px-4 text-base font-normal leading-normal">
+<option value="">Select a class</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-white text-sm font-medium leading-normal">Student ID</label>
+<input type="number" id="student-id-input" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#9cb2ba]/30 bg-[#101e22] h-12 px-4 text-base font-normal leading-normal" placeholder="Enter student ID">
+</div>
+<button id="enroll-student-btn" class="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity">
+<span class="truncate">Enroll Student</span>
 </button>
-<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-[#283539] pl-4 pr-2 hover:bg-primary/20 hover:text-primary transition-colors">
-<p class="text-white text-sm font-medium leading-normal">Withdrawn</p>
-<span class="material-symbols-outlined text-xl text-white">arrow_drop_down</span>
-</button>
 </div>
-<div class="px-4 py-3 @container mt-4">
-<div class="flex overflow-hidden rounded-xl border border-primary/50 bg-white/5 backdrop-blur-lg shadow-[0_0_20px_rgba(13,185,242,0.2)]">
-<table class="flex-1">
-<thead>
-<tr class="bg-primary/10">
-<th class="px-4 py-3 text-left text-white w-[25%] text-sm font-medium leading-normal">Student Name</th>
-<th class="px-4 py-3 text-left text-white w-[15%] text-sm font-medium leading-normal">ID</th>
-<th class="px-4 py-3 text-left text-white w-[15%] text-sm font-medium leading-normal">Attendance</th>
-<th class="px-4 py-3 text-left text-white w-[20%] text-sm font-medium leading-normal">Progress</th>
-<th class="px-4 py-3 text-left text-white w-[15%] text-sm font-medium leading-normal">Status</th>
-<th class="px-4 py-3 text-left text-[#9cb2ba] w-[10%] text-sm font-medium leading-normal">Actions</th>
-</tr>
-</thead>
-<tbody>
-<tr class="border-t border-t-primary/20 hover:bg-primary/10 transition-colors">
-<td class="h-[72px] px-4 py-2 text-white text-sm font-normal leading-normal">Eleanor Vance</td>
-<td class="h-[72px] px-4 py-2 text-[#9cb2ba] text-sm font-normal leading-normal">ID-84321</td>
-<td class="h-[72px] px-4 py-2 text-white text-sm font-normal leading-normal">98%</td>
-<td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
-<div class="flex items-center gap-3">
-<div class="w-[88px] overflow-hidden rounded-sm bg-primary/20"><div class="h-1 rounded-full bg-primary" style="width: 95%; box-shadow: 0 0 8px rgba(13, 185, 242, 0.7);"></div></div>
-<p class="text-white text-sm font-medium leading-normal">95</p>
-</div>
-</td>
-<td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
-<div class="flex items-center justify-center rounded-lg h-8 px-4 bg-green-500/10 text-green-400 text-sm font-medium leading-normal w-full border border-green-500/30">
-<span class="truncate">Active</span>
-</div>
-</td>
-<td class="h-[72px] px-4 py-2 text-primary font-bold text-sm leading-normal tracking-[0.015em] cursor-pointer hover:underline">View Details</td>
-</tr>
-<tr class="border-t border-t-primary/20 hover:bg-primary/10 transition-colors">
-<td class="h-[72px] px-4 py-2 text-white text-sm font-normal leading-normal">Marcus Thorne</td>
-<td class="h-[72px] px-4 py-2 text-[#9cb2ba] text-sm font-normal leading-normal">ID-75902</td>
-<td class="h-[72px] px-4 py-2 text-white text-sm font-normal leading-normal">92%</td>
-<td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
-<div class="flex items-center gap-3">
-<div class="w-[88px] overflow-hidden rounded-sm bg-primary/20"><div class="h-1 rounded-full bg-primary" style="width: 88%; box-shadow: 0 0 8px rgba(13, 185, 242, 0.7);"></div></div>
-<p class="text-white text-sm font-medium leading-normal">88</p>
-</div>
-</td>
-<td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
-<div class="flex items-center justify-center rounded-lg h-8 px-4 bg-green-500/10 text-green-400 text-sm font-medium leading-normal w-full border border-green-500/30">
-<span class="truncate">Active</span>
-</div>
-</td>
-<td class="h-[72px] px-4 py-2 text-primary font-bold text-sm leading-normal tracking-[0.015em] cursor-pointer hover:underline">View Details</td>
-</tr>
-<tr class="border-t border-t-primary/20 hover:bg-primary/10 transition-colors">
-<td class="h-[72px] px-4 py-2 text-white text-sm font-normal leading-normal">Aria Petrova</td>
-<td class="h-[72px] px-4 py-2 text-[#9cb2ba] text-sm font-normal leading-normal">ID-61234</td>
-<td class="h-[72px] px-4 py-2 text-white text-sm font-normal leading-normal">85%</td>
-<td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
-<div class="flex items-center gap-3">
-<div class="w-[88px] overflow-hidden rounded-sm bg-primary/20"><div class="h-1 rounded-full bg-primary" style="width: 76%; box-shadow: 0 0 8px rgba(13, 185, 242, 0.7);"></div></div>
-<p class="text-white text-sm font-medium leading-normal">76</p>
-</div>
-</td>
-<td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
-<div class="flex items-center justify-center rounded-lg h-8 px-4 bg-yellow-500/10 text-yellow-400 text-sm font-medium leading-normal w-full border border-yellow-500/30">
-<span class="truncate">Needs Attention</span>
-</div>
-</td>
-<td class="h-[72px] px-4 py-2 text-primary font-bold text-sm leading-normal tracking-[0.015em] cursor-pointer hover:underline">View Details</td>
-</tr>
-<tr class="border-t border-t-primary/20 hover:bg-primary/10 transition-colors">
-<td class="h-[72px] px-4 py-2 text-white text-sm font-normal leading-normal">Liam Chen</td>
-<td class="h-[72px] px-4 py-2 text-[#9cb2ba] text-sm font-normal leading-normal">ID-99456</td>
-<td class="h-[72px] px-4 py-2 text-white text-sm font-normal leading-normal">100%</td>
-<td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
-<div class="flex items-center gap-3">
-<div class="w-[88px] overflow-hidden rounded-sm bg-primary/20"><div class="h-1 rounded-full bg-primary" style="width: 99%; box-shadow: 0 0 8px rgba(13, 185, 242, 0.7);"></div></div>
-<p class="text-white text-sm font-medium leading-normal">99</p>
-</div>
-</td>
-<td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
-<div class="flex items-center justify-center rounded-lg h-8 px-4 bg-green-500/10 text-green-400 text-sm font-medium leading-normal w-full border border-green-500/30">
-<span class="truncate">Active</span>
-</div>
-</td>
-<td class="h-[72px] px-4 py-2 text-primary font-bold text-sm leading-normal tracking-[0.015em] cursor-pointer hover:underline">View Details</td>
-</tr>
-<tr class="border-t border-t-primary/20 hover:bg-primary/10 transition-colors">
-<td class="h-[72px] px-4 py-2 text-white text-sm font-normal leading-normal">Seraphina Cruz</td>
-<td class="h-[72px] px-4 py-2 text-[#9cb2ba] text-sm font-normal leading-normal">ID-53879</td>
-<td class="h-[72px] px-4 py-2 text-white text-sm font-normal leading-normal">75%</td>
-<td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
-<div class="flex items-center gap-3">
-<div class="w-[88px] overflow-hidden rounded-sm bg-primary/20"><div class="h-1 rounded-full bg-primary" style="width: 68%; box-shadow: 0 0 8px rgba(13, 185, 242, 0.7);"></div></div>
-<p class="text-white text-sm font-medium leading-normal">68</p>
-</div>
-</td>
-<td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
-<div class="flex items-center justify-center rounded-lg h-8 px-4 bg-yellow-500/10 text-yellow-400 text-sm font-medium leading-normal w-full border border-yellow-500/30">
-<span class="truncate">Needs Attention</span>
-</div>
-</td>
-<td class="h-[72px] px-4 py-2 text-primary font-bold text-sm leading-normal tracking-[0.015em] cursor-pointer hover:underline">View Details</td>
-</tr>
-<tr class="border-t border-t-primary/20 hover:bg-primary/10 transition-colors">
-<td class="h-[72px] px-4 py-2 text-white text-sm font-normal leading-normal">Celeste Dubois</td>
-<td class="h-[72px] px-4 py-2 text-[#9cb2ba] text-sm font-normal leading-normal">ID-15678</td>
-<td class="h-[72px] px-4 py-2 text-white text-sm font-normal leading-normal">60%</td>
-<td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
-<div class="flex items-center gap-3">
-<div class="w-[88px] overflow-hidden rounded-sm bg-primary/20"><div class="h-1 rounded-full bg-primary" style="width: 55%; box-shadow: 0 0 8px rgba(13, 185, 242, 0.7);"></div></div>
-<p class="text-white text-sm font-medium leading-normal">55</p>
-</div>
-</td>
-<td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
-<div class="flex items-center justify-center rounded-lg h-8 px-4 bg-red-500/10 text-red-400 text-sm font-medium leading-normal w-full border border-red-500/30">
-<span class="truncate">Withdrawn</span>
-</div>
-</td>
-<td class="h-[72px] px-4 py-2 text-primary font-bold text-sm leading-normal tracking-[0.015em] cursor-pointer hover:underline">View Details</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="flex items-center justify-center p-4 mt-4">
-<a class="flex size-10 items-center justify-center" href="#">
-<span class="material-symbols-outlined text-white text-lg">chevron_left</span>
-</a>
-<a class="text-sm font-bold leading-normal tracking-[0.015em] flex size-10 items-center justify-center text-background-dark rounded-full bg-primary" href="#">1</a>
-<a class="text-sm font-normal leading-normal flex size-10 items-center justify-center text-white rounded-full hover:bg-primary/20 transition-colors" href="#">2</a>
-<a class="text-sm font-normal leading-normal flex size-10 items-center justify-center text-white rounded-full hover:bg-primary/20 transition-colors" href="#">3</a>
-<span class="text-sm font-normal leading-normal flex size-10 items-center justify-center text-white rounded-full">...</span>
-<a class="text-sm font-normal leading-normal flex size-10 items-center justify-center text-white rounded-full hover:bg-primary/20 transition-colors" href="#">10</a>
-<a class="flex size-10 items-center justify-center" href="#">
-<span class="material-symbols-outlined text-white text-lg">chevron_right</span>
-</a>
 </div>
 </main>
 </div>
 </div>
 </div>
 </div>
-</body></html>
+
+<script type="module">
+    // Import API service
+    import { teacherAPI } from '../src/services/api.js';
+    import { logout } from '../src/services/auth.js';
+    
+    // DOM Elements
+    const createClassBtn = document.getElementById('create-class-btn');
+    const createClassForm = document.getElementById('create-class-form');
+    const saveClassBtn = document.getElementById('save-class-btn');
+    const classesContainer = document.getElementById('classes-container');
+    const classSelect = document.getElementById('class-select');
+    const enrollStudentBtn = document.getElementById('enroll-student-btn');
+    
+    // Get teacher ID from localStorage (assuming it's stored during login)
+    const teacherId = parseInt(localStorage.getItem('teacherId')) || 1;
+    
+    // Toggle create class form
+    createClassBtn.addEventListener('click', () => {
+        createClassForm.classList.toggle('hidden');
+    });
+    
+    // Save new class
+    saveClassBtn.addEventListener('click', async () => {
+        const className = document.getElementById('class-name').value;
+        const classDescription = document.getElementById('class-description').value;
+        
+        if (!className) {
+            alert('Please enter a class name');
+            return;
+        }
+        
+        try {
+            const classData = {
+                name: className,
+                description: classDescription,
+                teacher_id: teacherId
+            };
+            
+            await teacherAPI.createClass(classData);
+            alert('Class created successfully!');
+            
+            // Reset form
+            document.getElementById('class-name').value = '';
+            document.getElementById('class-description').value = '';
+            createClassForm.classList.add('hidden');
+            
+            // Refresh classes list
+            loadClasses();
+        } catch (error) {
+            console.error('Error creating class:', error);
+            alert('Failed to create class: ' + error.message);
+        }
+    });
+    
+    // Enroll student in class
+    enrollStudentBtn.addEventListener('click', async () => {
+        const classId = parseInt(classSelect.value);
+        const studentId = parseInt(document.getElementById('student-id-input').value);
+        
+        if (!classId) {
+            alert('Please select a class');
+            return;
+        }
+        
+        if (!studentId) {
+            alert('Please enter a student ID');
+            return;
+        }
+        
+        try {
+            const enrollmentData = {
+                student_id: studentId
+            };
+            
+            await teacherAPI.enrollStudent(classId, enrollmentData);
+            alert('Student enrolled successfully!');
+            
+            // Reset form
+            document.getElementById('student-id-input').value = '';
+        } catch (error) {
+            console.error('Error enrolling student:', error);
+            alert('Failed to enroll student: ' + (error.message || 'Unknown error occurred'));
+        }
+    });
+    
+    // Load classes
+    async function loadClasses() {
+        try {
+            const classes = await teacherAPI.getClasses(teacherId);
+            displayClasses(classes);
+            populateClassSelect(classes);
+        } catch (error) {
+            console.error('Error loading classes:', error);
+            classesContainer.innerHTML = '<div class="text-center py-8 text-[#9cb2ba]">Failed to load classes</div>';
+        }
+    }
+    
+    // Display classes
+    function displayClasses(classes) {
+        if (!classes || classes.length === 0) {
+            classesContainer.innerHTML = '<div class="text-center py-8 text-[#9cb2ba]">No classes found. Create your first class!</div>';
+            return;
+        }
+        
+        classesContainer.innerHTML = '';
+        
+        classes.forEach(cls => {
+            const classCard = document.createElement('div');
+            classCard.className = 'flex flex-col gap-4 rounded-xl p-6 bg-[#283539] border border-primary/30 hover:border-primary/60 transition-colors cursor-pointer';
+            classCard.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <div class="flex size-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                        <span class="material-symbols-outlined text-2xl">school</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <p class="text-white font-bold text-lg">${cls.name}</p>
+                        <p class="text-[#9cb2ba] text-sm">${cls.description || 'No description'}</p>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[#9cb2ba]">calendar_today</span>
+                        <span class="text-[#9cb2ba] text-sm">${new Date(cls.created_at).toLocaleDateString()}</span>
+                    </div>
+                    <button class="text-primary text-sm font-bold hover:underline" onclick="viewClassDetails(${cls.id})">
+                        View Details
+                    </button>
+                </div>
+            `;
+            
+            classesContainer.appendChild(classCard);
+        });
+    }
+    
+    // Populate class select dropdown
+    function populateClassSelect(classes) {
+        classSelect.innerHTML = '<option value="">Select a class</option>';
+        
+        if (!classes || classes.length === 0) {
+            return;
+        }
+        
+        classes.forEach(cls => {
+            const option = document.createElement('option');
+            option.value = cls.id;
+            option.textContent = cls.name;
+            classSelect.appendChild(option);
+        });
+    }
+    
+    // View class details
+    window.viewClassDetails = function(classId) {
+        // For now, we'll just show an alert
+        alert('Class details feature coming soon! Class ID: ' + classId);
+        // In a real implementation, this would navigate to a class details page
+    };
+    
+    // Load classes when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        loadClasses();
+    });
+</script>
+</body>
+</html>

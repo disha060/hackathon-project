@@ -61,36 +61,37 @@
 <div class="layout-container flex h-full grow flex-col">
 <div class="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-40 flex flex-1 justify-center py-5">
 <div class="layout-content-container flex flex-col max-w-[1280px] flex-1">
-<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-white/10 px-4 sm:px-6 lg:px-10 py-3">
-<div class="flex items-center gap-8">
-<div class="flex items-center gap-4 text-white">
-<div class="size-6 text-primary">
-<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+<header class="border-b border-indigo-500/20 backdrop-blur-sm bg-[#0F172A]/30">
+<div class="container mx-auto px-6 py-4">
+<div class="flex justify-between items-center">
+<div class="text-xl font-bold tracking-wide bg-gradient-to-r from-blue-500 via-indigo-500 to-teal-500 bg-clip-text text-transparent">
+AMEP
+</div>
+<nav class="hidden md:flex space-x-6">
+<a href="student-dashboard.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="dashboard">Dashboard</a>
+<a href="mastery-tracker.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="mastery">Mastery Tracker</a>
+<a href="assignments.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="assignments">Assignments</a>
+<a href="projects.html" class="text-white font-medium nav-link" data-page="projects">Projects</a>
+<a href="leaderboard.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="leaderboard">Leaderboard</a>
+<a href="badges.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="badges">Badges</a>
+</nav>
+<div class="flex items-center space-x-4">
+<button id="mobile-menu-toggle" class="md:hidden text-gray-400 hover:text-white focus:outline-none">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
 </svg>
-</div>
-<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">AMEP</h2>
-</div>
-<div class="hidden md:flex items-center gap-9">
-<a class="text-white/80 hover:text-white text-sm font-medium leading-normal" href="#">Dashboard</a>
-<a class="text-primary text-sm font-medium leading-normal" href="#">Projects</a>
-<a class="text-white/80 hover:text-white text-sm font-medium leading-normal" href="#">Teams</a>
-<a class="text-white/80 hover:text-white text-sm font-medium leading-normal" href="#">Settings</a>
-</div>
-</div>
-<div class="flex flex-1 justify-end gap-4 sm:gap-8">
-<label class="hidden sm:flex flex-col min-w-40 !h-10 max-w-64">
-<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
-<div class="text-[#9cbab7] flex border-none bg-white/5 items-center justify-center pl-4 rounded-l-lg border-r-0">
-<span class="material-symbols-outlined">search</span>
-</div>
-<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-white/5 focus:border-none h-full placeholder:text-[#9cbab7] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search" value=""/>
-</div>
-</label>
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-[#111817] text-sm font-bold leading-normal tracking-[0.015em]">
-<span class="truncate">New Project</span>
 </button>
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBatVCIy-PoRUqO_w4yPf28ftPZaHS8wNny7j_GrtWkjfHEwUVsSzyPQNMGdsUjq1O6wrrIvHKf_D1Y36do70SQVymNUSS-mrsT4-Mnrqfneif9WoYUFLwcKnJc4Gvxl3Lq_GVWGSncilGWkWTxMeoxwdps4uU3K0wG0YwOl2HIE8MiXNxqZSN1SXRs7CxB0xXawLbKVQjrwE-wOjnOk08m1LekQhkr3SGrVwzv4xNMgsCCLel1nTSaMhp53dbD-L4gnqFcsn7rPHM");'></div>
+<span class="text-gray-300 hidden sm:inline" id="user-name">John Doe</span>
+<div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 flex items-center justify-center">
+<span class="font-bold" id="user-initials">JD</span>
+</div>
+<a href="#" id="desktop-logout-btn" class="hidden md:block text-gray-300 hover:text-white transition-colors">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+</svg>
+</a>
+</div>
+</div>
 </div>
 </header>
 <main class="flex-grow p-4 sm:p-6 lg:p-10">
@@ -115,136 +116,262 @@
 </button>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-<div class="glassmorphism rounded-xl flex flex-col p-6 transition-all duration-300 ease-in-out">
-<a href="project-details.html" class="block">
-<div class="flex justify-between items-start mb-4">
-<h3 class="text-xl font-bold text-[#EAEAEA]">Quantum Computing Simulator</h3>
-<div class="px-3 py-1 text-xs font-semibold rounded-full bg-primary/20 text-primary glow-tag-inprogress">In Progress</div>
+
 </div>
-<p class="text-[#888888] text-sm mb-6 flex-grow">A one or two-sentence summary of the project's goal and current progress status.</p>
-<div class="flex justify-between items-center mb-4">
-<div class="flex -space-x-3">
-<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCeM8lspTiHX8ZUFi3KqivzhC5GYEyy45AaSUdVjxzKc1KvBRu05EM4xedkHbPCUlslVNLN1RZJXiNevLg7oUqciMzmnp27i615BWb3po-_-LjuNMbznEc_U3yRIeqCQXpJmB9mt1ZrK4DcBm93p_oxewnYmMwCeDRkulThGy8K6DNL-3yhkSfw05pOy0gtppSOpeSkKqdySswbQ32Ke660PZYXN2vAerok4XdjY5A_Jg2mJ_zyCYQZ2Zu3AaD-_Ea5A3Ncqsm5rlM");'></div>
-<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAGdSUvN6O8TrstWXR4Xy1u3ezD48X4E7wVoamS9oIpqc1FCJF0ANyjWyttSMVzeNg2sZWCUPvymMhNthlIkoPq91tN_NW6te3aKDuACkXg2eWNtJVdQ0OAN2bjQddjqXUc1s6fUlJOmnnV94oEry0JV6NU5JZzLHa6Jm2yzqxcdkoPkcSWpVe2KvYCF1jaqf-GW8e3ZLLyhc_ck_sTTI1l7yUrlUazWefUb-opxYCUKL0Oo-zG7BPCPdhcywfQbNvFto05scRQ4LE");'></div>
-<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAI8EeAWue3ng9df7qPnEzfgyQ6Z493spsvNs0YOFj_WZah3QpaJMEtAsAw98KGndkemL_Y5LKjxh7E-6k8U1jBfcUKQN1n2Cko3l9B3MxmIlwFx2Y3aIK_z39IohhCULmFgQVe8i-sfta6oFRdR7SG01LWOwCq6AJhYJ7P7Huds_93NQXtEirnY6MWRBqFq4jm8HsnVMgDhDv0X3vUpW3nt_1ZuIz1jBaQVXKB3yH3paJhIyBDUrtnYsVzyZuJWq3eM2XlqleLL20");'></div>
+<!-- Mobile Navigation Overlay -->
+<div id="mobile-nav-overlay" class="fixed inset-0 bg-black/80 z-50 hidden md:hidden">
+<div class="flex flex-col h-full">
+<div class="flex justify-between items-center p-6 border-b border-gray-800">
+<div class="text-xl font-bold bg-gradient-to-r from-blue-500 via-indigo-500 to-teal-500 bg-clip-text text-transparent">
+AMEP
 </div>
-<span class="text-sm text-[#EAEAEA]">Tasks: 12/18</span>
+<button id="close-mobile-nav" class="text-gray-400 hover:text-white">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+</svg>
+</button>
 </div>
-<div class="w-full bg-white/10 rounded-full h-1.5">
-<div class="bg-gradient-to-r from-primary/50 to-primary h-1.5 rounded-full" style="width: 66%"></div>
+
+<nav class="flex-col p-6 space-y-6">
+<a href="student-dashboard.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Dashboard</a>
+<a href="mastery-tracker.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Mastery Tracker</a>
+<a href="assignments.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Assignments</a>
+<a href="projects.html" class="text-white font-medium text-lg py-2 border-l-4 border-blue-500 pl-4">Projects</a>
+<a href="leaderboard.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Leaderboard</a>
+<a href="badges.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Badges</a>
+<div class="border-t border-gray-800 pt-6 mt-6">
+<a href="#" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Settings</a>
+<a href="#" id="logout-btn" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Logout</a>
 </div>
-</a>
-</div>
-<div class="glassmorphism rounded-xl flex flex-col p-6 transition-all duration-300 ease-in-out">
-<a href="project-details.html" class="block">
-<div class="flex justify-between items-start mb-4">
-<h3 class="text-xl font-bold text-[#EAEAEA]">AI-Powered Tutoring System</h3>
-<div class="px-3 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400 glow-tag-completed">Completed</div>
-</div>
-<p class="text-[#888888] text-sm mb-6 flex-grow">Developing a smart tutoring system that adapts to student learning styles and provides personalized feedback.</p>
-<div class="flex justify-between items-center mb-4">
-<div class="flex -space-x-3">
-<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAXGx8gulaVZeOllmOUQA69R0OyP9nLCBedTxLTYCvaPvyDofah93TMmknVzzgyGmRFjztWJbk7RQD5Q0prMbED3UadlIh0vUFautjMU2K_Pn4WHqVSwGTzqm97mFWTlQCBCfWWZEyB8n-C6dfSmVSKJHYWq4MGBQW_TXGW7fYX8N3G2jZNNOeoDegdBs6wF2DuhLebVTYWn5WRpRCwjpA9P-igOs4WchLLEKhEkMAcJBmAMRC16btpQ7E3IqQ_TVFYFFUyCGL7oKk");'></div>
-<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCFc8To_1wKHb-MvUi8zeEzHAPnbwOS8MrnGfk7NDKkCFGjh9Ep02dLnyQZjzkR_ruqhEfhsaKbqeOdf4UHNXLobZ3NYgqUDnmbpRwfh2nGvGT_lVrHVf1RmoYkUS5znWL6uD1xLuMkhYDvlZaYWT1kWeU6bIT2XwQRvcDdN1bETIkQJl4bUKPAcfuIgzyLygsLEGQqbYCM-DGMcsq-4RllgMSXJHrYoxpO5z3H_wF-5QrM6GuYFXwBcPeAL1FMk-Z0usKUZmdsKw4");'></div>
-</div>
-<span class="text-sm text-[#EAEAEA]">Tasks: 25/25</span>
-</div>
-<div class="w-full bg-white/10 rounded-full h-1.5">
-<div class="bg-gradient-to-r from-green-500/50 to-green-400 h-1.5 rounded-full" style="width: 100%"></div>
-</div>
-</a>
-</div>
-<div class="glassmorphism rounded-xl flex flex-col p-6 transition-all duration-300 ease-in-out">
-<a href="project-details.html" class="block">
-<div class="flex justify-between items-start mb-4">
-<h3 class="text-xl font-bold text-[#EAEAEA]">VR Chemistry Lab</h3>
-<div class="px-3 py-1 text-xs font-semibold rounded-full bg-yellow-500/20 text-yellow-400 glow-tag-onhold">On Hold</div>
-</div>
-<p class="text-[#888888] text-sm mb-6 flex-grow">Creating an immersive virtual reality lab for safe and interactive chemistry experiments.</p>
-<div class="flex justify-between items-center mb-4">
-<div class="flex -space-x-3">
-<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDUSvMUZn49lUuhNmDDhf-zY2_i6ezHGYA5npp_4iIUwQNnS_0X9c2pI6K9HX0T6V62nNe4aOTc9PqjQ61xkYBx5-STrte_y0dUjjQGaZVukqmGM2hGM6KozaMjFsxIDTaSruAXWSddBGQB5NKbnD4ff0Z_UL9nkMeBXjlz5OLjT6FBeci_IJxlH3NgggFn4ENiMgq-AL5S5wnzp3uQ_qVXGffnZoyAffqNbYXy-R2T9zqdHRo_fvzvrgEA7WWW9-VY5NdGltxOMUg");'></div>
-<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAO5Fk4TwucHPRIQyGUyTi5xlwG1ZCgzNROLzqHRwgBpZcjoU_zZ9QRr6_ND9_hLYawAgXXhpGvB9BhlyXF4VEqvry3-HriVHzc5Vg5wsJj_DMwyx--CP6qvRKjsPmHk55Pe9dCLmzKfpTJ48uVUcxkZiGBjhTzYUnstcgP64Zl0d8W49TcNlrG_Q29QrKvWdjwtkZJmihS1rPig_JyHCBLYxHns8eUR4NcIoyXRgoIHVS5PZEjqDuKW-c9oW3qOBRAxzZ9en0S-Co");'></div>
-<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBYc4JChIBZBa9yp-_51tYCPsmNs53Nrkpp4xSz47VkKazlWDYYMSVVDwGn513H3zRP9T-fmaZjliLVYUACy7gUHCvnT8tBOKCu5SxJPqffrQMLwnwZU49pddMOmkVKnoPyeedg_Uhlcdxeq5Zx2h2vVa1LAjAmKCdSq-Nbgb0tQDTG9y449XrvXunR9dKb931CCdRXcHOiroHheiWGcLYh0WcUidaghm47_niA1XfpCZfAjaIh8wF1392bqdsNajofyod09TNC7y4");'></div>
-</div>
-<span class="text-sm text-[#EAEAEA]">Tasks: 5/20</span>
-</div>
-<div class="w-full bg-white/10 rounded-full h-1.5">
-<div class="bg-gradient-to-r from-yellow-500/50 to-yellow-400 h-1.5 rounded-full" style="width: 25%"></div>
-</div>
-</a>
-</div>
-<div class="glassmorphism rounded-xl flex flex-col p-6 transition-all duration-300 ease-in-out">
-<a href="project-details.html" class="block">
-<div class="flex justify-between items-start mb-4">
-<h3 class="text-xl font-bold text-[#EAEAEA]">Blockchain for Credentials</h3>
-<div class="px-3 py-1 text-xs font-semibold rounded-full bg-primary/20 text-primary glow-tag-inprogress">In Progress</div>
-</div>
-<p class="text-[#888888] text-sm mb-6 flex-grow">A secure, decentralized system for verifying and managing academic credentials on the blockchain.</p>
-<div class="flex justify-between items-center mb-4">
-<div class="flex -space-x-3">
-<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDqKRQTWxEJIe1nccpMfbl42Vs3s4ev4o7y5JYGCxKXqMzMV-RMx53IQYu9irVzJyf6pODzCwzTpDwz0wC-nU9NNjC8KzZ5coy300kxzsjuIFsH69PMBfYFRAbdt7-7IFp5jTNklVIgoEAOnlGMfQZDI2USKiy0YElzyA8hh93WnZ-qHDbuZP9dkCH8f27rB4HcM89mlLCChBFkgr_c4fgjdE8l7hqX_7aiI0aYyCWcQT6c-9CZ-1CjLlid3T9bUecKXFZJndrA2vw");'></div>
-</div>
-<span class="text-sm text-[#EAEAEA]">Tasks: 35/40</span>
-</div>
-<div class="w-full bg-white/10 rounded-full h-1.5">
-<div class="bg-gradient-to-r from-primary/50 to-primary h-1.5 rounded-full" style="width: 87.5%"></div>
-</div>
-</a>
-</div>
-<div class="glassmorphism rounded-xl flex flex-col p-6 transition-all duration-300 ease-in-out">
-<a href="project-details.html" class="block">
-<div class="flex justify-between items-start mb-4">
-<h3 class="text-xl font-bold text-[#EAEAEA]">Gamified Learning Module</h3>
-<div class="px-3 py-1 text-xs font-semibold rounded-full bg-primary/20 text-primary glow-tag-inprogress">In Progress</div>
-</div>
-<p class="text-[#888888] text-sm mb-6 flex-grow">Integrating game mechanics into core curriculum subjects to boost student engagement and retention.</p>
-<div class="flex justify-between items-center mb-4">
-<div class="flex -space-x-3">
-<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD-omTzplh-rEd233UVKexbRUxZtEXk5r9w_E5w9kUT8A1I0wmkLX58gpAP6cuTxAeR6Ae2HBIAUrgk-H46IdOqkN4IkdTLpNZKNoxO10c8L4H-8n_wV3gD208gKaSpwTLSfPlahkF51m3DkPqDb7pZYWLsTthvAYy86B_Go71v9q4oJ6sCduaQjcp5eqvECGPp3Io_J84DDgZAxqOKnBD7pvo91FB9-_bIyZRW-RKcHbdDaUAyR3DQudVreklRbIIVgTd4-2Qv0gg");'></div>
-<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAGHGIAVfJqiFnXNXu4OwUAUM9KERiMG1F9xQ-0r7lmKIgi7sPMxe4NwHbGQdnHwMj7cU3O9H9Rfn0R8TmVMDBRp3DY9MetBlxgelt2E67DBNG6Lgm2J-cYqFox16w1ezEeTHRjxj2EcSHdtWBdU6Lu39SnvvKUPt4S3RpQpLf8_nAVhE2RboVuTGZC1d4tnT2lbHfUCrVgw1UlI4wn5bj3cUdlCN_IenHZcPrIW6TcS734k8L2dzf9wM4bSrX2iGMm93yWhUVAPFo");'></div>
-<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDMFZ0FSYX3ek-POggL01QDJmAZ8Gu3tZdaW1xtvrAuo7N7DhD58xd8D1aXOXkZOVmLI3hAG8QX24mkErBrFkYMq9OiIrNjEfurbPpICkQ6x13AEAujwo5q6BYb4gHz9BQkg3BHYotL6sbGee754UGVwB9fpB_OmGCfD7KwfdSHVI_tbdldcR-Q14Qu8N-48CVdy7bOItRlkLYdkb6QFjlbv6TPRAK77s8wmPi423-aeC2J_2LIikGiztFZHHEV0pxvvWJYAmfcF1I");'></div>
-<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCwknaVjG2KK6_8Sr15OL-DrkjaO4jaLSeME2IM7dZLDYOBQMkAhpp8-VE-gJk-O-FeuxC07-Cfkjm_BgbqawEPYHDJXpwWkxgZ2TgUpxT4nbOdgI75gi3szrT_o4ruBHScLrtxfJUPbHFZyBHbJLswG3-53m_aPHYD6_j_lJsqxL_VXsR7SO0IlCHCFYuvnULlSIbic_HqwQ9WVxcxdBPjI2oFpfKOl21ruzgsD5DnK5PRk7uYmRBguICsGtB9O-oXF6hp7plUNWk");'></div>
-</div>
-<span class="text-sm text-[#EAEAEA]">Tasks: 8/30</span>
-</div>
-<div class="w-full bg-white/10 rounded-full h-1.5">
-<div class="bg-gradient-to-r from-primary/50 to-primary h-1.5 rounded-full" style="width: 26.7%"></div>
-</div>
-</a>
-</div>
-<div class="glassmorphism rounded-xl flex flex-col p-6 transition-all duration-300 ease-in-out">
-<a href="project-details.html" class="block">
-<div class="flex justify-between items-start mb-4">
-<h3 class="text-xl font-bold text-[#EAEAEA]">Data Analytics Dashboard</h3>
-<div class="px-3 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400 glow-tag-completed">Completed</div>
-</div>
-<p class="text-[#888888] text-sm mb-6 flex-grow">A comprehensive dashboard for visualizing student performance data and institutional metrics.</p>
-<div class="flex justify-between items-center mb-4">
-<div class="flex -space-x-3">
-<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBWtrDy2_NEEDk3atAoRnkD29LvANbgh6h5UfA20yEoz4zLh_k8NXcJ7fLi7MHGbckOVa-T3J5WQiJPy1lmMq95BkZE6up3jf5Dig-UR3NxS98_k8dgunwp-uqi-iRaKMV3Gv6NUhPGksLsOLHkdQLbgalOWZoYxwqx1KLIHCJiVZFYnQrSOUfg93NDXC-2EMgmYtt2uGzEQey-LUeK4o5qWtd8v2wqPfwFj8lIq_JfXlvo2tbKr4STjSbPReWmhXt58E8Qh30BYOA");'></div>
-<div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" data-alt="Team member avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAr_MKb6xE0zb4HBsFRk3A3Sr0pWhu8H8vrSM9SIFDQF2TQ1n6_VxW0YoPjDu9PbxkFBZYTnmokz8lgKRazoJfmQkFO3Z6AXvOKxc8EmLkqBBvOKM9SDWR462n1LThavpfIEAtH_WEAtyUDrz1vlHebUlcp9bEjgZ4p7b29w8mKaTYOcbffzmGu9QG5MZtCgHcjtdFP8Atlh8qY-QyMUADc-Ued_QUj9VpnOl-yoB1VJUZsLWV6ckQ3mYq0YjpAS__3ZMvBOoMs5k8");'></div>
-</div>
-<span class="text-sm text-[#EAEAEA]">Tasks: 50/50</span>
-</div>
-<div class="w-full bg-white/10 rounded-full h-1.5">
-<div class="bg-gradient-to-r from-green-500/50 to-green-400 h-1.5 rounded-full" style="width: 100%"></div>
-</div>
-</a>
+</nav>
 </div>
 </div>
-</main>
-<footer class="flex flex-col gap-6 px-5 py-10 text-center mt-12 border-t border-white/10">
-<div class="flex flex-wrap items-center justify-center gap-6">
-<a class="text-[#888888] hover:text-white text-base font-normal leading-normal min-w-40" href="#">About Us</a>
-<a class="text-[#888888] hover:text-white text-base font-normal leading-normal min-w-40" href="#">Contact</a>
-<a class="text-[#888888] hover:text-white text-base font-normal leading-normal min-w-40" href="#">Privacy Policy</a>
-<a class="text-[#888888] hover:text-white text-base font-normal leading-normal min-w-40" href="#">Terms of Service</a>
-</div>
-<p class="text-[#888888] text-base font-normal leading-normal">© 2024 AMEP. All rights reserved.</p>
-</footer>
-</div>
-</div>
-</div>
-</div>
-</body></html>
+
+<script>
+// Mobile navigation toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+const closeMobileNav = document.getElementById('close-mobile-nav');
+const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+
+if (mobileMenuToggle) {
+mobileMenuToggle.addEventListener('click', function() {
+mobileNavOverlay.classList.remove('hidden');
+});
+}
+
+if (closeMobileNav) {
+closeMobileNav.addEventListener('click', function() {
+mobileNavOverlay.classList.add('hidden');
+});
+}
+
+// Close mobile menu when clicking on a link
+const mobileLinks = mobileNavOverlay.querySelectorAll('a');
+mobileLinks.forEach(link => {
+link.addEventListener('click', function() {
+mobileNavOverlay.classList.add('hidden');
+});
+});
+
+// Highlight active nav link
+function highlightActiveNavLink() {
+const currentPage = window.location.pathname.split('/').pop();
+const navLinks = document.querySelectorAll('.nav-link');
+
+navLinks.forEach(link => {
+link.classList.remove('text-white', 'font-medium');
+link.classList.add('text-gray-300');
+
+// Map pages to their respective nav items
+const pageMap = {
+'student-dashboard.html': 'dashboard',
+'mastery-tracker.html': 'mastery',
+'assignments.html': 'assignments',
+'assignment-details.html': 'assignments',
+'projects.html': 'projects',
+'project-details.html': 'projects',
+'leaderboard.html': 'leaderboard',
+'badges.html': 'badges'
+};
+
+const pageKey = pageMap[currentPage];
+if (link.getAttribute('data-page') === pageKey) {
+link.classList.remove('text-gray-300');
+link.classList.add('text-white', 'font-medium');
+}
+});
+}
+
+// Call on page load
+highlightActiveNavLink();
+});
+</script>
+
+<script type="module">
+// Import auth service
+import { logout } from '../src/services/auth.js';
+import { studentAPI } from '../src/services/api.js';
+
+// Add logout functionality
+const logoutBtn = document.getElementById('logout-btn');
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (confirm('Are you sure you want to logout?')) {
+            logout();
+        }
+    });
+}
+
+// Add logout functionality for desktop
+const desktopLogoutBtn = document.getElementById('desktop-logout-btn');
+if (desktopLogoutBtn) {
+    desktopLogoutBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (confirm('Are you sure you want to logout?')) {
+            logout();
+        }
+    });
+}
+</script>
+
+<script>
+// Update user name display
+document.addEventListener('DOMContentLoaded', function() {
+    updateUserNameDisplay();
+});
+
+function updateUserNameDisplay() {
+    // Get user name from localStorage
+    const userName = localStorage.getItem('userName') || 'Student';
+    
+    // Update user name in header
+    const userNameElement = document.getElementById('user-name');
+    if (userNameElement) {
+        userNameElement.textContent = userName;
+    }
+    
+    // Update user initials
+    const userInitialsElement = document.getElementById('user-initials');
+    if (userInitialsElement) {
+        const names = userName.split(' ');
+        let initials = '';
+        if (names.length > 1) {
+            initials = names[0].charAt(0) + names[names.length - 1].charAt(0);
+        } else {
+            initials = names[0].charAt(0) + names[0].charAt(1) || 'ST';
+        }
+        userInitialsElement.textContent = initials.toUpperCase();
+    }
+}
+
+// Fetch and display projects data
+async function fetchProjectsData() {
+    try {
+        // Show loading state
+        showLoadingState();
+        
+        // Get student ID from localStorage (assuming it's stored during login)
+        const studentId = parseInt(localStorage.getItem('studentId')) || 1;
+        
+        // Fetch real data from backend
+        const projectsData = await studentAPI.getProjects(studentId);
+        
+        // Update the UI with real data
+        updateProjectsDisplay(projectsData);
+    } catch (error) {
+        console.error('Error fetching projects data:', error);
+        // Fallback to showing no data
+        updateProjectsDisplay([]);
+    }
+}
+
+function showLoadingState() {
+    // You can implement a loading state here if needed
+}
+
+function updateProjectsDisplay(projectsData) {
+    // Get the projects grid container
+    const container = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3.gap-6');
+    
+    // Clear existing content
+    container.innerHTML = '';
+    
+    // If no data, show appropriate message
+    if (!projectsData || projectsData.length === 0) {
+        container.innerHTML = `
+            <div class="col-span-full text-center py-12">
+                <p class="text-gray-400 mb-4">You haven't joined any projects yet.</p>
+                <p class="text-sm text-gray-500">Projects you join will appear here.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    // Add each project to the grid
+    projectsData.forEach(project => {
+        // Determine status class and text
+        let statusClass, statusText;
+        if (project.status === 'completed') {
+            statusClass = 'bg-green-500/20 text-green-400';
+            statusText = 'Completed';
+        } else if (project.status === 'on hold') {
+            statusClass = 'bg-yellow-500/20 text-yellow-400';
+            statusText = 'On Hold';
+        } else {
+            statusClass = 'bg-primary/20 text-primary';
+            statusText = 'In Progress';
+        }
+        
+        // Calculate progress percentage
+        const progressPercent = project.total_tasks > 0 ? 
+            Math.round((project.completed_tasks / project.total_tasks) * 100) : 0;
+        
+        // Determine progress bar color
+        let progressBarClass;
+        if (progressPercent === 100) {
+            progressBarClass = 'from-green-500/50 to-green-400';
+        } else if (progressPercent >= 50) {
+            progressBarClass = 'from-primary/50 to-primary';
+        } else {
+            progressBarClass = 'from-yellow-500/50 to-yellow-400';
+        }
+        
+        // Create the HTML for this project
+        const projectHTML = `
+            <div class="glassmorphism rounded-xl flex flex-col p-6 transition-all duration-300 ease-in-out">
+                <a href="project-details.html?id=${project.id}" class="block">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold text-[#EAEAEA]">${project.title}</h3>
+                        <div class="px-3 py-1 text-xs font-semibold rounded-full ${statusClass} glow-tag-${project.status.replace(' ', '')}">
+                            ${statusText}
+                        </div>
+                    </div>
+                    <p class="text-[#888888] text-sm mb-6 flex-grow">${project.description}</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex -space-x-3">
+                            <!-- Team member avatars would go here in a real implementation -->
+                            <div class="size-9 rounded-full bg-cover bg-center avatar-ring border-2 border-[#0A0E1A]" 
+                                style="background-image: url('https://placehold.co/100x100/4a5568/ffffff?text=User')">
+                            </div>
+                        </div>
+                        <span class="text-sm text-[#EAEAEA]">Tasks: ${project.completed_tasks}/${project.total_tasks}</span>
+                    </div>
+                    <div class="w-full bg-white/10 rounded-full h-1.5">
+                        <div class="bg-gradient-to-r ${progressBarClass} h-1.5 rounded-full" style="width: ${progressPercent}%"></div>
+                    </div>
+                </a>
+            </div>
+        `;
+        
+        // Add to container
+        container.insertAdjacentHTML('beforeend', projectHTML);
+    });
+}
+
+// Call the function when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    fetchProjectsData();
+});
+</script>

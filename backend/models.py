@@ -42,6 +42,8 @@ class Users(Base):
     concept_progress = relationship("ConceptProgress", back_populates="student")
     interventions_as_student = relationship("TeacherInterventions", foreign_keys="TeacherInterventions.student_id", back_populates="student")
     interventions_as_teacher = relationship("TeacherInterventions", foreign_keys="TeacherInterventions.teacher_id", back_populates="teacher")
+    taught_classes = relationship("Classes", foreign_keys="Classes.teacher_id", back_populates="teacher")
+    class_enrollments = relationship("ClassEnrollments", back_populates="student")
 
 class Concepts(Base):
     __tablename__ = "concepts"
@@ -207,3 +209,54 @@ class TeacherInterventions(Base):
     teacher = relationship("Users", foreign_keys=[teacher_id], back_populates="interventions_as_teacher")
     student = relationship("Users", foreign_keys=[student_id], back_populates="interventions_as_student")
     concept = relationship("Concepts", foreign_keys=[concept_id])
+
+class Classes(Base):
+    __tablename__ = "classes"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, nullable=False)
+    description = Column(String)
+    teacher_id = Column(Integer, ForeignKey("users.id"))
+    created_at = Column(DateTime, default=datetime.utcnow)
+    
+    # Relationships
+    teacher = relationship("Users", foreign_keys=[teacher_id])
+    enrollments = relationship("ClassEnrollments", back_populates="class_obj")
+    assignments = relationship("ClassAssignments", back_populates="class_obj")
+    projects = relationship("ClassProjects", back_populates="class_obj")
+
+class ClassEnrollments(Base):
+    __tablename__ = "class_enrollments"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    class_id = Column(Integer, ForeignKey("classes.id"))
+    student_id = Column(Integer, ForeignKey("users.id"))
+    enrolled_at = Column(DateTime, default=datetime.utcnow)
+    
+    # Relationships
+    class_obj = relationship("Classes", back_populates="enrollments")
+    student = relationship("Users")
+
+class ClassAssignments(Base):
+    __tablename__ = "class_assignments"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    class_id = Column(Integer, ForeignKey("classes.id"))
+    assignment_id = Column(Integer, ForeignKey("assignments.id"))
+    assigned_at = Column(DateTime, default=datetime.utcnow)
+    
+    # Relationships
+    class_obj = relationship("Classes", back_populates="assignments")
+    assignment = relationship("Assignments")
+
+class ClassProjects(Base):
+    __tablename__ = "class_projects"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    class_id = Column(Integer, ForeignKey("classes.id"))
+    project_id = Column(Integer, ForeignKey("projects.id"))
+    assigned_at = Column(DateTime, default=datetime.utcnow)
+    
+    # Relationships
+    class_obj = relationship("Classes", back_populates="projects")
+    project = relationship("Projects")

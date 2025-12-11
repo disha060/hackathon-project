@@ -4,12 +4,8 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>AMEP Badges Page</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
     .material-symbols-outlined {
       font-variation-settings:
@@ -48,31 +44,40 @@
 <div class="layout-container flex h-full grow flex-col">
 <div class="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-40 flex flex-1 justify-center py-5">
 <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-<!-- TopNavBar Component -->
-<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-4 md:px-10 py-3">
-<div class="flex items-center gap-4 text-white">
-<div class="size-6 text-primary">
-<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
-</svg>
-</div>
-<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">AMEP</h2>
-</div>
-<div class="hidden md:flex flex-1 justify-end gap-8">
-<div class="flex items-center gap-9">
-<a class="text-white/80 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
-<a class="text-white/80 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Courses</a>
-<a class="text-primary text-sm font-medium leading-normal" href="#">Badges</a>
-</div>
-<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-white/5 hover:bg-white/10 text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 transition-colors">
-<span class="material-symbols-outlined text-white text-xl">notifications</span>
-</button>
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAWwvjf4h1ktyjTLrQ-v7Fc0aIK4-h64NZBf6evTTMNzoLsspnm2-Y_58l4W_GD0UxqHB80mwlNYxWxYuAINkAzgMIFsLcDI4-TlZFuXx-5vSPeAgyz5fj_DbAAUl3nmOHXKgLU0M3gHV7Fjw55Du48DX-BZdWqWyod4s24zYVG-1I-GEDkJLMZRMqTMQQFRZ2_67bpdlLSMvRqZ_Co_ODCbltWzgX-rRbnXxofg9QzelOjd80MCJe6qwfM5KxSzAP-CmPhzErc8BA");'></div>
-</div>
-<button class="md:hidden flex items-center justify-center rounded-lg h-10 bg-white/5 text-white p-2">
-<span class="material-symbols-outlined">menu</span>
-</button>
-</header>
+<!-- Header -->
+        <header class="border-b border-indigo-500/20 backdrop-blur-sm bg-[#0F172A]/30">
+            <div class="container mx-auto px-6 py-4">
+                <div class="flex justify-between items-center">
+                    <div class="text-xl font-bold tracking-wide bg-gradient-to-r from-blue-500 via-indigo-500 to-teal-500 bg-clip-text text-transparent">
+                        AMEP
+                    </div>
+                    <nav class="hidden md:flex space-x-6">
+                        <a href="student-dashboard.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="dashboard">Dashboard</a>
+                        <a href="mastery-tracker.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="mastery">Mastery Tracker</a>
+                        <a href="assignments.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="assignments">Assignments</a>
+                        <a href="projects.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="projects">Projects</a>
+                        <a href="leaderboard.html" class="text-gray-300 hover:text-white transition-colors nav-link" data-page="leaderboard">Leaderboard</a>
+                        <a href="badges.html" class="text-white font-medium nav-link" data-page="badges">Badges</a>
+                    </nav>
+                    <div class="flex items-center space-x-4">
+                        <button id="mobile-menu-toggle" class="md:hidden text-gray-400 hover:text-white focus:outline-none">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                        <span class="text-gray-300 hidden sm:inline" id="user-name">John Doe</span>
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 flex items-center justify-center">
+                            <span class="font-bold" id="user-initials">JD</span>
+                        </div>
+                        <a href="#" id="desktop-logout-btn" class="hidden md:block text-gray-300 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
 <!-- PageHeading Component -->
 <div class="flex flex-wrap justify-between gap-3 p-4 md:p-10">
 <div class="flex min-w-72 flex-col gap-3">
@@ -254,4 +259,205 @@
 </div>
 </div>
 </div>
-</body></html>
+
+    <!-- Mobile Navigation Overlay -->
+    <div id="mobile-nav-overlay" class="fixed inset-0 bg-black/80 z-50 hidden md:hidden">
+        <div class="flex flex-col h-full">
+            <div class="flex justify-between items-center p-6 border-b border-gray-800">
+                <div class="text-xl font-bold bg-gradient-to-r from-blue-500 via-indigo-500 to-teal-500 bg-clip-text text-transparent">
+                    AMEP
+                </div>
+                <button id="close-mobile-nav" class="text-gray-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <nav class="flex-col p-6 space-y-6">
+                <a href="student-dashboard.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Dashboard</a>
+                <a href="mastery-tracker.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Mastery Tracker</a>
+                <a href="assignments.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Assignments</a>
+                <a href="projects.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Projects</a>
+                <a href="leaderboard.html" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Leaderboard</a>
+                <a href="badges.html" class="text-white font-medium text-lg py-2 border-l-4 border-blue-500 pl-4">Badges</a>
+                <div class="border-t border-gray-800 pt-6 mt-6">
+                    <a href="#" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Settings</a>
+                    <a href="#" id="logout-btn" class="text-gray-400 hover:text-white text-lg py-2 transition-colors">Logout</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    
+    <script>
+        // Mobile navigation toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const closeMobileNav = document.getElementById('close-mobile-nav');
+            const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+            
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    mobileNavOverlay.classList.remove('hidden');
+                });
+            }
+            
+            if (closeMobileNav) {
+                closeMobileNav.addEventListener('click', function() {
+                    mobileNavOverlay.classList.add('hidden');
+                });
+            }
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileNavOverlay.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileNavOverlay.classList.add('hidden');
+                });
+            });
+        });
+    </script>
+    
+    <script type="module">
+        // Import auth service
+        import { logout } from '../src/services/auth.js';
+        import { studentAPI } from '../src/services/api.js';
+        
+        // Add logout functionality for mobile
+        document.getElementById('logout-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            if (confirm('Are you sure you want to logout?')) {
+                logout();
+            }
+        });
+        
+        // Add logout functionality for desktop
+        const desktopLogoutBtn = document.getElementById('desktop-logout-btn');
+        if (desktopLogoutBtn) {
+            desktopLogoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (confirm('Are you sure you want to logout?')) {
+                    logout();
+                }
+            });
+        }
+        
+        // Update user name display
+        function updateUserNameDisplay() {
+            // Get user name from localStorage
+            const userName = localStorage.getItem('userName') || 'Student';
+            
+            // Update user name in header
+            const userNameElement = document.getElementById('user-name');
+            if (userNameElement) {
+                userNameElement.textContent = userName;
+            }
+            
+            // Update user initials
+            const userInitialsElement = document.getElementById('user-initials');
+            if (userInitialsElement) {
+                const names = userName.split(' ');
+                let initials = '';
+                if (names.length > 1) {
+                    initials = names[0].charAt(0) + names[names.length - 1].charAt(0);
+                } else {
+                    initials = names[0].charAt(0) + names[0].charAt(1) || 'ST';
+                }
+                userInitialsElement.textContent = initials.toUpperCase();
+            }
+        }
+        
+        // Fetch and display badges data
+        async function fetchBadgesData() {
+            try {
+                // Show loading state
+                showLoadingState();
+                
+                // For now, we'll use a default student ID of 1
+                // In a real implementation, this would come from the authenticated user
+                const studentId = 1;
+                
+                // Fetch real data from backend
+                const badgesData = await studentAPI.getBadges(studentId);
+                
+                // Update the UI with real data
+                updateBadgesDisplay(badgesData);
+            } catch (error) {
+                console.error('Error fetching badges data:', error);
+                // Fallback to showing no data
+                updateBadgesDisplay([]);
+            }
+        }
+        
+        function showLoadingState() {
+            // You can implement a loading state here if needed
+        }
+        
+        function updateBadgesDisplay(badgesData) {
+            // Get the badges grid container
+            const container = document.querySelector('.grid.grid-cols-\\[repeat\\(auto-fill\\,minmax\\(158px\\,1fr\\)\\)\\].gap-6');
+            
+            // Clear existing content
+            container.innerHTML = '';
+            
+            // If no data, show appropriate message
+            if (!badgesData || badgesData.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <p class="text-gray-400 mb-4">No badges earned yet.</p>
+                        <p class="text-sm text-gray-500">Complete assignments and activities to earn badges!</p>
+                    </div>
+                `;
+                // Update the header text
+                document.querySelector('.text-base.font-normal.leading-normal').textContent = 'You\'ve collected 0 of 30 badges';
+                return;
+            }
+            
+            // Update the header text
+            document.querySelector('.text-base.font-normal.leading-normal').textContent = 
+                `You've collected ${badgesData.length} of 30 badges`;
+            
+            // Add each badge to the container
+            badgesData.forEach(badge => {
+                // Create the HTML for this badge
+                const badgeHTML = `
+                    <div class="group relative flex flex-col items-center justify-center gap-3 rounded-xl border border-primary/30 bg-white/5 p-4 text-center backdrop-blur-md transition-all duration-300 hover:border-primary/80" data-alt="${badge.name} badge">
+                        <div class="absolute inset-0 rounded-xl bg-primary/20 blur-xl transition-opacity duration-300 group-hover:opacity-100 opacity-50"></div>
+                        <div class="relative">
+                            <img alt="Badge icon" class="h-20 w-20 rounded-full object-cover" src="${badge.image_url || 'https://placehold.co/200x200/4a5568/ffffff?text=Badge'}">
+                            <p class="text-white text-sm font-bold leading-tight mt-3">${badge.name}</p>
+                        </div>
+                    </div>
+                `;
+                
+                // Add to container
+                container.insertAdjacentHTML('beforeend', badgeHTML);
+            });
+            
+            // Add some locked badges as placeholders (in a real implementation, these would come from the backend)
+            const totalBadges = 30;
+            const lockedBadgesCount = Math.max(0, totalBadges - badgesData.length);
+            
+            for (let i = 0; i < Math.min(lockedBadgesCount, 10); i++) { // Show up to 10 locked badges
+                const lockedBadgeHTML = `
+                    <div class="group relative flex flex-col items-center justify-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur-sm transition-all duration-300 hover:border-white/30" data-alt="Locked badge">
+                        <div class="relative">
+                            <img alt="Locked badge icon" class="h-20 w-20 rounded-full object-cover grayscale opacity-40" src="https://placehold.co/200x200/4a5568/ffffff?text=Locked">
+                            <div class="absolute inset-0 flex items-center justify-center rounded-full bg-black/50">
+                                <span class="material-symbols-outlined text-white/50 text-4xl">lock</span>
+                            </div>
+                        </div>
+                        <p class="text-[#ADB5BD] text-sm font-medium leading-tight mt-3">Locked Badge</p>
+                    </div>
+                `;
+                
+                container.insertAdjacentHTML('beforeend', lockedBadgeHTML);
+            }
+        }
+        
+        // Call the functions when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            updateUserNameDisplay();
+            fetchBadgesData();
+        });
+    </script>
