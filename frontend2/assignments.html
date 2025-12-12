@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment Management System</title>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/components/assignments.css">
+    
+    <style>
+        /* Base styles */
+        :root {
+            --primary: #3498db;
+            --primary-dark: #2980b9;
+            --secondary: #95a5a6;
+            --success: #2ecc71;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+            --gray-light: #ecf0f1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #f5f7fa;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Header */
+        .header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo i {
+            color: var(--primary);
+        }
+        
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .user-name {
+            font-weight: 500;
+        }
+        
+        .user-role {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-transform: capitalize;
+        }
+        
+        /* Main content */
+        .main {
+            padding: 2rem 0;
+            min-height: calc(100vh - 120px);
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .page-title {
+            font-size: 1.75rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .user-menu {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>EduManage</span>
+                </a>
+                
+                <div class="user-menu">
+                    <div id="notificationContainer"></div>
+                    <div class="user-info">
+                        <div class="user-avatar" id="userAvatar">U</div>
+                        <div>
+                            <div class="user-name" id="userName">User Name</div>
+                            <div class="user-role" id="userRole">teacher</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">Assignment Management</h1>
+                <button id="createAssignmentBtn" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Create Assignment
+                </button>
+            </div>
+            
+            <!-- Assignment List Container -->
+            <div id="assignmentListContainer">
+                <!-- Student assignments will be loaded here -->
+            </div>
+            
+            <!-- Assignment Form Container (initially hidden) -->
+            <div id="assignmentFormContainer" style="display: none;"></div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EduManage</h3>
+                    <p>Empowering educators and students with a comprehensive learning management system.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="#">Assignments</a></li>
+                        <li><a href="#">Grades</a></li>
+                        <li><a href="#">Calendar</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 EduManage. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <!-- API Service -->
+    <script src="js/api/apiService.js"></script>
+    
+    <!-- Components -->
+    <script src="js/components/NotificationBell.js"></script>
+    <script src="js/components/assignments/TeacherAssignmentForm.js"></script>
+    <script src="js/components/assignments/StudentAssignmentList.js"></script>
+    
+    <!-- Main App -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize API service with base URL
+            const apiService = new ApiService('http://localhost:8000');
+            
+            // Get DOM elements
+            const assignmentListContainer = document.getElementById('assignmentListContainer');
+            const assignmentFormContainer = document.getElementById('assignmentFormContainer');
+            const createAssignmentBtn = document.getElementById('createAssignmentBtn');
+            const userRole = document.getElementById('userRole');
+            const userName = document.getElementById('userName');
+            const userAvatar = document.getElementById('userAvatar');
+            
+            // Check if user is logged in
+            const token = localStorage.getItem('access_token');
+            if (!token) {
+                // Redirect to login if not authenticated
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Decode JWT to get user info
+            function parseJwt(token) {
+                try {
+                    const base64Url = token.split('.')[1];
+                    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                    return JSON.parse(window.atob(base64));
+                } catch (e) {
+                    return null;
+                }
+            }
+            
+            const userData = parseJwt(token);
+            if (userData) {
+                // Update UI with user data
+                userRole.textContent = userData.role;
+                userName.textContent = userData.email.split('@')[0];
+                userAvatar.textContent = userData.email.charAt(0).toUpperCase();
+                
+                // Initialize components based on user role
+                if (userData.role === 'teacher') {
+                    // Show create assignment button for teachers
+                    createAssignmentBtn.style.display = 'inline-flex';
+                    createAssignmentBtn.addEventListener('click', showAssignmentForm);
+                    
+                    // Initialize teacher's assignment list
+                    initializeTeacherView();
+                } else {
+                    // Hide create assignment button for students
+                    createAssignmentBtn.style.display = 'none';
+                    
+                    // Initialize student's assignment list
+                    initializeStudentView();
+                }
+                
+                // Initialize notification bell
+                if (document.getElementById('notificationContainer')) {
+                    const notificationBell = new NotificationBell('notificationContainer');
+                }
+            }
+            
+            // Initialize teacher's view
+            function initializeTeacherView() {
+                // In a real app, you would fetch teacher's assignments here
+                assignmentListContainer.innerHTML = `
+                    <div class="no-assignments">
+                        <p>No assignments created yet. Click "Create Assignment" to get started.</p>
+                    </div>
+                `;
+            }
+            
+            // Initialize student's view
+            function initializeStudentView() {
+                // Initialize student assignment list
+                const studentAssignmentList = new StudentAssignmentList('assignmentListContainer');
+            }
+            
+            // Show assignment creation form
+            function showAssignmentForm() {
+                assignmentListContainer.style.display = 'none';
+                assignmentFormContainer.style.display = 'block';
+                
+                // Initialize teacher assignment form
+                const teacherAssignmentForm = new TeacherAssignmentForm('assignmentFormContainer', function(assignment) {
+                    // Callback when assignment is created
+                    assignmentFormContainer.style.display = 'none';
+                    assignmentListContainer.style.display = 'block';
+                    initializeTeacherView();
+                });
+            }
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                // Add any responsive behavior here
+            });
+        });
+    </script>
+</body>
+</html>

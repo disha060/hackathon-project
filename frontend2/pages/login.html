@@ -127,32 +127,52 @@
         loginBtn.innerHTML = '<span class="truncate">Logging in...</span>';
         loginBtn.disabled = true;
         
-        // Make API call
-        authAPI.login({ email, password })
-            .then(data => {
-                // Store token and role in localStorage
-                localStorage.setItem('authToken', data.access_token);
-                localStorage.setItem('userRole', selectedRole);
-                
-                // For demo purposes, we'll extract name from email
-                // In a real app, you would fetch user data from the backend
-                const name = email.split('@')[0];
-                localStorage.setItem('userName', name);
-                
-                // Redirect based on selected role
-                if (selectedRole === 'student') {
-                    window.location.href = 'student-dashboard.html';
-                } else {
-                    window.location.href = 'teacher-dashboard.html';
-                }
-            })
-            .catch(error => {
-                console.error('Login error:', error);
-                alert('Login failed: ' + error.message);
-                // Reset button
-                loginBtn.innerHTML = originalText;
-                loginBtn.disabled = false;
-            });
+        // Prepare credentials in the format expected by the backend
+        const credentials = new URLSearchParams();
+        credentials.append('username', email);
+        credentials.append('password', password);
+        
+        // Make API call with proper content type
+        fetch('http://localhost:8000/auth/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: credentials
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(err => {
+                    throw new Error(err.detail || 'Login failed');
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Store token and role in localStorage
+            localStorage.setItem('authToken', data.access_token);
+            localStorage.setItem('refreshToken', data.refresh_token);
+            localStorage.setItem('userRole', selectedRole);
+            localStorage.setItem('userEmail', email);
+            
+            // For demo purposes, we'll extract name from email
+            const name = email.split('@')[0];
+            localStorage.setItem('userName', name);
+            
+            // Redirect based on selected role
+            if (selectedRole === 'student') {
+                window.location.href = 'student-dashboard.html';
+            } else {
+                window.location.href = 'teacher-dashboard.html';
+            }
+        })
+        .catch(error => {
+            console.error('Login error:', error);
+            alert('Login failed: ' + error.message);
+            // Reset button
+            loginBtn.innerHTML = originalText;
+            loginBtn.disabled = false;
+        });
     });
 </script>
 </body></html>

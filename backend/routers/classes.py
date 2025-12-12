@@ -4,6 +4,7 @@ from typing import List
 import schemas
 import models
 import database
+from auth_utils import get_current_teacher, get_current_user
 
 router = APIRouter(
     prefix="/classes",
@@ -13,12 +14,16 @@ router = APIRouter(
 get_db = database.get_db
 
 @router.post("/", response_model=schemas.ClassResponse)
-def create_class(class_data: schemas.ClassCreate, db: Session = Depends(get_db)):
+def create_class(
+    class_data: schemas.ClassCreate, 
+    db: Session = Depends(get_db),
+    current_user: models.Users = Depends(get_current_teacher)
+):
     # Create new class
     new_class = models.Classes(
         name=class_data.name,
         description=class_data.description,
-        teacher_id=class_data.teacher_id
+        teacher_id=current_user.id
     )
     db.add(new_class)
     db.commit()
@@ -27,7 +32,11 @@ def create_class(class_data: schemas.ClassCreate, db: Session = Depends(get_db))
     return new_class
 
 @router.get("/{class_id}", response_model=schemas.ClassResponse)
-def get_class(class_id: int, db: Session = Depends(get_db)):
+def get_class(
+    class_id: int, 
+    db: Session = Depends(get_db),
+    current_user: models.Users = Depends(get_current_user)
+):
     # Get class by ID
     class_obj = db.query(models.Classes).filter(models.Classes.id == class_id).first()
     if not class_obj:
@@ -36,7 +45,11 @@ def get_class(class_id: int, db: Session = Depends(get_db)):
     return class_obj
 
 @router.get("/", response_model=List[schemas.ClassResponse])
-def get_classes(teacher_id: int = None, db: Session = Depends(get_db)):
+def get_classes(
+    teacher_id: int = None, 
+    db: Session = Depends(get_db),
+    current_user: models.Users = Depends(get_current_user)
+):
     # Get all classes or classes for a specific teacher
     query = db.query(models.Classes)
     if teacher_id:
@@ -45,7 +58,12 @@ def get_classes(teacher_id: int = None, db: Session = Depends(get_db)):
     return query.all()
 
 @router.post("/{class_id}/enroll", response_model=schemas.ClassEnrollmentResponse)
-def enroll_student(class_id: int, enrollment_data: schemas.ClassEnrollmentCreate, db: Session = Depends(get_db)):
+def enroll_student(
+    class_id: int, 
+    enrollment_data: schemas.ClassEnrollmentCreate, 
+    db: Session = Depends(get_db),
+    current_user: models.Users = Depends(get_current_user)
+):
     # Check if class exists
     class_obj = db.query(models.Classes).filter(models.Classes.id == class_id).first()
     if not class_obj:
@@ -66,6 +84,27 @@ def enroll_student(class_id: int, enrollment_data: schemas.ClassEnrollmentCreate
         student_id=enrollment_data.student_id
     )
     db.add(new_enrollment)
+    
+    # Backfill existing class assignments for the new student
+    class_assignments = db.query(models.ClassAssignments).filter(
+        models.ClassAssignments.class_id == class_id
+    ).all()
+    
+    for ca in class_assignments:
+        # Check if already assigned to avoid duplicates
+        existing_assignment = db.query(models.StudentAssignments).filter(
+            models.StudentAssignments.student_id == enrollment_data.student_id,
+            models.StudentAssignments.assignment_id == ca.assignment_id
+        ).first()
+        
+        if not existing_assignment:
+            student_assignment = models.StudentAssignments(
+                student_id=enrollment_data.student_id,
+                assignment_id=ca.assignment_id,
+                status=schemas.AssignmentStatus.ASSIGNED
+            )
+            db.add(student_assignment)
+            
     db.commit()
     db.refresh(new_enrollment)
     
@@ -116,6 +155,20 @@ def assign_assignment_to_class(class_id: int, assignment_data: schemas.ClassAssi
         assignment_id=assignment_data.assignment_id
     )
     db.add(class_assignment)
+    
+    # Assign to all students in the class
+    enrollments = db.query(models.ClassEnrollments).filter(
+        models.ClassEnrollments.class_id == class_id
+    ).all()
+    
+    for enrollment in enrollments:
+        student_assignment = models.StudentAssignments(
+            student_id=enrollment.student_id,
+            assignment_id=assignment_data.assignment_id,
+            status=schemas.AssignmentStatus.ASSIGNED
+        )
+        db.add(student_assignment)
+        
     db.commit()
     
     return {"message": "Assignment assigned to class successfully"}

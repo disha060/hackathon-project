@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 from datetime import datetime
 from enum import Enum
 
@@ -35,7 +35,7 @@ class UserResponse(UserBase):
     id: int
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class ConceptBase(BaseModel):
     name: str
@@ -48,7 +48,7 @@ class ConceptResponse(ConceptBase):
     id: int
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class StudentMasteryBase(BaseModel):
     student_id: int
@@ -60,7 +60,7 @@ class StudentMasteryCreate(StudentMasteryBase):
 
 class StudentMasteryResponse(StudentMasteryBase):
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class AssignmentBase(BaseModel):
     concept_id: int
@@ -76,7 +76,7 @@ class AssignmentResponse(AssignmentBase):
     id: int
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class StudentAssignmentBase(BaseModel):
     student_id: int
@@ -89,7 +89,7 @@ class StudentAssignmentCreate(StudentAssignmentBase):
 
 class StudentAssignmentResponse(StudentAssignmentBase):
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class ProjectBase(BaseModel):
     title: str
@@ -105,7 +105,7 @@ class ProjectResponse(ProjectBase):
     id: int
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class ProjectTeamBase(BaseModel):
     project_id: int
@@ -117,7 +117,7 @@ class ProjectTeamCreate(ProjectTeamBase):
 
 class ProjectTeamResponse(ProjectTeamBase):
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class EngagementLogBase(BaseModel):
     student_id: int
@@ -134,7 +134,7 @@ class EngagementLogResponse(EngagementLogBase):
     timestamp: datetime
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class SoftSkillScoreBase(BaseModel):
     student_id: int
@@ -149,7 +149,7 @@ class SoftSkillScoreResponse(SoftSkillScoreBase):
     id: int
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class StudentXPBase(BaseModel):
     student_id: int
@@ -163,7 +163,7 @@ class StudentXPResponse(StudentXPBase):
     last_updated: datetime
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class StudentStreakBase(BaseModel):
     student_id: int
@@ -177,7 +177,7 @@ class StudentStreakResponse(StudentStreakBase):
     last_active_date: datetime
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class StudentBadgeBase(BaseModel):
     student_id: int
@@ -191,7 +191,7 @@ class StudentBadgeResponse(StudentBadgeBase):
     date_awarded: datetime
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class ConceptProgressBase(BaseModel):
     student_id: int
@@ -206,7 +206,7 @@ class ConceptProgressResponse(ConceptProgressBase):
     id: int
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class TeacherInterventionBase(BaseModel):
     teacher_id: int
@@ -223,7 +223,7 @@ class TeacherInterventionResponse(TeacherInterventionBase):
     timestamp: datetime
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 # Additional Response Models for APIs
 class MasteryResponse(BaseModel):
@@ -233,7 +233,7 @@ class MasteryResponse(BaseModel):
     level: int
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class AdaptiveAssignmentResponse(BaseModel):
     assignment_id: int
@@ -243,7 +243,7 @@ class AdaptiveAssignmentResponse(BaseModel):
     estimated_time: int  # in minutes
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class LeaderboardEntry(BaseModel):
     student_id: int
@@ -252,14 +252,14 @@ class LeaderboardEntry(BaseModel):
     rank: int
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class BadgeDisplay(BaseModel):
     badge_name: str
     date_awarded: datetime
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class AIGeneratedAssignment(BaseModel):
     concept_id: int
@@ -270,7 +270,7 @@ class AIGeneratedAssignment(BaseModel):
     learning_objectives: List[str]
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class AIGeneratedProject(BaseModel):
     title: str
@@ -281,7 +281,7 @@ class AIGeneratedProject(BaseModel):
     learning_outcomes: List[str]
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class Token(BaseModel):
     access_token: str
@@ -290,6 +290,41 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     email: str
     role: UserRole
+
+class NotificationResponse(BaseModel):
+    id: int
+    user_id: int
+    title: str
+    message: str
+    notification_type: str
+    metadata: Dict[str, Any]
+    is_read: bool
+    created_at: datetime
+    read_at: Optional[datetime] = None
+
+    class Config:
+        from_attributes = True
+
+class AssignmentCreateWithClasses(BaseModel):
+    title: str
+    description: str
+    concept_id: int
+    difficulty_level: int
+    content_url: Optional[str] = None
+    class_ids: List[int]
+    due_date: Optional[datetime] = None
+    max_score: Optional[int] = 100
+
+class ClassSimple(BaseModel):
+    id: int
+    name: str
+    class Config:
+        from_attributes = True
+
+class AssignmentWithClassesResponse(AssignmentResponse):
+    classes: List[ClassSimple] = []
+    class Config:
+        from_attributes = True
 
 # Class Management Schemas
 class ClassBase(BaseModel):
@@ -305,7 +340,7 @@ class ClassResponse(ClassBase):
     created_at: datetime
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class ClassEnrollmentBase(BaseModel):
     class_id: int
@@ -319,13 +354,48 @@ class ClassEnrollmentResponse(ClassEnrollmentBase):
     enrolled_at: datetime
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class ClassProjectAssignment(BaseModel):
     project_id: int
 
 class ClassAssignmentAssignment(BaseModel):
     assignment_id: int
+    due_date: Optional[datetime] = None
+
+class AssignmentSubmissionBase(BaseModel):
+    assignment_id: int
+    student_id: int
+    submission_url: str
+    submission_notes: Optional[str] = None
+
+class AssignmentSubmissionCreate(AssignmentSubmissionBase):
+    pass
+
+class AssignmentSubmissionResponse(AssignmentSubmissionBase):
+    id: int
+    submitted_at: datetime
+    status: AssignmentStatus = AssignmentStatus.SUBMITTED
+    
+    class Config:
+        from_attributes = True
+
+class ClassAssignmentResponse(AssignmentResponse):
+    due_date: Optional[datetime] = None
+    assigned_at: datetime
+    class_id: int
+    
+    class Config:
+        from_attributes = True
+
+class StudentAssignmentDetail(AssignmentResponse):
+    status: AssignmentStatus
+    score: Optional[float] = None
+    submitted_at: Optional[datetime] = None
+    due_date: Optional[datetime] = None
+    
+    class Config:
+        from_attributes = True
 
 # AI Quiz Generation Schemas
 class QuizQuestion(BaseModel):
@@ -336,7 +406,7 @@ class QuizQuestion(BaseModel):
     correct_answer: str
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class GeneratedQuiz(BaseModel):
     topic: str
@@ -344,4 +414,4 @@ class GeneratedQuiz(BaseModel):
     questions: List[QuizQuestion]
     
     class Config:
-        orm_mode = True
+        from_attributes = True

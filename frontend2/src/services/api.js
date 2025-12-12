@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:8000'; // Adjust this to your backend URL
+const API_BASE_URL = 'http://localhost:8000'; // Backend server URL
 
 // Helper function for API requests
 async function apiRequest(endpoint, options = {}) {
@@ -67,14 +67,22 @@ async function apiRequest(endpoint, options = {}) {
 
 // Auth endpoints
 export const authAPI = {
-  signup: (userData) => apiRequest('/student/signup', {
+  signup: (userData) => apiRequest('/auth/register', {
     method: 'POST',
-    body: JSON.stringify(userData),
+    body: JSON.stringify({
+      name: userData.name,
+      email: userData.email,
+      password: userData.password,
+      role: 'student'
+    }),
   }),
   
-  login: (credentials) => apiRequest('/student/login', {
+  login: (credentials) => apiRequest('/auth/token', {
     method: 'POST',
-    body: JSON.stringify(credentials),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: `username=${encodeURIComponent(credentials.email)}&password=${encodeURIComponent(credentials.password)}`,
   }),
 };
 
@@ -145,7 +153,9 @@ export const teacherAPI = {
     body: JSON.stringify(classData),
   }),
   
-  getClasses: (teacherId) => apiRequest(`/classes/?teacher_id=${teacherId}`),
+  getClasses: (teacherId) => {
+    return apiRequest(`/teacher/classes`);
+  },
   
   getClassById: (classId) => apiRequest(`/classes/${classId}`),
   

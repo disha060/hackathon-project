@@ -1,8 +1,9 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, Enum, Boolean
+from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, Enum, Boolean, JSON
 from sqlalchemy.orm import relationship, declarative_base
 from datetime import datetime
-from typing import Optional
+from typing import Optional, Dict, Any
 import enum
+import json
 
 Base = declarative_base()
 
@@ -44,6 +45,7 @@ class Users(Base):
     interventions_as_teacher = relationship("TeacherInterventions", foreign_keys="TeacherInterventions.teacher_id", back_populates="teacher")
     taught_classes = relationship("Classes", foreign_keys="Classes.teacher_id", back_populates="teacher")
     class_enrollments = relationship("ClassEnrollments", back_populates="student")
+    notifications = relationship("Notification", back_populates="user")
 
 class Concepts(Base):
     __tablename__ = "concepts"
@@ -73,6 +75,7 @@ class Assignments(Base):
     
     id = Column(Integer, primary_key=True, index=True)
     concept_id = Column(Integer, ForeignKey("concepts.id"))
+    teacher_id = Column(Integer, ForeignKey("users.id"), nullable=True)
     difficulty_level = Column(Integer)  # 1-5
     content_url = Column(String)
     title = Column(String, nullable=False)
@@ -89,6 +92,7 @@ class StudentAssignments(Base):
     assignment_id = Column(Integer, ForeignKey("assignments.id"), primary_key=True)
     status = Column(Enum(AssignmentStatus), default=AssignmentStatus.ASSIGNED)
     score = Column(Float, nullable=True)  # 0-100
+    submitted_at = Column(DateTime, nullable=True)
     
     # Relationships
     student = relationship("Users", back_populates="student_assignments")
@@ -244,10 +248,27 @@ class ClassAssignments(Base):
     class_id = Column(Integer, ForeignKey("classes.id"))
     assignment_id = Column(Integer, ForeignKey("assignments.id"))
     assigned_at = Column(DateTime, default=datetime.utcnow)
+    due_date = Column(DateTime, nullable=True)
     
     # Relationships
     class_obj = relationship("Classes", back_populates="assignments")
     assignment = relationship("Assignments")
+
+class Notification(Base):
+    __tablename__ = "notifications"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    title = Column(String, nullable=False)
+    message = Column(String, nullable=False)
+    notification_type = Column(String, nullable=False)
+    meta_data = Column('metadata', JSON, default=dict)  # Using 'metadata' as the actual column name in DB
+    is_read = Column(Boolean, default=False)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    read_at = Column(DateTime, nullable=True)
+    
+    # Relationships
+    user = relationship("Users", back_populates="notifications")
 
 class ClassProjects(Base):
     __tablename__ = "class_projects"

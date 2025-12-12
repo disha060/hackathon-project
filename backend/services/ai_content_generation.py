@@ -1,10 +1,14 @@
 import os
 import json
 import asyncio
+from dotenv import load_dotenv
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, Dict, Any
 import schemas
 import models
+
+# Load environment variables
+load_dotenv()
 
 # Template-based content generation (fallback when API unavailable)
 CONTENT_TEMPLATES = {
@@ -112,10 +116,15 @@ def generate_project_prompt(skill_area: str, project_type: str) -> str:
 
 async def call_gemini_api(prompt: str, api_key: str = None) -> dict:
     """Call Gemini API to generate content"""
-    # Use the provided API key or default to the one we have
+    # Use the provided API key or get from environment
     if not api_key:
-        # Use the latest hardcoded API key
-        api_key = "apikey"
+        from dotenv import load_dotenv
+        import os
+        load_dotenv()
+        api_key = os.getenv("GEMINI_API_KEY")
+        
+        if not api_key:
+            raise ValueError("GEMINI_API_KEY not found in environment variables")
     
     # Make actual API call to Gemini
     try:
@@ -124,8 +133,19 @@ async def call_gemini_api(prompt: str, api_key: str = None) -> dict:
         # Configure the API
         genai.configure(api_key=api_key)
         
+        # List available models and use the first one that supports generateContent
+        available_models = [m for m in genai.list_models() 
+                          if 'generateContent' in m.supported_generation_methods]
+        
+        if not available_models:
+            raise ValueError("No models available with generateContent support")
+            
+        # Use the first available model that supports generateContent
+        model_name = available_models[0].name
+        print(f"Using model: {model_name}")
+        
         # Create the model
-        model = genai.GenerativeModel('models/gemini-2.0-flash')
+        model = genai.GenerativeModel(model_name)
         
         # Generate content
         response = await model.generate_content_async(prompt)
@@ -153,239 +173,161 @@ async def call_gemini_api(prompt: str, api_key: str = None) -> dict:
         print(f"Error calling Gemini API: {e}")
         print(f"API Key used: {api_key[:10]}... (truncated for security)")
         # Only fallback to simulated response if there's a real error
-        # In a production environment, we would handle this differently
-        # For debugging, let's also return some information about the error
-        error_response = simulate_gemini_response(prompt)
-        error_response["error_note"] = f"Real API failed: {str(e)}. Using simulated responses."
-        return error_response
-
 def simulate_gemini_response(prompt: str) -> dict:
-    """Simulate Gemini API response for demo purposes"""
-    if "assignment" in prompt.lower():
-        return {
-            "title": "AI-Generated Assignment",
-            "description": "This assignment was intelligently generated using advanced AI models to match your learning objectives",
-            "difficulty_level": 3,
-            "estimated_time": 45,
-            "learning_objectives": [
-                "Demonstrate understanding of core concepts",
-                "Apply knowledge to solve practical problems",
-                "Develop critical thinking skills"
-            ]
-        }
-    elif "quiz" in prompt.lower():
-        # Extract parameters from prompt
-        import re
-        # Extract topic from the prompt
-        # Since we know the format, we can extract the topic directly
-        # The prompt format is: "Generate X quiz questions about TOPIC at difficulty level Y"
-        import re
-        topic_match = re.search(r'Generate \d+ quiz questions about (.+?) at difficulty', prompt)
-        topic = topic_match.group(1) if topic_match else "General Knowledge"
+    """Simulate Gemini API response with topic-appropriate questions"""
+    import re
+    
+    # Extract topic and question count from prompt
+    topic_match = re.search(r'Generate \d+ quiz questions about (.+?) at difficulty', prompt)
+    topic = topic_match.group(1).strip() if topic_match else "General Knowledge"
+    
+    count_match = re.search(r'(\d+) quiz questions', prompt)
+    question_count = int(count_match.group(1)) if count_match else 5
+    
+    # Generic question templates that work for any topic
+    mcq_templates = [
+        f"What is the primary purpose or function of {topic}?",
+        f"Which of the following best describes a key concept in {topic}?",
+        f"What is the most important principle to understand about {topic}?",
+        f"Which of these is a common application of {topic}?",
+        f"What differentiates {topic} from similar concepts in the field?"
+    ]
+    
+    tf_templates = [
+        f"{topic} is considered a fundamental concept in its field.",
+        f"The principles of {topic} can be applied across multiple domains.",
+        f"Understanding {topic} requires advanced mathematical knowledge.",
+        f"{topic} was first introduced in the 21st century.",
+        f"Practical applications of {topic} are still theoretical and not yet implemented."
+    ]
+    
+    sa_templates = [
+        f"Explain the basic concept of {topic} in your own words.",
+        f"Describe how {topic} is used in practical applications.",
+        f"What are the main components or elements of {topic}?",
+        f"Compare and contrast {topic} with a related concept.",
+        f"What are the potential benefits of understanding {topic}?"
+    ]
+    
+    fib_templates = [
+        f"The main idea behind {topic} is _____ .",
+        f"One real-world application of {topic} is _____ .",
+        f"The study of {topic} became important in the field of _____ .",
+        f"A key principle in {topic} is _____ .",
+        f"When working with {topic}, it's essential to consider _____ ."
+    ]
+    
+    # Generate generic but relevant options
+    mcq_options = [
+        [f"A specific aspect of {topic}", f"A related but different concept", "A common misconception", "An outdated approach"],
+        ["Theoretical foundation", "Practical implementation", "Historical context", "Future predictions"],
+        ["Core principle", "Minor detail", "Common myth", "Outdated practice"],
+        ["Real-world problem solving", "Theoretical discussion", "Historical analysis", "Future speculation"],
+        ["Fundamental approach", "Implementation method", "Theoretical basis", "Practical limitation"]
+    ]
+    
+    mcq_answers = [f"A specific aspect of {topic}", "Theoretical foundation", "Core principle", "Real-world problem solving", "Fundamental approach"]
+    tf_answers = ["True", "True", "False", "False", "False"]
+    sa_answers = [
+        f"{topic} is a concept that involves... (student should explain in their own words)",
+        f"{topic} can be applied in various ways including... (student should provide examples)",
+        f"The main components of {topic} include... (student should list key elements)",
+        f"While {topic} focuses on..., a related concept differs by... (student should compare and contrast)",
+        f"Understanding {topic} can help with... (student should list benefits)"
+    ]
+    fib_answers = [
+        f"to understand and work with {topic} effectively",
+        f"in various industries such as technology, healthcare, or education",
+        f"computer science, engineering, or data analysis",
+        f"understanding its core principles and applications",
+        f"both theoretical foundations and practical implications"
+    ]
+    
+    questions = []
+    question_types = ["Multiple Choice", "True or False", "Short Answer", "Fill in the Blank"]
+    
+    for i in range(min(question_count, 5)):  # Limit to 5 questions
+        q_type = question_types[i % 4]
         
-        count_match = re.search(r'(\d+) quiz questions', prompt)
-        question_count = int(count_match.group(1)) if count_match else 5
-        
-        # Define topic-appropriate question templates
-        if "java" in topic.lower() and "oop" in topic.lower():
-            # Java OOP specific templates
-            mcq_templates = [
-                f"Which of the following is a fundamental principle of OOP in {topic}?",
-                f"What is the primary purpose of encapsulation in {topic}?",
-                f"Which keyword is used for inheritance in {topic}?",
-                f"What does polymorphism allow in {topic}?",
-                f"What is the main benefit of abstraction in {topic}?"
-            ]
-            
-            tf_templates = [
-                f"{topic} supports multiple inheritance through interfaces.",
-                f"Encapsulation in {topic} helps protect data from unauthorized access.",
-                f"Abstract classes in {topic} can be instantiated directly.",
-                f"Method overriding is a form of polymorphism in {topic}.",
-                f"Interfaces in {topic} can contain concrete method implementations."
-            ]
-            
-            sa_templates = [
-                f"Explain the four pillars of OOP in {topic}.",
-                f"Describe how inheritance promotes code reusability in {topic}.",
-                f"Compare and contrast abstract classes and interfaces in {topic}.",
-                f"How does encapsulation improve security in {topic} programs?",
-                f"Provide a real-world example demonstrating polymorphism in {topic}."
-            ]
-            
-            fib_templates = [
-                f"The _____ keyword is used to achieve inheritance in {topic}.",
-                f"_____ refers to the ability of objects to take multiple forms in {topic}.",
-                f"Data _____ is the technique of hiding internal details in {topic}.",
-                f"An _____ class cannot be instantiated in {topic}.",
-                f"_____ methods have the same signature but different implementations in {topic}."
-            ]
-            
-            # Define realistic options and answers
-            mcq_options = [
-                ["Inheritance", "Compilation", "Execution", "Debugging"],
-                ["Data hiding", "Code duplication", "Performance boost", "Syntax simplification"],
-                ["extends", "implements", "inherits", "derives"],
-                ["Different behaviors", "Same behavior", "Reduced code", "Faster execution"],
-                ["Code simplicity", "Complexity increase", "Performance loss", "Memory reduction"]
-            ]
-            
-            mcq_answers = ["Inheritance", "Data hiding", "extends", "Different behaviors", "Code simplicity"]
-            tf_answers = ["True", "True", "False", "True", "False"]
-            sa_answers = [
-                f"The four pillars of OOP in {topic} are encapsulation, inheritance, polymorphism, and abstraction.",
-                f"Inheritance in {topic} allows child classes to reuse code from parent classes, reducing redundancy.",
-                f"Abstract classes in {topic} can have both abstract and concrete methods, while interfaces can only have abstract methods (before Java 8).",
-                f"Encapsulation in {topic} protects data by controlling access through public/private modifiers.",
-                f"Polymorphism in {topic} allows objects to behave differently based on their type, such as method overriding."
-            ]
-            fib_answers = ["extends", "polymorphism", "encapsulation", "abstract", "overriding"]
+        if q_type == "Multiple Choice":
+            questions.append({
+                "id": i+1,
+                "type": q_type,
+                "question": mcq_templates[i % len(mcq_templates)].format(topic=topic),
+                "options": mcq_options[i % len(mcq_options)],
+                "correct_answer": mcq_answers[i % len(mcq_answers)]
+            })
+        elif q_type == "True or False":
+            questions.append({
+                "id": i+1,
+                "type": q_type,
+                "question": tf_templates[i % len(tf_templates)].format(topic=topic),
+                "options": None,
+                "correct_answer": tf_answers[i % len(tf_answers)]
+            })
+        elif q_type == "Short Answer":
+            questions.append({
+                "id": i+1,
+                "type": q_type,
+                "question": sa_templates[i % len(sa_templates)].format(topic=topic),
+                "options": None,
+                "correct_answer": sa_answers[i % len(sa_answers)]
+            })
+        else:  # Fill in the Blank
+            questions.append({
+                "id": i+1,
+                "type": q_type,
+                "question": fib_templates[i % len(fib_templates)].format(topic=topic),
+                "options": None,
+                "correct_answer": fib_answers[i % len(fib_answers)]
+            })
+    
+    # For any remaining questions beyond 5, use generic templates
+    for i in range(5, question_count):
+        q_type = question_types[i % 4]
+        if q_type == "Multiple Choice":
+            questions.append({
+                "id": i+1,
+                "type": q_type,
+                "question": f"What is a key aspect of {topic}?",
+                "options": [f"Aspect {i+1}A", f"Aspect {i+1}B", f"Aspect {i+1}C", f"Aspect {i+1}D"],
+                "correct_answer": f"Aspect {i+1}B"
+            })
+        elif q_type == "True or False":
+            questions.append({
+                "id": i+1,
+                "type": q_type,
+                "question": f"{topic} is an important subject.",
+                "options": None,
+                "correct_answer": "True"
+            })
         else:
-            # General knowledge templates
-            mcq_templates = [
-                f"Which process is primarily responsible for converting light energy into chemical energy in {topic}?",
-                f"What is the primary function of {topic} in biological systems?",
-                f"Which scientist is most associated with the discovery of {topic}?",
-                f"What is a key characteristic that distinguishes {topic} from similar concepts?",
-                f"In what cellular component does {topic} primarily occur?"
-            ]
-            
-            tf_templates = [
-                f"{topic} plays a crucial role in energy conversion processes.",
-                f"The discovery of {topic} revolutionized our understanding of biological processes.",
-                f"{topic} is exclusively found in plant cells.",
-                f"ATP is a product of {topic}.",
-                f"{topic} occurs only during daylight hours."
-            ]
-            
-            sa_templates = [
-                f"Explain the significance of {topic} in ecosystem dynamics.",
-                f"Describe how {topic} contributes to cellular energy production.",
-                f"Compare and contrast {topic} with cellular respiration.",
-                f"Analyze the environmental factors that affect the rate of {topic}.",
-                f"Discuss the evolutionary significance of {topic} in plant development."
-            ]
-            
-            fib_templates = [
-                f"The green pigment responsible for capturing light energy in {topic} is called _____ .",
-                f"During {topic}, carbon dioxide is converted into _____ through a series of chemical reactions.",
-                f"The _____ is the organelle where {topic} takes place in plant cells.",
-                f"Oxygen is produced as a byproduct of {topic} when _____ molecules are split.",
-                f"The Calvin cycle is the _____ stage of {topic} where glucose is synthesized."
-            ]
-            
-            # Define realistic options and answers
-            mcq_options = [
-                ["Cellular Respiration", "Photosynthesis", "Glycolysis", "Fermentation"],
-                ["Energy storage", "Energy conversion", "Waste removal", "Protein synthesis"],
-                ["Gregor Mendel", "Jan Baptist van Helmont", "Joseph Priestley", "Melvin Calvin"],
-                ["Light dependency", "Anaerobic nature", "Chlorophyll requirement", "Glucose production"],
-                ["Mitochondria", "Nucleus", "Chloroplast", "Endoplasmic reticulum"]
-            ]
-            
-            mcq_answers = ["Photosynthesis", "Energy conversion", "Melvin Calvin", "Chlorophyll requirement", "Chloroplast"]
-            tf_answers = ["True", "True", "False", "True", "True"]
-            sa_answers = [
-                f"{topic} is crucial for converting solar energy into chemical energy, forming the foundation of food chains and producing oxygen essential for life.",
-                f"{topic} converts light energy into chemical energy stored in glucose, providing fuel for cellular processes and releasing oxygen as a byproduct.",
-                f"While {topic} produces glucose and oxygen using light energy, cellular respiration breaks down glucose to release energy, using oxygen and producing CO2.",
-                f"Factors affecting {topic} include light intensity, temperature, and CO2 concentration, with optimal levels maximizing efficiency.",
-                f"{topic} evolution enabled plants to harness solar energy, fundamentally changing Earth's atmosphere and supporting complex ecosystems."
-            ]
-            fib_answers = ["chlorophyll", "glucose", "chloroplast", "water", "light-independent"]
-        
-        questions = []
-        question_types = ["Multiple Choice", "True or False", "Short Answer", "Fill in the Blank"]
-        
-        for i in range(min(question_count, 5)):  # Limit to 5 for realistic templates
-            q_type = question_types[i % 4]
-            
-            if q_type == "Multiple Choice":
-                questions.append({
-                    "id": i+1,
-                    "type": q_type,
-                    "question": mcq_templates[i],
-                    "options": mcq_options[i],
-                    "correct_answer": mcq_answers[i]
-                })
-            elif q_type == "True or False":
-                questions.append({
-                    "id": i+1,
-                    "type": q_type,
-                    "question": tf_templates[i],
-                    "options": None,
-                    "correct_answer": tf_answers[i]
-                })
-            elif q_type == "Short Answer":
-                questions.append({
-                    "id": i+1,
-                    "type": q_type,
-                    "question": sa_templates[i],
-                    "options": None,
-                    "correct_answer": sa_answers[i]
-                })
-            else:  # Fill in the Blank
-                questions.append({
-                    "id": i+1,
-                    "type": q_type,
-                    "question": fib_templates[i],
-                    "options": None,
-                    "correct_answer": fib_answers[i]
-                })
-        
-        # If more questions are needed, generate generic ones
-        for i in range(len(questions), question_count):
-            q_type = question_types[i % 4]
-            base_index = i % 5
-            
-            if q_type == "Multiple Choice":
-                questions.append({
-                    "id": i+1,
-                    "type": q_type,
-                    "question": f"What is a key aspect of {topic}?",
-                    "options": [f"Aspect {i+1}A", f"Aspect {i+1}B", f"Aspect {i+1}C", f"Aspect {i+1}D"],
-                    "correct_answer": f"Aspect {i+1}B"
-                })
-            elif q_type == "True or False":
-                questions.append({
-                    "id": i+1,
-                    "type": q_type,
-                    "question": f"{topic} is an important subject.",
-                    "options": None,
-                    "correct_answer": "True"
-                })
-            else:
-                questions.append({
-                    "id": i+1,
-                    "type": q_type,
-                    "question": f"Explain a key concept of {topic}.",
-                    "options": None,
-                    "correct_answer": f"Key concept explanation for {topic}"
-                })
-        
-        return {
-            "topic": topic,
-            "difficulty": 3,
-            "questions": questions
-        }
-    else:
-        return {
-            "title": "AI-Generated Project",
-            "description": "This project was designed using cutting-edge AI to provide an engaging learning experience",
-            "duration_hours": 30,
-            "team_size": 4,
-            "learning_outcomes": [
-                "Synthesize knowledge across multiple domains",
-                "Collaborate effectively in team environments",
-                "Create innovative solutions to real-world problems"
-            ]
-        }
+            questions.append({
+                "id": i+1,
+                "type": q_type,
+                "question": f"Explain a key concept of {topic}.",
+                "options": None,
+                "correct_answer": f"Key concept explanation for {topic}"
+            })
+    
+    return {
+        "topic": topic,
+        "difficulty": 3,  # Default difficulty
+        "questions": questions
+    }
 
 def generate_assignments(concept_id: int, db: Session, api_key: str = None) -> List[schemas.AIGeneratedAssignment]:
     """
     Generate AI-suggested assignments for a concept using Gemini API or templates.
+    
+    Args:
+        concept_id: ID of the concept to generate assignments for
+        db: Database session
+        api_key: Optional Gemini API key
+        
+    Returns:
+        List of generated assignments
     """
-    # Get concept details
     concept = db.query(models.Concepts).filter(models.Concepts.id == concept_id).first()
     if not concept:
         # Fallback to template-based generation
@@ -401,19 +343,19 @@ def generate_assignments(concept_id: int, db: Session, api_key: str = None) -> L
             )
         ]
         return assignments
-    
+
     # Generate assignments for different difficulty levels
     assignments = []
     topics = ["basics", "intermediate", "advanced"]
-    
+
     for difficulty in [1, 2, 3]:
         # Try to call Gemini API
         prompt = generate_assignment_prompt(concept.name, difficulty, topics[:difficulty])
-        
+
         try:
             # Call Gemini API with fallback
             response = asyncio.run(call_gemini_api(prompt, api_key))
-            
+
             assignment = schemas.AIGeneratedAssignment(
                 concept_id=concept_id,
                 title=response["title"],
@@ -435,10 +377,92 @@ def generate_assignments(concept_id: int, db: Session, api_key: str = None) -> L
                 learning_objectives=[obj.format(concept=concept.name) for obj in template["objectives"]]
             )
             assignments.append(fallback_assignment)
-    
+
     return assignments
 
-def generate_projects(skill_area: str, db: Session, api_key: str = None) -> List[schemas.AIGeneratedProject]:
+async def generate_quiz_questions(topic: str, num_questions: int = 5, difficulty: str = "medium", api_key: str = None) -> List[Dict[str, Any]]:
+    """
+    Generate quiz questions using the Gemini API.
+    
+    Args:
+        topic (str): The topic for the quiz
+        num_questions (int): Number of questions to generate (default: 5)
+        difficulty (str): Difficulty level (easy, medium, hard)
+        api_key (str, optional): Gemini API key. If not provided, will use from environment.
+        
+    Returns:
+        List[Dict[str, Any]]: List of quiz questions with answers and explanations
+    """
+    try:
+        # Get API key from environment if not provided
+        if not api_key:
+            api_key = os.getenv("GEMINI_API_KEY")
+            if not api_key:
+                # Try loading .env file directly if not found in environment
+                from dotenv import load_dotenv
+                load_dotenv()
+                api_key = os.getenv("GEMINI_API_KEY")
+                if not api_key:
+                    raise ValueError("No Gemini API key provided. Please set GEMINI_API_KEY in your .env file or pass it as a parameter.")
+        
+        # Configure Gemini
+        import google.generativeai as genai
+        genai.configure(api_key=api_key)
+        
+        # List available models and use the first one that supports generateContent
+        available_models = [m for m in genai.list_models() 
+                          if 'generateContent' in m.supported_generation_methods]
+        
+        if not available_models:
+            raise ValueError("No models available with generateContent support")
+            
+        # Use the first available model that supports generateContent
+        model_name = available_models[0].name
+        print(f"Using model: {model_name}")
+        
+        model = genai.GenerativeModel(model_name)
+        
+        # Create prompt
+        prompt = f"""Generate {num_questions} {difficulty} difficulty multiple-choice questions about {topic}.
+        For each question, provide:
+        1. The question
+        2. 4 possible answers (a, b, c, d)
+        3. The correct answer
+        4. A brief explanation
+        
+        Format the response as a JSON array of objects with these fields:
+        [
+            {{
+                "question": "question text",
+                "options": ["option a", "option b", "option c", "option d"],
+                "correct_answer": "a",
+                "explanation": "brief explanation"
+            }}
+        ]"""
+        
+        # Generate content
+        response = await model.generate_content_async(prompt)
+        
+        # Parse response
+        try:
+            # Extract JSON from response
+            response_text = response.text.strip()
+            if response_text.startswith('```json'):
+                response_text = response_text[response_text.find('['):response_text.rfind(']')+1]
+            
+            questions = json.loads(response_text)
+            return questions
+            
+        except json.JSONDecodeError as e:
+            print(f"Error parsing Gemini response: {e}")
+            print(f"Response was: {response.text}")
+            return []
+            
+    except Exception as e:
+        print(f"Error generating quiz questions: {str(e)}")
+        return []
+
+def generate_projects(skill_area: str, db: Session, api_key: str = None):
     """
     Generate AI-suggested projects for a skill area using Gemini API or templates.
     """
